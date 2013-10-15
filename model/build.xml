@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="model" default="all">
+
+	<property file="${basedir}/../build.properties"/>
+	
+	<property name="skip.tests" value="true"/>
+
+	<property name="compiler.debug" value="on"/>
+	<property name="compiler.no.warnings" value="off"/>
+	<property name="compiler.args" value=""/>
+	<property name="compiler.max.memory" value="256m"/>
+
+	<patternset id="compiler.resources">
+		<exclude name="**/?*.java"/>
+		<exclude name="**/?*.form"/>
+		<exclude name="**/?*.class"/>
+		<exclude name="**/?*.groovy"/>
+		<exclude name="**/?*.scala"/>
+		<exclude name="**/?*.flex"/>
+		<exclude name="**/?*.kt"/>
+		<exclude name="**/?*.clj"/>
+	</patternset>
+
+	<property name="jdk.bin" value="${jdk.home}/bin"/>
+	<path id="jdk.classpath">
+		<fileset dir="${jdk.home}">
+			<include name="jre/lib/charsets.jar"/>
+			<include name="jre/lib/deploy.jar"/>
+			<include name="jre/lib/javaws.jar"/>
+			<include name="jre/lib/jce.jar"/>
+			<include name="jre/lib/jfr.jar"/>
+			<include name="jre/lib/jfxrt.jar"/>
+			<include name="jre/lib/jsse.jar"/>
+			<include name="jre/lib/management-agent.jar"/>
+			<include name="jre/lib/plugin.jar"/>
+			<include name="jre/lib/resources.jar"/>
+			<include name="jre/lib/rt.jar"/>
+			<include name="jre/lib/ext/access-bridge-64.jar"/>
+			<include name="jre/lib/ext/dnsns.jar"/>
+			<include name="jre/lib/ext/jaccess.jar"/>
+			<include name="jre/lib/ext/localedata.jar"/>
+			<include name="jre/lib/ext/sunec.jar"/>
+			<include name="jre/lib/ext/sunjce_provider.jar"/>
+			<include name="jre/lib/ext/sunmscapi.jar"/>
+			<include name="jre/lib/ext/zipfs.jar"/>
+		</fileset>
+	</path>
+
+	<path id="project.libs">
+		<fileset dir="${basedir}/../libs">
+			<include name="ormlite-core-4.43.jar"/>
+			<include name="snakeyaml-1.10.jar"/>
+            <include name="httpcore-4.2.2.jar"/>
+            <include name="httpclient-4.2.3.jar"/>
+            <include name="gson-2.2.2.jar"/>
+		</fileset>
+	</path>
+
+	<dirname property="project.basedir" file="${ant.file}"/>
+
+	<property name="project.output.production" value="${project.basedir}/target/classes/production"/>
+	<property name="project.output.tests" value="${project.basedir}/target/classes/tests"/>
+
+	<path id="project.classpath">
+		<path refid="jdk.classpath"/>
+		<pathelement location="${project.output.production}"/>
+		<path refid="project.libs"/>
+	</path>
+
+	<path id="project.src">
+		<dirset dir="${project.basedir}">
+			<include name="src"/>
+		</dirset>
+	</path>
+
+	<path id="project.tests">
+		<dirset dir="${project.basedir}">
+			<include name="tests"/>
+		</dirset>
+	</path>
+
+	<path id="bootclasspath">
+
+	</path>
+
+	<target name="compile.production" description="Compile project source files">
+		<mkdir dir="${project.output.production}"/>
+		<javac destdir="${project.output.production}" debug="${compiler.debug}" nowarn="${compiler.no.warnings}" includeantruntime="false"
+			   memorymaximumsize="${compiler.max.memory}" target="1.6" source="1.6" fork="true" executable="${jdk.bin}/javac">
+			<bootclasspath refid="bootclasspath"/>
+			<classpath refid="project.classpath"/>
+			<src refid="project.src"/>
+		</javac>
+		<copy todir="${project.output.production}">
+			<fileset dir="${project.basedir}/src">
+				<patternset refid="compiler.resources"/>
+				<type type="file"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="compile.tests" depends="compile.production" description="Compile project tests source files" unless="skip.tests">
+		<mkdir dir="${project.output.tests}"/>
+		<javac destdir="${project.output.tests}" debug="${compiler.debug}" nowarn="${compiler.no.warnings}" includeantruntime="false"
+			   memorymaximumsize="${compiler.max.memory}" target="1.6" source="1.6" fork="true" executable="${jdk.bin}/javac">
+			<bootclasspath refid="bootclasspath"/>
+			<classpath refid="project.classpath"/>
+			<src refid="project.tests"/>
+		</javac>
+		<copy todir="${project.output.tests}">
+			<fileset dir="${project.basedir}/src">
+				<patternset refid="compiler.resources"/>
+				<type type="file"/>
+			</fileset>
+			<fileset dir="${project.basedir}/tests">
+				<patternset refid="compiler.resources"/>
+				<type type="file"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="build" depends="compile.production, compile.tests"/>
+
+	<target name="test" depends="build">
+
+	</target>
+
+	<target name="clean">
+		<delete dir="${project.output.production}"/>
+		<delete dir="${project.output.tests}"/>
+	</target>
+
+	<target name="jar" depends="build">
+		<jar destfile="${project.basedir}/../libs/${ant.project.name}.jar" duplicate="preserve" filesetmanifest="mergewithoutmain">
+			<zipfileset dir="${project.output.production}"/>
+		</jar>
+	</target>
+
+	<target name="all" depends="build, jar" description="Build All"/>
+</project>
