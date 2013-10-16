@@ -166,57 +166,38 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
-            <ImageView
+            <Button
                 android:id="@+id/food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:adjustViewBounds="false"
-                android:background="#FFFFFF"
-                android:baselineAlignBottom="false"
-                android:clickable="true"
-                android:cropToPadding="false"
-                android:minHeight="40dip"
+                android:background="@drawable/icon_food_7"
                 android:onClick="onExpenseClick"
-                android:src="@drawable/food1" />
+                android:tag="@string/foodButton"
+                android:text="" />
             
             <Button
-                android:id="@+id/button_555"
+                android:id="@+id/transport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="onClick"
-                android:background="@drawable/food1"
+                android:background="@drawable/icon_transport_6"
+                android:onClick="onExpenseClick"
+                android:tag="@string/transportButton"
                 android:text="" />
 
             <Button
-                android:id="@+id/button_Cwref"
+                android:id="@+id/transportyyy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="onClick"
+                android:background="@drawable/icon_shopping_11"
+                android:onClick="onExpenseClick"
                 android:text="" />
 
         </TableRow>
     </TableLayout>
     
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/amount_margin"
-            android:layout_weight="1"
-            android:background="#EC7703"
-            android:gravity="center_vertical|right"
-            android:text=""
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="@dimen/amount_text" />
-
-    </LinearLayout>
 
 </LinearLayout>

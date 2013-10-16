@@ -5,5 +5,8 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="editAmountString">Enter next amount</string>
+    <string name="ShoppingHint">shopping</string>
+    <string name="foodButton">food</string>
+    <string name="transportButton">transport</string>
 
 </resources>

@@ -56,13 +56,14 @@ Feature: Calculator
 		And I press the "C" button
 		Then the view with id "amount" should have text "5"
 
+	@VIP
   Scenario: As a user I can report my next expense
     Given I wait for the "HomeActivity" screen to appear
     When I press "1"
     And I press "2"
     Then I see "12"
-    When I press view with id "food"
-    Then I see "Today you spent 12 Euro for food"
+    When I press view with id "transport"
+    Then I see "Today you spent 12 Euro for transport"
     
 
   Scenario: As a user I can report several expenses
@@ -78,16 +79,4 @@ Feature: Calculator
     And I press view with id "food"
     Then I see "Today you spent 21 Euro for food" 
 
- @VIP
-  Scenario: As a user I can report several transport expenses
-    Given I wait for the "HomeActivity" screen to appear
-    When I press "3"
-    And I press "2"
-    Then I see "32"
-    When I press view with id "transport"
-    Then I see "Today you spent 32 Euro for food"
-    When I press the "Ok" button
-    Then the view with id "amount" should have text "0"
-    When I press "8"
-    And I press view with id "transport"
-    Then I see "Today you spent 40 Euro for transport"
+

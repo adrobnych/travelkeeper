@@ -25,10 +25,9 @@ public class HomeActivity extends Activity implements View.OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		amount = (TextView) findViewById(R.id.amount);
-		message = (TextView) findViewById(R.id.message);
 		
 //		Button button = (Button)findViewById(R.id.button_1);
-//      button.setOnClickListener(this); 
+//      button.setOnClickListener(this);
 	}
 
 	@Override
@@ -58,8 +57,10 @@ public class HomeActivity extends Activity implements View.OnClickListener{
 	
 	public void onExpenseClick(View view){
 		//to do: get amount from amount widget and save using expenseManager
+		
+		String type = (String)view.getTag();
 		Expense expense = new Expense();
-		expense.setType("food");
+		expense.setType(type);
 		expense.setAmount(Long.valueOf(amount.getText().toString()));
 		final long time = (new Date()).getTime();
 		expense.setDateAndTime(time);
@@ -73,8 +74,8 @@ public class HomeActivity extends Activity implements View.OnClickListener{
 		new AlertDialog.Builder(this)
 	    .setTitle("New expense reported")
 	    .setMessage("Today you spent " + 
-	    		((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate("food", time).toString()
-	    		+ " Euro for food")
+	    		((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate(type, time).toString()
+	    		+ " Euro for " + type)
 	    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int which) { 
 	        	amount.setText("0");
