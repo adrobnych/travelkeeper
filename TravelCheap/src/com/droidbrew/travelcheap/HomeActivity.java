@@ -72,7 +72,7 @@ public class HomeActivity extends Activity implements View.OnClickListener{
 		}
 		
 		new AlertDialog.Builder(this)
-	    .setTitle("New expense reported")
+	    .setTitle(composeDialogTitle(amount.getText().toString()))
 	    .setMessage("Today you spent " + 
 	    		((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate(type, time).toString()
 	    		+ " Euro for " + type)
@@ -82,6 +82,14 @@ public class HomeActivity extends Activity implements View.OnClickListener{
 	        }
 	     })
 	     .show();
+	}
+	
+	private String composeDialogTitle(String amountValue){
+		if(amountValue.equals("0"))
+			return "Today\'s expenses";
+		else
+			return "New expense reported";
+				
 	}
 
 }

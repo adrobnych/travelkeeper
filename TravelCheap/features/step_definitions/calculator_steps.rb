@@ -14,3 +14,9 @@ def are_the_same? actual_activity, expected_activity
 end
 
 private :are_the_same?
+
+Given /^I press the "([^\"]*)" button (\d+) times$/ do |buttonText, n|
+	n.to_i.times do
+  	performAction('press_button_with_text', buttonText)
+  end
+end

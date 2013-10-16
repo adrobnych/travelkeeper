@@ -26,13 +26,18 @@ public final class R {
         public static final int food1=0x7f020000;
         public static final int food2=0x7f020001;
         public static final int ic_launcher=0x7f020002;
-        public static final int icon_food_7=0x7f020003;
-        public static final int icon_shopping_11=0x7f020004;
-        public static final int icon_transport_6=0x7f020005;
+        public static final int icon_entertainment_9=0x7f020003;
+        public static final int icon_food_7=0x7f020004;
+        public static final int icon_hotel_14=0x7f020005;
+        public static final int icon_other_9=0x7f020006;
+        public static final int icon_shopping_11=0x7f020007;
+        public static final int icon_transport_6=0x7f020008;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f090000;
-        public static final int action_settings=0x7f090012;
+        public static final int accommodation=0x7f090012;
+        public static final int accomodatihjlhion=0x7f090015;
+        public static final int action_settings=0x7f090016;
         public static final int amount=0x7f090001;
         public static final int button__=0x7f09000c;
         public static final int button_0=0x7f09000d;
@@ -46,10 +51,12 @@ public final class R {
         public static final int button_8=0x7f09000a;
         public static final int button_9=0x7f09000b;
         public static final int button_C=0x7f09000e;
+        public static final int entertainment=0x7f090013;
         public static final int food=0x7f09000f;
+        public static final int other=0x7f090014;
+        public static final int shopping=0x7f090011;
         public static final int tableRow1=0x7f090002;
         public static final int transport=0x7f090010;
-        public static final int transportyyy=0x7f090011;
     }
     public static final class integer {
         public static final int length_of_amount=0x7f050000;
@@ -65,8 +72,12 @@ public final class R {
         public static final int action_settings=0x7f060001;
         public static final int app_name=0x7f060000;
         public static final int editAmountString=0x7f060003;
+        public static final int entertainmentButton=0x7f060009;
         public static final int foodButton=0x7f060005;
         public static final int hello_world=0x7f060002;
+        public static final int hotelButton=0x7f060007;
+        public static final int otherButton=0x7f06000a;
+        public static final int shoppingButton=0x7f060008;
         public static final int transportButton=0x7f060006;
     }
     public static final class style {

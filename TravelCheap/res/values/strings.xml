@@ -8,5 +8,9 @@
     <string name="ShoppingHint">shopping</string>
     <string name="foodButton">food</string>
     <string name="transportButton">transport</string>
+    <string name="hotelButton">accommodation</string>
+    <string name="shoppingButton">shopping</string>
+    <string name="entertainmentButton">entertainment</string>
+    <string name="otherButton">other things</string>
 
 </resources>

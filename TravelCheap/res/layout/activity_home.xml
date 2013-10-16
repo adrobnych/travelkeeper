@@ -187,15 +187,66 @@
                 android:text="" />
 
             <Button
-                android:id="@+id/transportyyy"
+                android:id="@+id/shopping"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/icon_shopping_11"
                 android:onClick="onExpenseClick"
+                android:tag="@string/shoppingButton"
                 android:text="" />
 
         </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <Button
+                android:id="@+id/accommodation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/icon_hotel_14"
+                android:onClick="onExpenseClick"
+                android:tag="@string/hotelButton"
+                android:text="" />
+            
+            <Button
+                android:id="@+id/entertainment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/icon_entertainment_9"
+                android:onClick="onExpenseClick"
+                android:tag="@string/entertainmentButton"
+                android:text="" />
+
+            <Button
+                android:id="@+id/other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/icon_other_9"
+                android:onClick="onExpenseClick"
+                android:tag="@string/otherButton"
+                android:text="" />
+
+        </TableRow>
+         <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <Button
+                android:id="@+id/accomodatihjlhion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onClick="onHistoryClick"
+                android:text="History" />
+
+        </TableRow>
+   
     </TableLayout>
     
 
