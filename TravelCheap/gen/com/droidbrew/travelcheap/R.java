@@ -39,7 +39,6 @@ public final class R {
         public static final int accomodatihjlhion=0x7f090015;
         public static final int action_settings=0x7f090016;
         public static final int amount=0x7f090001;
-        public static final int button__=0x7f09000c;
         public static final int button_0=0x7f09000d;
         public static final int button_1=0x7f090003;
         public static final int button_2=0x7f090004;
@@ -51,6 +50,7 @@ public final class R {
         public static final int button_8=0x7f09000a;
         public static final int button_9=0x7f09000b;
         public static final int button_C=0x7f09000e;
+        public static final int button_dot=0x7f09000c;
         public static final int entertainment=0x7f090013;
         public static final int food=0x7f09000f;
         public static final int other=0x7f090014;

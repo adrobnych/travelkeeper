@@ -41,7 +41,7 @@ public class HomeActivity extends Activity implements View.OnClickListener{
 	public void onClick(View view) {
 		String old_value = (String) amount.getText();
 		String button_text = (String) ((Button)view).getText();
-		String new_value;
+		String new_value = null;
 		if(button_text.equals("C"))
 			if(old_value.length() == 1)
 				new_value = "0";
@@ -50,9 +50,25 @@ public class HomeActivity extends Activity implements View.OnClickListener{
 		else {
 			if(old_value.equals("0"))
 				old_value = "";
-			new_value = old_value + button_text;
+			if((!button_text.equals(".") || 
+					(button_text.equals(".") && thisIsNotSecondDot(old_value))) && 
+					thisIsNotThirdDigitAfterDot(old_value))
+				new_value = old_value + button_text;
+			else
+				new_value = old_value;
 		}
 		amount.setText(new_value);
+	}
+	
+	private boolean thisIsNotThirdDigitAfterDot(String amountLine){
+		if(amountLine.indexOf(".") == -1)
+			return true;
+		else
+			return (amountLine.length() -  amountLine.indexOf(".") <= 2);
+	}
+	
+	private boolean thisIsNotSecondDot(String amountLine){
+		return (amountLine.indexOf(".") == -1);
 	}
 	
 	public void onExpenseClick(View view){
@@ -61,7 +77,7 @@ public class HomeActivity extends Activity implements View.OnClickListener{
 		String type = (String)view.getTag();
 		Expense expense = new Expense();
 		expense.setType(type);
-		expense.setAmount(Long.valueOf(amount.getText().toString()));
+		expense.setAmount((long)(100 * Double.valueOf(amount.getText().toString())));
 		final long time = (new Date()).getTime();
 		expense.setDateAndTime(time);
 		
@@ -74,7 +90,7 @@ public class HomeActivity extends Activity implements View.OnClickListener{
 		new AlertDialog.Builder(this)
 	    .setTitle(composeDialogTitle(amount.getText().toString()))
 	    .setMessage("Today you spent " + 
-	    		((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate(type, time).toString()
+	    		(((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate(type, time)/100.0)
 	    		+ " Euro for " + type)
 	    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int which) { 
