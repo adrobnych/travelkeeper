@@ -35,8 +35,9 @@
         android:layout_height="wrap_content" >
 
         <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent" 
             android:paddingTop="@dimen/expenses_margin">
 
             <Button
@@ -65,6 +66,26 @@
                 android:layout_weight="1"
                 android:onClick="onClick"
            	/>
+            
+            <Button
+                android:id="@+id/food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/icon_food_7"
+                android:onClick="onExpenseClick"
+                android:tag="@string/foodButton"
+                android:text="" />
+            
+            <Button
+                android:id="@+id/transport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/icon_transport_6"
+                android:onClick="onExpenseClick"
+                android:tag="@string/transportButton"
+                android:text="" />
 
         </TableRow>
 
@@ -98,6 +119,28 @@
                 android:layout_weight="1"
                 android:onClick="onClick"
            	/>
+            
+            <Button
+                android:id="@+id/shopping"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/icon_shopping_11"
+                android:onClick="onExpenseClick"
+                android:tag="@string/shoppingButton"
+                android:text="" />
+            
+             <Button
+                android:id="@+id/accommodation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/icon_hotel_14"
+                android:onClick="onExpenseClick"
+                android:tag="@string/hotelButton"
+                android:text="" />
+            
+            
         </TableRow>
 
         <TableRow
@@ -130,6 +173,27 @@
                 android:layout_weight="1"
                 android:onClick="onClick"
            	/>
+            
+             <Button
+                android:id="@+id/entertainment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/icon_entertainment_9"
+                android:onClick="onExpenseClick"
+                android:tag="@string/entertainmentButton"
+                android:text="" />
+
+            <Button
+                android:id="@+id/other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/icon_other_9"
+                android:onClick="onExpenseClick"
+                android:tag="@string/otherButton"
+                android:text="" />
+            
         </TableRow>
 
         <TableRow
@@ -161,97 +225,25 @@
                 android:layout_weight="1"
                 android:onClick="onClick"
            	/>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:paddingTop="@dimen/expenses_margin" >
-
-            <Button
-                android:id="@+id/food"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/icon_food_7"
-                android:onClick="onExpenseClick"
-                android:tag="@string/foodButton"
-                android:text="" />
             
-            <Button
-                android:id="@+id/transport"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/icon_transport_6"
-                android:onClick="onExpenseClick"
-                android:tag="@string/transportButton"
-                android:text="" />
-
-            <Button
-                android:id="@+id/shopping"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/icon_shopping_11"
-                android:onClick="onExpenseClick"
-                android:tag="@string/shoppingButton"
-                android:text="" />
-
-        </TableRow>
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <Button
-                android:id="@+id/accommodation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/icon_hotel_14"
-                android:onClick="onExpenseClick"
-                android:tag="@string/hotelButton"
-                android:text="" />
-            
-            <Button
-                android:id="@+id/entertainment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/icon_entertainment_9"
-                android:onClick="onExpenseClick"
-                android:tag="@string/entertainmentButton"
-                android:text="" />
-
-            <Button
-                android:id="@+id/other"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/icon_other_9"
-                android:onClick="onExpenseClick"
-                android:tag="@string/otherButton"
-                android:text="" />
-
-        </TableRow>
-         
-   
-    </TableLayout>
-    <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:paddingTop="@dimen/expenses_margin" >
-
             <Button
                 android:id="@+id/accomodatihjlhion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_column="1"
+                android:layout_span="4"
+                android:layout_weight="2"
                 android:onClick="onClick"
                 android:text="History" />
-
-        </LinearLayout>
-
+            
+            
+            
+        </TableRow>
+          
+   
+    </TableLayout>
+    
+	
 
 </LinearLayout>

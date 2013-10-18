@@ -132,7 +132,6 @@ Feature: Calculator
 		And I press the "\." button
 		Then I should not see "3\.\."
 
-  @VIP
 	Scenario: As a user I can enter no more then 2 digits after dot on HomeActivity
 		Given I am on "HomeActivity" screen
 		Then the view with id "amount" should have text "0"
