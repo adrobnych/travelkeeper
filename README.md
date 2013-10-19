@@ -7,20 +7,20 @@ To compile use this structure of directories
 
 TtavelKeeper
 
-  TravelCheap
+--TravelCheap
   
-  Model
+--Model
   
-  Lib
+--Lib
   
-  Spec
+--Spec
   
 Calendar
 
-  Caldroid
+--Caldroid
   
-    demo
+----demo
     
-    library
+----library
     
     
