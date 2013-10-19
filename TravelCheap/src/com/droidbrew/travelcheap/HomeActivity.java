@@ -1,28 +1,35 @@
 package com.droidbrew.travelcheap;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.droidbrew.travelkeeper.model.entity.Expense;
+import com.roomorama.caldroid.CaldroidFragment;
+import com.roomorama.caldroid.CaldroidListener;
 
-public class HomeActivity extends Activity implements View.OnClickListener{
-	
+
+public class HomeActivity extends FragmentActivity{
+	private CaldroidFragment dialogCaldroidFragment;
+	private CaldroidFragment caldroidFragment;
+	private Bundle savedInstanceState;
 	private TextView amount;
-	private TextView message;
+
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void onCreate(Bundle _savedInstanceState) {
+		super.onCreate(_savedInstanceState);
+		savedInstanceState = _savedInstanceState;
 		setContentView(R.layout.activity_home);
 		amount = (TextView) findViewById(R.id.amount);
 		
@@ -37,7 +44,7 @@ public class HomeActivity extends Activity implements View.OnClickListener{
 		return true;
 	}
 
-	@Override
+
 	public void onClick(View view) {
 		String old_value = (String) amount.getText();
 		String button_text = (String) ((Button)view).getText();
@@ -107,6 +114,82 @@ public class HomeActivity extends Activity implements View.OnClickListener{
 			return "New expense reported";
 				
 	}
+	
+	final SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+	// Setup listener
+			final CaldroidListener listener = new CaldroidListener() {
+
+				@Override
+				public void onSelectDate(Date date, View view) {
+					Toast.makeText(getApplicationContext(), formatter.format(date),
+							Toast.LENGTH_SHORT).show();
+
+				}
+
+				@Override
+				public void onChangeMonth(int month, int year) {
+					String text = "month: " + month + " year: " + year;
+					Toast.makeText(getApplicationContext(), text,
+							Toast.LENGTH_SHORT).show();
+				}
+
+				@Override
+				public void onLongClickDate(Date date, View view) {
+					Toast.makeText(getApplicationContext(),
+							"Long click " + formatter.format(date),
+							Toast.LENGTH_SHORT).show();
+				}
+
+				@Override
+				public void onCaldroidViewCreated() {
+					if (caldroidFragment.getLeftArrowButton() != null) {
+						Toast.makeText(getApplicationContext(),
+								"Caldroid view is created", Toast.LENGTH_SHORT)
+								.show();
+					}
+				}
+
+			};
+
+			
+
+	public void onHistoryClick(View view){
+		//Intent historyIntent = new Intent(HomeActivity.this, HistoryActivity.class);
+		//HomeActivity.this.startActivity(historyIntent);
+		
+		final Bundle state = savedInstanceState;
+		caldroidFragment = new CaldroidFragment();
+		
+		// Setup caldroid to use as dialog
+		dialogCaldroidFragment = new CaldroidFragment();
+		dialogCaldroidFragment.setCaldroidListener(listener);
+
+		// If activity is recovered from rotation
+		final String dialogTag = "CALDROID_DIALOG_FRAGMENT";
+		if (state != null) {
+			dialogCaldroidFragment.restoreDialogStatesFromKey(
+					getSupportFragmentManager(), state,
+					"DIALOG_CALDROID_SAVED_STATE", dialogTag);
+			Bundle args = dialogCaldroidFragment.getArguments();
+			if (args == null) {
+				args = new Bundle();
+				dialogCaldroidFragment.setArguments(args);
+			}
+			args.putString(CaldroidFragment.DIALOG_TITLE,
+					"Select a date");
+		} else {
+			// Setup arguments
+			Bundle bundle = new Bundle();
+			// Setup dialogTitle
+			bundle.putString(CaldroidFragment.DIALOG_TITLE,
+					"Select a date");
+			dialogCaldroidFragment.setArguments(bundle);
+		}
+
+		dialogCaldroidFragment.show(getSupportFragmentManager(),
+				dialogTag);
+	}
+
 	
 
 }

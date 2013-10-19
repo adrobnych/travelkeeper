@@ -12,5 +12,7 @@
     <string name="shoppingButton">shopping</string>
     <string name="entertainmentButton">entertainment</string>
     <string name="otherButton">other things</string>
+    <string name="title_activity_history">HistoryActivity</string>
+    <string name="selectDate">Please select date for the report</string>
 
 </resources>

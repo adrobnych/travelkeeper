@@ -9,6 +9,6 @@ Feature: History
     Then I see "Today you spent 14.0 Euro for other things"
     When I press the "Ok" button
     And I press the "History" button
-    Then I am on "HistoryActivity" screen
-    And I shell see calendar widget
+    Then I see "Select a date"
+
 
