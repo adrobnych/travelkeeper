@@ -6,6 +6,7 @@ import java.util.Date;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
@@ -32,9 +33,7 @@ public class HomeActivity extends FragmentActivity{
 		savedInstanceState = _savedInstanceState;
 		setContentView(R.layout.activity_home);
 		amount = (TextView) findViewById(R.id.amount);
-		
-//		Button button = (Button)findViewById(R.id.button_1);
-//      button.setOnClickListener(this);
+
 	}
 
 	@Override
@@ -80,86 +79,87 @@ public class HomeActivity extends FragmentActivity{
 	
 	public void onExpenseClick(View view){
 		//to do: get amount from amount widget and save using expenseManager
-		
+
 		String type = (String)view.getTag();
 		Expense expense = new Expense();
 		expense.setType(type);
 		expense.setAmount((long)(100 * Double.valueOf(amount.getText().toString())));
 		final long time = (new Date()).getTime();
 		expense.setDateAndTime(time);
-		
+
 		try {
 			((TravelApp)getApplication()).getExpenseManager().create(expense);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		new AlertDialog.Builder(this)
-	    .setTitle(composeDialogTitle(amount.getText().toString()))
-	    .setMessage("Today you spent " + 
-	    		(((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate(type, time)/100.0)
-	    		+ " Euro for " + type)
-	    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-	        public void onClick(DialogInterface dialog, int which) { 
-	        	amount.setText("0");
-	        }
-	     })
-	     .show();
+		.setTitle(composeDialogTitle(amount.getText().toString()))
+		.setMessage("Today you spent " + 
+				(((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate(type, time)/100.0)
+				+ " Euro for " + type)
+				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) { 
+						amount.setText("0");
+					}
+				})
+				.show();
 	}
-	
+
 	private String composeDialogTitle(String amountValue){
 		if(amountValue.equals("0"))
 			return "Today\'s expenses";
 		else
 			return "New expense reported";
-				
+
 	}
+
 	
-	final SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
-	// Setup listener
-			final CaldroidListener listener = new CaldroidListener() {
+	final CaldroidListener listener = new CaldroidListener() {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
 
-				@Override
-				public void onSelectDate(Date date, View view) {
-					Toast.makeText(getApplicationContext(), formatter.format(date),
-							Toast.LENGTH_SHORT).show();
-
-				}
-
-				@Override
-				public void onChangeMonth(int month, int year) {
-					String text = "month: " + month + " year: " + year;
-					Toast.makeText(getApplicationContext(), text,
-							Toast.LENGTH_SHORT).show();
-				}
-
-				@Override
-				public void onLongClickDate(Date date, View view) {
-					Toast.makeText(getApplicationContext(),
-							"Long click " + formatter.format(date),
-							Toast.LENGTH_SHORT).show();
-				}
-
-				@Override
-				public void onCaldroidViewCreated() {
-					if (caldroidFragment.getLeftArrowButton() != null) {
-						Toast.makeText(getApplicationContext(),
-								"Caldroid view is created", Toast.LENGTH_SHORT)
-								.show();
-					}
-				}
-
-			};
-
+		@Override
+		public void onSelectDate(Date date, View view) {
+			Toast.makeText(getApplicationContext(), formatter.format(date),
+					Toast.LENGTH_SHORT).show();
 			
+			Intent historyIntent = new Intent(HomeActivity.this, HistoryActivity.class);
+			HomeActivity.this.startActivity(historyIntent);
+
+		}
+
+//		@Override
+//		public void onChangeMonth(int month, int year) {
+//			String text = "month: " + month + " year: " + year;
+//			Toast.makeText(getApplicationContext(), text,
+//					Toast.LENGTH_SHORT).show();
+//		}
+
+		@Override
+		public void onLongClickDate(Date date, View view) {
+			Toast.makeText(getApplicationContext(),
+					"Long click " + formatter.format(date),
+					Toast.LENGTH_SHORT).show();
+		}
+
+//		@Override
+//		public void onCaldroidViewCreated() {
+//			if (caldroidFragment.getLeftArrowButton() != null) {
+//				Toast.makeText(getApplicationContext(),
+//						"Caldroid view is created", Toast.LENGTH_SHORT)
+//						.show();
+//			}
+//		}
+
+	};
+
+
 
 	public void onHistoryClick(View view){
-		//Intent historyIntent = new Intent(HomeActivity.this, HistoryActivity.class);
-		//HomeActivity.this.startActivity(historyIntent);
-		
+
 		final Bundle state = savedInstanceState;
 		caldroidFragment = new CaldroidFragment();
-		
+
 		// Setup caldroid to use as dialog
 		dialogCaldroidFragment = new CaldroidFragment();
 		dialogCaldroidFragment.setCaldroidListener(listener);
@@ -190,6 +190,6 @@ public class HomeActivity extends FragmentActivity{
 				dialogTag);
 	}
 
-	
+
 
 }

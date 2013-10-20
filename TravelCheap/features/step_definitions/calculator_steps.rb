@@ -20,3 +20,7 @@ Given /^I press the "([^\"]*)" button (\d+) times$/ do |buttonText, n|
   	performAction('press_button_with_text', buttonText)
   end
 end
+
+When(/^I touch today's date$/) do
+  touch("SquareTextView marked:'#{Time.now.day.to_s}'")
+end
