@@ -3,9 +3,28 @@ package com.droidbrew.travelcheap.valueobject;
 import android.app.Application;
 
 import com.droidbrew.travelcheap.TravelApp;
+import com.droidbrew.travelkeeper.model.manager.ExpenseManager;
 
 public class ExpenseDayTotal {
 	private int id;
+	private long dayMillis;
+	private String type;
+	private int picture;
+	
+	public void setPicture(int picture) {
+		this.picture = picture;
+	}
+	
+	public int getPicture() {
+		return picture;
+	}
+
+	private ExpenseManager em;	
+	
+	public void setExpenseManager(ExpenseManager em) {
+		this.em = em;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -13,20 +32,17 @@ public class ExpenseDayTotal {
 	public String getType() {
 		return type;
 	}
-
-	private long dayMillis;
-	private String type;
-	private Application app;
 	
-	public ExpenseDayTotal(int _id, String _type, long _dayMillis, Application _app){
-		id = _id;
-		type = _type;
-		dayMillis = _dayMillis;
-		app = _app;
+	public ExpenseDayTotal(int id, String type, long dayMillis, int imageResource, ExpenseManager em){
+		this.id = id;
+		this.type = type;
+		this.dayMillis = dayMillis;
+		this.picture = imageResource;
+		this.em = em;
 	}
 	
 	public double getAmount(){
 		return 
-				((TravelApp)app).getExpenseManager().sumAmountByTypeAndDate(type, dayMillis)/100.0;
+				em.sumAmountByTypeAndDate(type, dayMillis)/100.0;
 	}
 }

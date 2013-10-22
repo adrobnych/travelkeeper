@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.droidbrew.travelcheap.R;
@@ -14,6 +15,7 @@ import com.droidbrew.travelcheap.valueobject.ExpenseDayTotal;
 public class TotalsListAdapter extends BaseAdapter {
 
     private class ViewHolder {
+    	public ImageView imageView;
         public TextView textView;
     }
     
@@ -62,6 +64,7 @@ public class TotalsListAdapter extends BaseAdapter {
             view = mInflater.inflate(R.layout.item_totals_list, parent, false);
             
             viewHolder = new ViewHolder();
+            viewHolder.imageView = (ImageView) view.findViewById(R.id.total_image);
             viewHolder.textView = (TextView) view.findViewById(R.id.list_label);
             
             view.setTag(viewHolder);
@@ -72,6 +75,7 @@ public class TotalsListAdapter extends BaseAdapter {
         
         ExpenseDayTotal total = totals[position];
         
+        viewHolder.imageView.setImageResource(total.getPicture());
         viewHolder.textView.setText(total.getType() + ": " + total.getAmount());
         
         return view;
