@@ -65,7 +65,7 @@ public final class R {
     public static final class id {
         public static final int LinearLayout1=0x7f0a0001;
         public static final int accommodation=0x7f0a0012;
-        public static final int action_settings=0x7f0a001f;
+        public static final int action_settings=0x7f0a0024;
         public static final int amount=0x7f0a0002;
         public static final int button_0=0x7f0a000d;
         public static final int button_1=0x7f0a0003;
@@ -87,7 +87,12 @@ public final class R {
         public static final int calendar_tv=0x7f0a001d;
         public static final int entertainment=0x7f0a0013;
         public static final int food=0x7f0a000f;
+        public static final int fragment_content=0x7f0a0022;
+        public static final int fragment_tab=0x7f0a0021;
+        public static final int grid_view_tab=0x7f0a0020;
         public static final int history=0x7f0a0015;
+        public static final int list_label=0x7f0a0023;
+        public static final int list_view_tab=0x7f0a001f;
         public static final int months_infinite_pager=0x7f0a001c;
         public static final int other=0x7f0a0014;
         public static final int shopping=0x7f0a0011;
@@ -105,6 +110,9 @@ public final class R {
         public static final int calendar_view=0x7f030002;
         public static final int date_cell=0x7f030003;
         public static final int date_grid_fragment=0x7f030004;
+        public static final int fragment_tab=0x7f030005;
+        public static final int history_activity=0x7f030006;
+        public static final int item_totals_list=0x7f030007;
     }
     public static final class menu {
         public static final int history=0x7f090000;
