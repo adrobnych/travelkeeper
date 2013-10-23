@@ -9,6 +9,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.droidbrew.travelcheap.HistoryActivity;
 import com.droidbrew.travelcheap.TravelApp;
 import com.droidbrew.travelcheap.adapter.TotalsListAdapter;
 import com.droidbrew.travelcheap.valueobject.ExpenseDayTotal;
@@ -26,7 +27,8 @@ public class TotalsListFragment extends ListFragment {
         Activity activity = getActivity();
         
         if (activity != null) {
-        	totals = ((TravelApp)activity.getApplication()).getVoFactory().getExpenceDayTotals();
+        	totals = ((TravelApp)activity.getApplication()).getVoFactory().getExpenceDayTotals(
+        			((HistoryActivity)activity).dateValue);
             ListAdapter listAdapter = new TotalsListAdapter(activity, totals);
             setListAdapter(listAdapter);
         }

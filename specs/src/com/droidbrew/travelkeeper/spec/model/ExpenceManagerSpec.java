@@ -35,6 +35,8 @@ public class ExpenceManagerSpec {
 		
     }
 	
+	private long time1;
+	
 	@Before
 	public void clearExpenses(){
 		try {
@@ -42,14 +44,11 @@ public class ExpenceManagerSpec {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	@Test
-	public void itShouldFetchSumOfExpensesByTypeAndDay(){
+		
 		Expense expense1 = new Expense();
 		expense1.setType("food");
 		expense1.setAmount(1200L);
-		long time1 = 12000000000L;
+		time1 = 12000000000L;
 		expense1.setDateAndTime(time1);
 		
 		try {
@@ -82,8 +81,29 @@ public class ExpenceManagerSpec {
 			e.printStackTrace();
 		}
 		
+		Expense expense4 = new Expense();
+		expense4.setType("transport");
+		expense4.setAmount(1000L);
+		expense4.setDateAndTime(time2);
+		
+		try {
+			em.create(expense4);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void itShouldFetchSumOfExpensesByTypeAndDay(){
+		
 		assertEquals(2200L, em.sumAmountByTypeAndDate("food", time1).longValue());
-
+		
+	}
+	
+	@Test
+	public void itShouldFetchSumOfExpensesByDay(){
+		
+		assertEquals(3200L, em.sumAmountByDate(time1).longValue());
 		
 	}
 }

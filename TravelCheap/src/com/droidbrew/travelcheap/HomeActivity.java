@@ -124,6 +124,7 @@ public class HomeActivity extends FragmentActivity{
 					Toast.LENGTH_SHORT).show();
 			
 			Intent historyIntent = new Intent(HomeActivity.this, HistoryActivity.class);
+			historyIntent.putExtra("date", date.getTime());
 			HomeActivity.this.startActivity(historyIntent);
 
 		}

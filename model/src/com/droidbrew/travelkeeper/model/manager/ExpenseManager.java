@@ -53,6 +53,18 @@ public class ExpenseManager {
 	    cal.set(Calendar.MILLISECOND, cal.getMaximum(Calendar.MILLISECOND));
 	    return "" + cal.getTime().getTime();
 	}
+
+	public Long sumAmountByDate(long time_of_day) {
+		try {
+			return getExpenseDao().queryRawValue(
+					"select sum(amount) from expenses where date_and_time >= ? and date_and_time <= ?",
+					firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day)
+					);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 
 }
