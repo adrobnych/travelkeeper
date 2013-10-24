@@ -1,11 +1,13 @@
 package com.droidbrew.travelcheap.valueobject;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Application;
 
 import com.droidbrew.travelcheap.R;
 import com.droidbrew.travelcheap.TravelApp;
+import com.droidbrew.travelkeeper.model.entity.Expense;
 
 public class ValueObjectFactory {
 	Application app;
@@ -36,5 +38,14 @@ public class ValueObjectFactory {
     	return totals;
 	}
 
+	public List<ExpenseRecord> getExpenseRecords(long date){
+		List<ExpenseRecord> expenseVOs = new ArrayList<ExpenseRecord>();
 
+		for(Expense e : ((TravelApp)app).getExpenseManager().expensesByDate(date)){
+			ExpenseRecord er = new ExpenseRecord(e.getId(), e.getDateAndTime(), e.getType(), R.drawable.icon_food_7, e.getAmount());
+			expenseVOs.add(er);
+		}
+		
+		return expenseVOs;
+	}
 }

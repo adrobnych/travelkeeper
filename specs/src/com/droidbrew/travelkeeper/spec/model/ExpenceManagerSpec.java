@@ -106,4 +106,11 @@ public class ExpenceManagerSpec {
 		assertEquals(3200L, em.sumAmountByDate(time1).longValue());
 		
 	}
+	
+	@Test
+	public void itShouldFetchListOfExpensesByDay(){
+		
+		assertEquals(1200L, em.expensesByDate(time1).get(0).getAmount().longValue());
+		
+	}
 }

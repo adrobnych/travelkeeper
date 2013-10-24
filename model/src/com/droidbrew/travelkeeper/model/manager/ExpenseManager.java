@@ -2,6 +2,7 @@ package com.droidbrew.travelkeeper.model.manager;
 
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.List;
 
 import com.droidbrew.travelkeeper.model.entity.Expense;
 import com.j256.ormlite.dao.Dao;
@@ -60,6 +61,16 @@ public class ExpenseManager {
 					"select sum(amount) from expenses where date_and_time >= ? and date_and_time <= ?",
 					firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day)
 					);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public List<Expense> expensesByDate(long time_of_day) {
+		try {
+			return getExpenseDao().queryBuilder().where().between("date_and_time", 
+				firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day)).query();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
