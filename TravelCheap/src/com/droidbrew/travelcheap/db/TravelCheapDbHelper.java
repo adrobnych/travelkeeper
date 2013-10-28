@@ -9,7 +9,7 @@ import com.droidbrew.travelkeeper.model.entity.Expense;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import com.j256.ormlite.logger.*;
+
 
 public class TravelCheapDbHelper extends OrmLiteSqliteOpenHelper {
 		private static final String TAG = "com.droidbrew.travelcheap.db.TravelCheapDbHelper";

@@ -1,6 +1,8 @@
 package com.droidbrew.travelcheap.fragment;
 
 
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -18,7 +20,7 @@ import com.droidbrew.travelcheap.valueobject.ExpenseDayTotal;
 
 public class TotalsListFragment extends ListFragment {
 		
-	private ExpenseDayTotal[] totals; 
+	private List<ExpenseDayTotal> totals; 
 	private Activity activity;
     
     @Override

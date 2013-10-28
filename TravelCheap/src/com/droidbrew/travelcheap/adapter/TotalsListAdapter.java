@@ -1,6 +1,8 @@
 package com.droidbrew.travelcheap.adapter;
 
 
+import java.util.List;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,18 +21,18 @@ public class TotalsListAdapter extends BaseAdapter {
         public TextView textView;
     }
     
-    private ExpenseDayTotal[] totals;
+    private List<ExpenseDayTotal> totals;
     private LayoutInflater  mInflater;
     
-    public TotalsListAdapter(Context context, ExpenseDayTotal[] _totals) {
+    public TotalsListAdapter(Context context, List<ExpenseDayTotal> totals) {
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        totals = _totals;
+        this.totals = totals;
     }
     
     @Override
     public int getCount() {
         if (totals != null) {
-            return totals.length;
+            return totals.size();
         }
         
         return 0;
@@ -39,7 +41,7 @@ public class TotalsListAdapter extends BaseAdapter {
     @Override
     public Object getItem(int position) {
         if (totals != null && position >= 0 && position < getCount()) {
-            return totals[position];
+            return totals.get(position);
         }
         
         return null;
@@ -48,7 +50,7 @@ public class TotalsListAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         if (totals != null && position >= 0 && position < getCount()) {
-            return totals[position].getId();
+            return totals.get(position).getId();
         }
         
         return 0;
@@ -73,7 +75,7 @@ public class TotalsListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
         
-        ExpenseDayTotal total = totals[position];
+        ExpenseDayTotal total = totals.get(position);
         
         viewHolder.imageView.setImageResource(total.getPicture());
         viewHolder.textView.setText(total.getType() + ": " + total.getAmount());

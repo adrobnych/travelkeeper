@@ -1,8 +1,5 @@
 package com.droidbrew.travelcheap.valueobject;
 
-import android.app.Application;
-
-import com.droidbrew.travelcheap.TravelApp;
 import com.droidbrew.travelkeeper.model.manager.ExpenseManager;
 
 public class ExpenseDayTotal {

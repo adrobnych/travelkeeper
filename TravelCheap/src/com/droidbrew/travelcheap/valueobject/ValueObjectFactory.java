@@ -28,24 +28,14 @@ public class ValueObjectFactory {
 		
 	}
 	
-	public ExpenseDayTotal[] getExpenceDayTotals(long date){
+	public List<ExpenseDayTotal> getExpenceDayTotals(long date){
 		
-		ExpenseDayTotal[] totals = {
+		List<ExpenseDayTotal> totals = new ArrayList<ExpenseDayTotal>();
 		
-    	new ExpenseDayTotal(0, "food", date,
-    			R.drawable.icon_food_7, ((TravelApp)app).getExpenseManager()),
-    	new ExpenseDayTotal(1, "transport", date, 
-    			R.drawable.icon_transport_6, ((TravelApp)app).getExpenseManager()),
-    	new ExpenseDayTotal(2, "shopping", date, 
-    			R.drawable.icon_shopping_11, ((TravelApp)app).getExpenseManager()),
-    	new ExpenseDayTotal(3, "accommodation", date,
-    			R.drawable.icon_hotel_14, ((TravelApp)app).getExpenseManager()),
-    	new ExpenseDayTotal(4, "entertainment", date, 
-    			R.drawable.icon_entertainment_9, ((TravelApp)app).getExpenseManager()),
-    	new ExpenseDayTotal(5, "other things", date, 
-    			R.drawable.icon_other_9, ((TravelApp)app).getExpenseManager())
-    	
-		};
+		for(String pictureKey : pictureMap.keySet()){
+			totals.add(new ExpenseDayTotal(0, pictureKey, date,
+    			pictureMap.get(pictureKey), ((TravelApp)app).getExpenseManager()));
+		}
 		
     	return totals;
 	}

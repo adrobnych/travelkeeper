@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.droidbrew.travelcheap.HistoryActivity;
 import com.droidbrew.travelcheap.TravelApp;
 import com.droidbrew.travelcheap.adapter.RecordsListAdapter;
-import com.droidbrew.travelcheap.adapter.TotalsListAdapter;
 import com.droidbrew.travelcheap.valueobject.ExpenseRecord;
 
 public class RecordsListFragment extends ListFragment {
