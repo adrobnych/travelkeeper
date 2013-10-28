@@ -1,5 +1,7 @@
 package com.droidbrew.travelkeeper.spec.model;
 
+import static org.junit.Assert.*;
+
 import java.sql.SQLException;
 
 import org.junit.Before;
@@ -13,8 +15,6 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-
-import static org.junit.Assert.assertEquals;
 
 public class ExpenceManagerSpec {
 	static ExpenseManager em = null;
@@ -38,7 +38,7 @@ public class ExpenceManagerSpec {
 	private long time1;
 	
 	@Before
-	public void clearExpenses(){
+	public void clearAndFeedExpenses(){
 		try {
 			TableUtils.clearTable(connectionSource, Expense.class);
 		} catch (SQLException e) {
@@ -112,5 +112,28 @@ public class ExpenceManagerSpec {
 		
 		assertEquals(1200L, em.expensesByDate(time1).get(0).getAmount().longValue());
 		
+	}
+	
+	@Test
+	public void itShouldDeleteExpenseById(){
+		int first_expense_id = -1;
+		try {
+			first_expense_id = em.getExpenseDao().queryForAll().get(0).getId();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		em.deleteExpenseById(first_expense_id);
+		
+		Expense ex = null;
+		
+		try {
+			ex = em.getExpenseDao().queryForId(first_expense_id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertEquals(null, ex);
 	}
 }

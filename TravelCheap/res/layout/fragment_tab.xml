@@ -14,12 +14,14 @@
             android:id="@+id/list_view_tab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Totals" />
 
         <Button
             android:id="@+id/grid_view_tab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Records" />
     </LinearLayout>
 

@@ -76,6 +76,22 @@ public class ExpenseManager {
 		}
 		return null;
 	}
+
+	public void deleteExpenseById(int expense_id) {
+		Expense ex = null;
+		try {
+			ex = getExpenseDao().queryForId(expense_id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		if(ex != null)
+			try {
+				getExpenseDao().delete(ex);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	}
 	
 
 }

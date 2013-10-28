@@ -70,8 +70,9 @@ public final class R {
     }
     public static final class id {
         public static final int LinearLayout1=0x7f0c0002;
+        public static final int StatusLine=0x7f0c0023;
         public static final int accommodation=0x7f0c0013;
-        public static final int action_settings=0x7f0c0026;
+        public static final int action_settings=0x7f0c0027;
         public static final int amount=0x7f0c0003;
         public static final int button1=0x7f0c0001;
         public static final int button_0=0x7f0c000e;
@@ -94,20 +95,20 @@ public final class R {
         public static final int calendar_tv=0x7f0c001e;
         public static final int entertainment=0x7f0c0014;
         public static final int food=0x7f0c0010;
-        public static final int fragment_content=0x7f0c0023;
+        public static final int fragment_content=0x7f0c0024;
         public static final int fragment_tab=0x7f0c0022;
         public static final int grid_view_tab=0x7f0c0021;
         public static final int history=0x7f0c0016;
-        public static final int list_label=0x7f0c0025;
+        public static final int list_label=0x7f0c0026;
         public static final int list_view_tab=0x7f0c0020;
-        public static final int menu_administration=0x7f0c0028;
-        public static final int menu_settings=0x7f0c0027;
+        public static final int menu_administration=0x7f0c0029;
+        public static final int menu_settings=0x7f0c0028;
         public static final int months_infinite_pager=0x7f0c001d;
         public static final int other=0x7f0c0015;
         public static final int shopping=0x7f0c0012;
         public static final int tableRow1=0x7f0c0017;
         public static final int textView1=0x7f0c0000;
-        public static final int total_image=0x7f0c0024;
+        public static final int total_image=0x7f0c0025;
         public static final int transport=0x7f0c0011;
         public static final int weekday_gridview=0x7f0c001c;
     }

@@ -107,7 +107,7 @@ Feature: History
         Then I see "0.0 EUR spent on "
         And I see "food: 0.0"
 
-     @VIP
+     
     Scenario: As a user I can remove all data and no records will be in history
         Given this new app installation
         And I am on "HomeActivity" screen
@@ -125,5 +125,23 @@ Feature: History
         And I press the "Ok" button
         Then I see "0.0 EUR spent on "
         And I should not see "food: 9.0"
+
+     @VIP
+    Scenario: As a user I can remove single record from history
+        Given this new app installation
+        And I am on "HomeActivity" screen
+        And I press the "9" button
+        When I press view with id "food"
+        And I press the "Ok" button
+        And I press the "History" button
+        Then I see "Select a date"
+        When I touch today's date
+        And I wait for the "HistoryActivity" screen to appear
+        And I press the "Records" button 
+        Then I see "food: 9.0"
+        When I touch the "food: 9.0" text
+        And I press the "Delete" button
+        Then I see "0.0 EUR spent on "
+     
 
 

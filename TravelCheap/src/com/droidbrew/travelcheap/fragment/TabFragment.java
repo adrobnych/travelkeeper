@@ -1,5 +1,7 @@
 package com.droidbrew.travelcheap.fragment;
 
+import android.R.color;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.droidbrew.travelcheap.R;
 
@@ -18,6 +21,8 @@ public class TabFragment extends Fragment {
     private static final int GRID_STATE = 0x2;
     
     private int mTabState;
+    Button totalsViewTab;
+    Button recordViewTab;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -25,11 +30,13 @@ public class TabFragment extends Fragment {
         
         // Grab the tab buttons from the layout and attach event handlers. The code just uses standard
         // buttons for the tab widgets. These are bad tab widgets, design something better, this is just
-        // to keep the code simple.
-        Button listViewTab = (Button) view.findViewById(R.id.list_view_tab);
-        Button gridViewTab = (Button) view.findViewById(R.id.grid_view_tab);
+        // to keep the code simple. 
+        totalsViewTab = (Button) view.findViewById(R.id.list_view_tab);
+        totalsViewTab.setBackgroundColor(Color.LTGRAY);
+        recordViewTab = (Button) view.findViewById(R.id.grid_view_tab);
+        recordViewTab.setBackgroundColor(Color.DKGRAY);
         
-        listViewTab.setOnClickListener(new OnClickListener() {
+        totalsViewTab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Switch the tab content to display the list view.
@@ -37,7 +44,7 @@ public class TabFragment extends Fragment {
             }
         });
         
-        gridViewTab.setOnClickListener(new OnClickListener() {
+        recordViewTab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Switch the tab content to display the grid view.
@@ -49,6 +56,11 @@ public class TabFragment extends Fragment {
     }
     
     public void gotoListView() {
+    	TextView tv = (TextView) getActivity().findViewById(R.id.StatusLine);
+    	tv.setText("");
+    	totalsViewTab.setBackgroundColor(Color.LTGRAY);
+        recordViewTab.setBackgroundColor(Color.DKGRAY);
+    	
         // mTabState keeps track of which tab is currently displaying its contents.
         // Perform a check to make sure the list tab content isn't already displaying.
         
@@ -73,6 +85,10 @@ public class TabFragment extends Fragment {
     }
     
     public void gotoGridView() {
+    	TextView tv = (TextView) getActivity().findViewById(R.id.StatusLine);
+    	tv.setText("Click to remove");
+    	totalsViewTab.setBackgroundColor(Color.DKGRAY);
+        recordViewTab.setBackgroundColor(Color.LTGRAY);
         // See gotoListView(). This method does the same thing except it loads
         // the grid tab.
         
