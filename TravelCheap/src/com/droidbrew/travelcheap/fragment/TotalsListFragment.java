@@ -19,18 +19,29 @@ import com.droidbrew.travelcheap.valueobject.ExpenseDayTotal;
 public class TotalsListFragment extends ListFragment {
 		
 	private ExpenseDayTotal[] totals; 
+	private Activity activity;
     
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         
-        Activity activity = getActivity();
+        activity = getActivity();
         
-        if (activity != null) {
+        refreshTotals();
+    }
+    
+    @Override
+    public void onResume(){
+    	super.onResume();
+ 
+    	refreshTotals();
+    }
+    
+    private void refreshTotals(){
+    	if (activity != null) {
         	totals = ((TravelApp)activity.getApplication()).getVoFactory().getExpenceDayTotals(
         			((HistoryActivity)activity).dateValue);
-            ListAdapter listAdapter = new TotalsListAdapter(activity, totals);
-            setListAdapter(listAdapter);
+            setListAdapter(new TotalsListAdapter(activity, totals));
         }
     }
 

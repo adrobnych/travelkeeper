@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.droidbrew.travelcheap.fragment.TabFragment;
 
@@ -12,12 +14,14 @@ import java.text.SimpleDateFormat;
 public class HistoryActivity extends FragmentActivity {
 	
 	public Long dateValue = null;
+	private static final int RESULT_SETTINGS = 2;
+	private SimpleDateFormat formatter;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+        formatter = new SimpleDateFormat("dd MMM yyyy");
         
         Intent intent = getIntent();
         dateValue = intent.getLongExtra("date", -1);
@@ -28,6 +32,14 @@ public class HistoryActivity extends FragmentActivity {
         FragmentManager fm = getSupportFragmentManager();
         TabFragment tabFragment = (TabFragment) fm.findFragmentById(R.id.fragment_tab);
         tabFragment.gotoListView();
+    }
+    
+    @Override
+    protected void onResume() {
+    	super.onResume();
+        
+        setTitle(compileFullTotal(dateValue) + " EUR spent on " + formatter.format(dateValue));
+
     }
     
     private String compileFullTotal(long date){
@@ -47,5 +59,45 @@ public class HistoryActivity extends FragmentActivity {
     	
     	return result;
     }
+    
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.settings, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent i;
+		switch (item.getItemId()) {
+
+		case R.id.menu_settings:
+			i = new Intent(this, UserSettingsActivity.class);
+			startActivityForResult(i, RESULT_SETTINGS);
+			break;
+		case R.id.menu_administration:
+			i = new Intent(this, AdminActivity.class);
+			startActivityForResult(i, RESULT_SETTINGS);
+			break;
+
+		}
+
+		return true;
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		switch (requestCode) {
+		case RESULT_SETTINGS:
+			//showUserSettings();
+			break;
+
+		}
+
+	}
+
+
 
 }

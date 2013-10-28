@@ -3,6 +3,7 @@
 
     <string name="app_name">TravelCheap</string>
     <string name="action_settings">Settings</string>
+    <string name="action_administration">Administration</string>
     <string name="hello_world">Hello world!</string>
     <string name="editAmountString">Enter next amount</string>
     <string name="ShoppingHint">shopping</string>
@@ -14,5 +15,9 @@
     <string name="otherButton">other things</string>
     <string name="title_activity_history">HistoryActivity</string>
     <string name="selectDate">Please select date for the report</string>
+    <string name="clearData">Dangerous Area</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="WipeDataWarning">Warning: this operation will destroy all data collected in many trips</string>
+    <string name="DestroyData">Destroy All Data</string>
 
 </resources>

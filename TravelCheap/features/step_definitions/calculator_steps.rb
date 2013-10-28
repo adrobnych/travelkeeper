@@ -24,3 +24,9 @@ end
 When(/^I touch today's date$/) do
   touch("SquareTextView marked:'#{Time.now.day.to_s}'")
 end
+
+Given(/^this new app installation$/) do
+  performAction('select_from_menu', 'Administration')
+  performAction('press_button_with_text', "Destroy All Data")
+  performAction('press_button_with_text', "Ok")
+end

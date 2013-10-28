@@ -5,11 +5,11 @@ public class ExpenseRecord {
 	private long timeMillis;
 	private String type;
 	private int picture;
-	private long amount;
-	public long getAmount() {
+	private double amount;
+	public double getAmount() {
 		return amount;
 	}
-	public void setAmount(long amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 	public int getId() {
@@ -36,7 +36,7 @@ public class ExpenseRecord {
 	public void setPicture(int picture) {
 		this.picture = picture;
 	}
-	public ExpenseRecord(int id, long timeMillis, String type, int picture, long amount) {
+	public ExpenseRecord(int id, long timeMillis, String type, int picture, double amount) {
 		this.id = id;
 		this.timeMillis = timeMillis;
 		this.type = type;

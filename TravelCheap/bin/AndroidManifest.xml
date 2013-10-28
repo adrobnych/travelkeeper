@@ -28,6 +28,14 @@
             android:name="com.droidbrew.travelcheap.HistoryActivity"
             android:label="@string/title_activity_history" >
         </activity>
+        <activity
+            android:name="com.droidbrew.travelcheap.UserSettingsActivity"
+            android:label="@string/title_activity_user_settings" >
+        </activity>
+        <activity
+            android:name="com.droidbrew.travelcheap.AdminActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
     </application>
 
 </manifest>

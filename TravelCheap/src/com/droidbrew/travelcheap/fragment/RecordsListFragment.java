@@ -13,25 +13,37 @@ import android.widget.Toast;
 import com.droidbrew.travelcheap.HistoryActivity;
 import com.droidbrew.travelcheap.TravelApp;
 import com.droidbrew.travelcheap.adapter.RecordsListAdapter;
+import com.droidbrew.travelcheap.adapter.TotalsListAdapter;
 import com.droidbrew.travelcheap.valueobject.ExpenseRecord;
 
 public class RecordsListFragment extends ListFragment {
     
-private List<ExpenseRecord> expenses; 
-    
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        
-        Activity activity = getActivity();
-        
-        if (activity != null) {
-        	expenses = ((TravelApp)activity.getApplication()).getVoFactory().getExpenseRecords(
-        			((HistoryActivity)activity).dateValue);
-            ListAdapter listAdapter = new RecordsListAdapter(activity, expenses);
-            setListAdapter(listAdapter);
-        }
-    }
+	private List<ExpenseRecord> expenses; 
+	private Activity activity;
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+
+		activity = getActivity();
+
+		refreshRecords();
+	}
+
+	@Override
+	public void onResume(){
+		super.onResume();
+
+		refreshRecords();
+	}
+
+	private void refreshRecords(){
+		if (activity != null) {
+			expenses = ((TravelApp)activity.getApplication()).getVoFactory().getExpenseRecords(
+					((HistoryActivity)activity).dateValue);
+			setListAdapter(new RecordsListAdapter(activity, expenses));
+		}
+	}
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {

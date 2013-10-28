@@ -1,5 +1,6 @@
 package com.droidbrew.travelcheap.adapter;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import android.content.Context;
@@ -61,6 +62,8 @@ public class RecordsListAdapter extends BaseAdapter {
         View       view = convertView; 
         ViewHolder viewHolder;
         
+        SimpleDateFormat formatter = new SimpleDateFormat("hh : mm a");
+        
         if (view == null) {
             view = inflater.inflate(R.layout.item_totals_list, parent, false);
             
@@ -77,7 +80,9 @@ public class RecordsListAdapter extends BaseAdapter {
         ExpenseRecord record = expenses.get(position);
         
         viewHolder.imageView.setImageResource(record.getPicture());
-        viewHolder.textView.setText(record.getType() + ": " + record.getAmount());
+        String time = "[" + formatter.format(record.getTimeMillis()) + "] ";
+        time = time.replace("AM", "am").replace("PM","pm");
+        viewHolder.textView.setText(time + record.getType() + ": " + record.getAmount());
         
         return view;
     }

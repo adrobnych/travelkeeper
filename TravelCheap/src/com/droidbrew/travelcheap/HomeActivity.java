@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,7 +26,8 @@ public class HomeActivity extends FragmentActivity{
 	private CaldroidFragment caldroidFragment;
 	private Bundle savedInstanceState;
 	private TextView amount;
-
+	
+	private static final int RESULT_SETTINGS = 1;
 
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -36,12 +38,7 @@ public class HomeActivity extends FragmentActivity{
 
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.home, menu);
-		return true;
-	}
+
 
 
 	public void onClick(View view) {
@@ -78,23 +75,24 @@ public class HomeActivity extends FragmentActivity{
 	}
 	
 	public void onExpenseClick(View view){
-		//to do: get amount from amount widget and save using expenseManager
+		
+		String amountLine = amount.getText().toString();
 
 		String type = (String)view.getTag();
 		Expense expense = new Expense();
 		expense.setType(type);
-		expense.setAmount((long)(100 * Double.valueOf(amount.getText().toString())));
+		expense.setAmount((long)(100 * Double.valueOf(amountLine)));
 		final long time = (new Date()).getTime();
 		expense.setDateAndTime(time);
-
-		try {
-			((TravelApp)getApplication()).getExpenseManager().create(expense);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if(!amountLine.equals("0")){
+			try {
+				((TravelApp)getApplication()).getExpenseManager().create(expense);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-
 		new AlertDialog.Builder(this)
-		.setTitle(composeDialogTitle(amount.getText().toString()))
+		.setTitle(composeDialogTitle(amountLine))
 		.setMessage("Today you spent " + 
 				(((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate(type, time)/100.0)
 				+ " Euro for " + type)
@@ -120,8 +118,8 @@ public class HomeActivity extends FragmentActivity{
 
 		@Override
 		public void onSelectDate(Date date, View view) {
-			Toast.makeText(getApplicationContext(), formatter.format(date),
-					Toast.LENGTH_SHORT).show();
+//			Toast.makeText(getApplicationContext(), formatter.format(date),
+//					Toast.LENGTH_SHORT).show();
 			
 			Intent historyIntent = new Intent(HomeActivity.this, HistoryActivity.class);
 			historyIntent.putExtra("date", date.getTime());
@@ -129,12 +127,6 @@ public class HomeActivity extends FragmentActivity{
 
 		}
 
-//		@Override
-//		public void onChangeMonth(int month, int year) {
-//			String text = "month: " + month + " year: " + year;
-//			Toast.makeText(getApplicationContext(), text,
-//					Toast.LENGTH_SHORT).show();
-//		}
 
 		@Override
 		public void onLongClickDate(Date date, View view) {
@@ -142,15 +134,6 @@ public class HomeActivity extends FragmentActivity{
 					"Long click " + formatter.format(date),
 					Toast.LENGTH_SHORT).show();
 		}
-
-//		@Override
-//		public void onCaldroidViewCreated() {
-//			if (caldroidFragment.getLeftArrowButton() != null) {
-//				Toast.makeText(getApplicationContext(),
-//						"Caldroid view is created", Toast.LENGTH_SHORT)
-//						.show();
-//			}
-//		}
 
 	};
 
@@ -191,6 +174,43 @@ public class HomeActivity extends FragmentActivity{
 				dialogTag);
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.settings, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent i;
+		switch (item.getItemId()) {
+
+		case R.id.menu_settings:
+			i = new Intent(this, UserSettingsActivity.class);
+			startActivityForResult(i, RESULT_SETTINGS);
+			break;
+		case R.id.menu_administration:
+			i = new Intent(this, AdminActivity.class);
+			startActivityForResult(i, RESULT_SETTINGS);
+			break;
+
+		}
+
+		return true;
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		switch (requestCode) {
+		case RESULT_SETTINGS:
+			//showUserSettings();
+			break;
+
+		}
+
+	}
 
 
 }
