@@ -31,7 +31,12 @@ public class HistoryActivity extends FragmentActivity {
 
         FragmentManager fm = getSupportFragmentManager();
         TabFragment tabFragment = (TabFragment) fm.findFragmentById(R.id.fragment_tab);
-        tabFragment.gotoListView();
+        
+        String targetTab = intent.getStringExtra("tab");
+        if(targetTab.equals("totals"))
+        	tabFragment.gotoListView();
+        else
+        	tabFragment.gotoGridView();
     }
     
     @Override

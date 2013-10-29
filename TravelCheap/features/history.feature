@@ -142,6 +142,6 @@ Feature: History
         When I touch the "food: 9.0" text
         And I press the "Delete" button
         Then I see "0.0 EUR spent on "
-     
+        And I should not see "food:"
 
 

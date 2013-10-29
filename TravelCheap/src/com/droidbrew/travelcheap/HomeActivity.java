@@ -123,6 +123,7 @@ public class HomeActivity extends FragmentActivity{
 			
 			Intent historyIntent = new Intent(HomeActivity.this, HistoryActivity.class);
 			historyIntent.putExtra("date", date.getTime());
+			historyIntent.putExtra("tab", "totals");
 			HomeActivity.this.startActivity(historyIntent);
 
 		}
