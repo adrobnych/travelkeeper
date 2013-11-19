@@ -49,24 +49,28 @@ public final class R {
         public static final int expenses_margin=0x7f080004;
     }
     public static final class drawable {
-        public static final int calendar_next_arrow=0x7f020000;
-        public static final int calendar_prev_arrow=0x7f020001;
-        public static final int cell_bg=0x7f020002;
-        public static final int disable_cell=0x7f020003;
-        public static final int food1=0x7f020004;
-        public static final int food2=0x7f020005;
-        public static final int ic_launcher=0x7f020006;
-        public static final int icon_entertainment_9=0x7f020007;
-        public static final int icon_food_7=0x7f020008;
-        public static final int icon_hotel_14=0x7f020009;
-        public static final int icon_other_9=0x7f02000a;
-        public static final int icon_shopping_11=0x7f02000b;
-        public static final int icon_transport_6=0x7f02000c;
-        public static final int left_arrow=0x7f02000d;
-        public static final int red_border=0x7f02000e;
-        public static final int red_border_gray_bg=0x7f02000f;
-        public static final int right_arrow=0x7f020010;
-        public static final int round_corners=0x7f020011;
+        public static final int button_hotel_selector=0x7f020000;
+        public static final int button_press=0x7f020001;
+        public static final int button_start=0x7f020002;
+        public static final int calendar_next_arrow=0x7f020003;
+        public static final int calendar_prev_arrow=0x7f020004;
+        public static final int cell_bg=0x7f020005;
+        public static final int disable_cell=0x7f020006;
+        public static final int food1=0x7f020007;
+        public static final int food2=0x7f020008;
+        public static final int ic_launcher=0x7f020009;
+        public static final int icon_entertainment_9=0x7f02000a;
+        public static final int icon_food_7=0x7f02000b;
+        public static final int icon_hotel_14=0x7f02000c;
+        public static final int icon_hotel_14_press=0x7f02000d;
+        public static final int icon_other_9=0x7f02000e;
+        public static final int icon_shopping_11=0x7f02000f;
+        public static final int icon_transport_6=0x7f020010;
+        public static final int left_arrow=0x7f020011;
+        public static final int red_border=0x7f020012;
+        public static final int red_border_gray_bg=0x7f020013;
+        public static final int right_arrow=0x7f020014;
+        public static final int round_corners=0x7f020015;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f0c0002;

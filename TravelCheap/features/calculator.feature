@@ -1,8 +1,7 @@
 Feature: Calculator
 
 	Scenario: As a user I can enter decimal digits on HomeActivity
-		Given this new app installation
-        And I am on "HomeActivity" screen
+		Given I am on "HomeActivity" screen
 		Then the view with id "amount" should have text "0"
 		When I press "7"
 		And I press "8"
@@ -10,8 +9,7 @@ Feature: Calculator
 		And I see "78"
 
 	Scenario: As a user I can enter 0s on HomeActivity
-		Given this new app installation
-        And I am on "HomeActivity" screen
+		Given I am on "HomeActivity" screen
 		Then the view with id "amount" should have text "0"
 		When I press the "0" button
 		And I press the "0" button
@@ -19,8 +17,7 @@ Feature: Calculator
 		And I see "0"
 
 	Scenario: As a user I can enter 20 digits but no more on HomeActivity
-		Given this new app installation
-        And I am on "HomeActivity" screen
+		Given I am on "HomeActivity" screen
 		Then the view with id "amount" should have text "0"
 		When I press the "4" button 20 times
 		Then I see "44444444444444444444"
@@ -29,8 +26,7 @@ Feature: Calculator
 
 
 	Scenario: As a user I can remove last digit in amount on HomeActivity
-		Given this new app installation
-        And I am on "HomeActivity" screen
+		Given I am on "HomeActivity" screen
 		Then the view with id "amount" should have text "0"
 		When I press the "5" button
 		And I press the "6" button
@@ -39,7 +35,7 @@ Feature: Calculator
 
   Scenario: As a user I can report my next expense and see expences spent for transport
     Given this new app installation
-        And I wait for the "HomeActivity" screen to appear
+    And I wait for the "HomeActivity" screen to appear
     When I press "1"
     And I press "2"
     Then I see "12"

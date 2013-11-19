@@ -2,8 +2,7 @@ Feature: History
 
 
     Scenario: As a user I can select some date in calendar for report
-        Given this new app installation
-        And I am on "HomeActivity" screen
+        Given I am on "HomeActivity" screen
         When I press the "History" button
         Then I see "Select a date"
         When I touch the "10" text
