@@ -50,6 +50,7 @@
 		<fileset dir="${basedir}/../libs">
 			<include name="ormlite-core-4.43.jar"/>
 			<include name="snakeyaml-1.10.jar"/>
+            <include name="commons-io-2.4.jar"/>
             <include name="httpcore-4.2.2.jar"/>
             <include name="httpclient-4.2.3.jar"/>
             <include name="gson-2.2.2.jar"/>
