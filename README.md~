@@ -23,12 +23,4 @@ Calendar
     
 ----library
     
-
-Running of calabash steps
-=========================
-
-1. set correct time on emulator
-2. run this command:
-calabash-android run bin/TravelCheap.apk RESET_BETWEEN_SCENARIOS=1
-
     
