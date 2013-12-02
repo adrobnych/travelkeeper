@@ -1,0 +1,2 @@
+
+calabash-android run bin/TravelCheap.apk RESET_BETWEEN_SCENARIOS=1

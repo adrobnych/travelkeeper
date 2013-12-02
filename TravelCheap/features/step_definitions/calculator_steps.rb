@@ -27,14 +27,18 @@ When(/^I touch today's date$/) do
   # p "^^^^^^^^^^^^^^^^^^^^^^^^^^"
   # p query("SquareTextView marked:'#{10}'").size
   # p query("SquareTextView marked:'#{29}'").size
-  if(query("SquareTextView marked:'#{Time.now.day.to_s}'").size > 4)
-    touch("SquareTextView marked:'#{Time.now.day.to_s}' index:1")
+
+  # `/home/adrobnych/dev/adt-bundle-linux-x86_64-20130917/sdk/platform-tools/adb shell date -s 20131112.104533`
+
+  if(query("SquareTextView marked:'12'").size > 4)
+    touch("SquareTextView marked:'12' index:1")
   else
-    touch("SquareTextView marked:'#{Time.now.day.to_s}'")
+    touch("SquareTextView marked:'12'")
   end
 end
 
 Given(/^this new app installation$/) do
+  #`/home/adrobnych/dev/adt-bundle-linux-x86_64-20130917/sdk/platform-tools/adb shell date -s 20131112.104533`
   performAction('select_from_menu', 'Administration')
   performAction('press_button_with_text', "Destroy All Data")
   performAction('press_button_with_text', "Ok")

@@ -135,7 +135,7 @@ Feature: History
         And I press the "History" button
         Then I see "Select a date"
         When I touch today's date
-        And I wait for the "HistoryActivity" screen to appear
+        And I am on "HistoryActivity" screen
         And I press the "Records" button 
         Then I see "food: 9.0"
         When I touch the "food: 9.0" text
