@@ -50,13 +50,18 @@ public class CurrencyDBManager {
 	}
 
 	public String getEntranceCurrency() throws SQLException {
-		return 
+		String result = "EUR";
+		TKCurrency currency = 
 			getCurrencyDao().queryBuilder()
-				.where().eq("selected_for_entrance", true).queryForFirst().getCode();
+				.where().eq("selected_for_entrance", true).queryForFirst();
+		if(null != currency)
+		   result = currency.getCode();
+		return result;
 	}
 
 	public List<TKCurrency> getWholeList() throws SQLException {
-		return getCurrencyDao().queryForAll();
+		return getCurrencyDao().queryBuilder().orderBy("name", true).query();
+				//getCurrencyDao().queryForAll();
 	}
 	
 }

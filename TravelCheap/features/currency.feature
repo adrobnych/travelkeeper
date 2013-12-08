@@ -10,10 +10,8 @@ Feature: Currency
         Given this new app installation
         And I am on "HomeActivity" screen
         When I press the "EUR" button
-        Then I am on "CurrencyActivity" screen
+        Then I wait for the "CurrencyActivity" screen to appear
+        And I see "select currency for your expenses"
         When I touch the "UAH" text
-        Then I am on "HomeActivity" screen
+        Then I wait for the "HomeActivity" screen to appear
         And I see "UAH"
-        
-
-

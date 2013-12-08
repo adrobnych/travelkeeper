@@ -50,6 +50,19 @@ public class HomeActivity extends FragmentActivity{
         loadCurrencies();
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Button cButton = (Button) findViewById(R.id.button_currency);
+        try {
+			cButton.setText(
+				((TravelApp)getApplication()).getCurrencyManager().getEntranceCurrency()
+			);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private void loadCurrencies() {
 		try {
 			if(((TravelApp)getApplication()).getCurrencyManager().getWholeList().size() == 0)
@@ -247,42 +260,45 @@ public class HomeActivity extends FragmentActivity{
 
 	class CurrencyLoadTask extends AsyncTask<Void, Void, Void> {
 
-	    @Override
-	    protected Void doInBackground(Void... params) {
-	    	AssetManager am = getApplication().getAssets();
-            StringBuffer xmlString = new StringBuffer();
-            StringBuffer cnamesString = new StringBuffer();
-            try {
-            	InputStream is = am.open("quote.xml");
-            	BufferedReader breader = new BufferedReader(new InputStreamReader(is));
-            	String line;
-            	while ((line = breader.readLine()) != null) {
-            		xmlString.append(line + "\n");
-            	}       
-            	is = am.open("currency_names.yml");
-            	breader = new BufferedReader(new InputStreamReader(is));
-            	while ((line = breader.readLine()) != null) {
-            		cnamesString.append(line + "\n");
-            	}
-            } catch (IOException e) {
-                    Log.e(LOG, "xml file read error: " + e);
-            }
-
-            CurrencyHTTPHelper currencyHTTPHelper = new CurrencyHTTPHelper();
-            
-            Map<String, TKCurrency> cMap = currencyHTTPHelper.buildCurrencyMap(xmlString.toString(), 
-            		cnamesString.toString());
-            
-            for(TKCurrency currency : cMap.values())
-				try {
-					((TravelApp)getApplication()).getCurrencyManager().create(currency);
-				} catch (SQLException e) {
-					e.printStackTrace();
+		@Override
+		protected Void doInBackground(Void... params) {
+			AssetManager am = getApplication().getAssets();
+			StringBuffer xmlString = new StringBuffer();
+			StringBuffer cnamesString = new StringBuffer();
+			try {
+				InputStream is = am.open("quote.xml");
+				BufferedReader breader = new BufferedReader(new InputStreamReader(is));
+				String line;
+				while ((line = breader.readLine()) != null) {
+					xmlString.append(line + "\n");
+				}       
+				is = am.open("currency_names.yml");
+				breader = new BufferedReader(new InputStreamReader(is));
+				while ((line = breader.readLine()) != null) {
+					cnamesString.append(line + "\n");
 				}
-            	
-            return null;
+			} catch (IOException e) {
+				Log.e(LOG, "xml file read error: " + e);
+			}
 
-	    }
+			CurrencyHTTPHelper currencyHTTPHelper = new CurrencyHTTPHelper();
 
-	  }
+			Map<String, TKCurrency> cMap = currencyHTTPHelper.buildCurrencyMap(xmlString.toString(), 
+					cnamesString.toString());
+
+			try {
+				for(TKCurrency currency : cMap.values())
+					((TravelApp)getApplication()).getCurrencyManager().create(currency);
+				
+				((TravelApp)getApplication()).getCurrencyManager().setAsEntranceCurrency("EUR");
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			return null;
+
+		}
+
+	}
 }

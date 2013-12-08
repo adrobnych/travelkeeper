@@ -4,30 +4,27 @@ package com.droidbrew.travelkeeper.model.manager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.util.Comparator;
 import java.util.Currency;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TreeMap;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.yaml.snakeyaml.Yaml;
-
 
 import com.droidbrew.travelkeeper.model.entity.TKCurrency;
 
@@ -114,30 +111,6 @@ public class CurrencyHTTPHelper {
 		return cMap;
 	}
 	
-	private Map<String, Currency> getAllCurrencyNames()
-    {
-		// this method doesn't work in side Android jvm
-		
-        Map<String, Currency> currencyDictionary = new HashMap<String, Currency>();
-        Locale[] locs = Locale.getAvailableLocales();
-
-        for(Locale loc : locs) {
-
-            	try {
-					Currency currency = Currency.getInstance(loc);
-					currencyDictionary.put(currency.getCurrencyCode(), currency);
-				} catch (Exception e) {
-					// hide a lot of exceptions 
-					//e.printStackTrace();
-				}
-
-        }
-
-        return currencyDictionary;
-		
-		
-		
-    }
 
 	@SuppressWarnings("unchecked")
 	public Map<String, String> buildCurrencyNamesMap(String cnamesString) {
