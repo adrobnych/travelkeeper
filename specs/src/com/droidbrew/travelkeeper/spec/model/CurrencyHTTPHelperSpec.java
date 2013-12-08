@@ -27,19 +27,36 @@ public class CurrencyHTTPHelperSpec {
 	@Test
 	public void itCanTransformXMLStringToMap() {
 		String xmlString = null;
+		String cnamesString = null;
 		try {
-			xmlString = FileUtils.readFileToString(new File("/home/adrobnych/dev/TravelKeeper/TravelCheap/assets/quote.xml"));
+			xmlString = FileUtils.readFileToString(new File("C:/Sites/droid_brew/TravelAppFinal/travelkeeper/TravelCheap/assets/quote.xml"));
+			cnamesString = FileUtils.readFileToString(new File("C:/Sites/droid_brew/TravelAppFinal/travelkeeper/TravelCheap/assets/currency_names.yml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		assertTrue(xmlString.indexOf("USD/UAH") != -1);
 		
-		Map<String, TKCurrency> cMap = currencyHTTPHelper.buildCurrencyMap(xmlString);
+		Map<String, TKCurrency> cMap = currencyHTTPHelper.buildCurrencyMap(xmlString, cnamesString);
 		
 		assertEquals(8233000, cMap.get("UAH").getCourse());
 		assertEquals("Ukrainian Hryvnia", cMap.get("UAH").getName());
 		assertEquals("Hungarian Forint", cMap.get("HUF").getName());
-		assertEquals(75, cMap.keySet().size());
+		assertEquals(160, cMap.keySet().size());
+	}
+	
+	@Test
+	public void itCanLoadCurrencyNames() {
+		String cnamesString = null;
+		try {
+			cnamesString = FileUtils.readFileToString(new File("C:/Sites/droid_brew/TravelAppFinal/travelkeeper/TravelCheap/assets/currency_names.yml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Map<String, String> cNamesMap = currencyHTTPHelper.buildCurrencyNamesMap(cnamesString);
+		
+		assertEquals("Ukrainian Hryvnia", cNamesMap.get("UAH"));
+
 	}
 		
 

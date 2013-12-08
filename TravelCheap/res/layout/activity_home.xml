@@ -14,16 +14,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
+		
+        <Button
+                android:id="@+id/button_currency"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+             	android:layout_weight="0"
+                android:text="EUR" 
+                android:onClick="onCurrencyClick"
+                />
+        
         <TextView
             android:id="@+id/amount"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginTop="4dp"
             android:layout_marginRight="@dimen/amount_margin"
-            android:layout_weight="1"
+            android:layout_weight="4"
             android:background="#CC7703"
             android:gravity="center_vertical|right"
             android:maxLength="@integer/length_of_amount"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
             android:text="0"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="@dimen/amount_text" />

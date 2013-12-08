@@ -19,5 +19,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="WipeDataWarning">Warning: this operation will destroy all data collected in many trips</string>
     <string name="DestroyData">Destroy All Data</string>
+    <string name="title_activity_currency">CurrencyActivity</string>
 
 </resources>

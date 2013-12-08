@@ -125,7 +125,6 @@ Feature: History
         Then I see "0.0 EUR spent on "
         And I should not see "food: 9.0"
 
-     @VIP
     Scenario: As a user I can remove single record from history
         Given this new app installation
         And I am on "HomeActivity" screen

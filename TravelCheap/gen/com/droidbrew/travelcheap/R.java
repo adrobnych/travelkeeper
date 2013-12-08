@@ -73,66 +73,71 @@ public final class R {
         public static final int round_corners=0x7f020015;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f0c0002;
-        public static final int StatusLine=0x7f0c0023;
-        public static final int accommodation=0x7f0c0013;
-        public static final int action_settings=0x7f0c0027;
-        public static final int amount=0x7f0c0003;
+        public static final int CurrencylistView=0x7f0c0002;
+        public static final int LinearLayout1=0x7f0c0003;
+        public static final int StatusLine=0x7f0c0025;
+        public static final int accommodation=0x7f0c0015;
+        public static final int action_settings=0x7f0c0029;
+        public static final int amount=0x7f0c0005;
         public static final int button1=0x7f0c0001;
-        public static final int button_0=0x7f0c000e;
-        public static final int button_1=0x7f0c0004;
-        public static final int button_2=0x7f0c0005;
-        public static final int button_3=0x7f0c0006;
-        public static final int button_4=0x7f0c0007;
-        public static final int button_5=0x7f0c0008;
-        public static final int button_6=0x7f0c0009;
-        public static final int button_7=0x7f0c000a;
-        public static final int button_8=0x7f0c000b;
-        public static final int button_9=0x7f0c000c;
-        public static final int button_C=0x7f0c000f;
-        public static final int button_dot=0x7f0c000d;
-        public static final int calendar_gridview=0x7f0c001f;
-        public static final int calendar_left_arrow=0x7f0c0019;
-        public static final int calendar_month_year_textview=0x7f0c001a;
-        public static final int calendar_right_arrow=0x7f0c001b;
-        public static final int calendar_title_view=0x7f0c0018;
-        public static final int calendar_tv=0x7f0c001e;
-        public static final int entertainment=0x7f0c0014;
-        public static final int food=0x7f0c0010;
-        public static final int fragment_content=0x7f0c0024;
-        public static final int fragment_tab=0x7f0c0022;
-        public static final int grid_view_tab=0x7f0c0021;
-        public static final int history=0x7f0c0016;
-        public static final int list_label=0x7f0c0026;
-        public static final int list_view_tab=0x7f0c0020;
-        public static final int menu_administration=0x7f0c0029;
-        public static final int menu_settings=0x7f0c0028;
-        public static final int months_infinite_pager=0x7f0c001d;
-        public static final int other=0x7f0c0015;
-        public static final int shopping=0x7f0c0012;
-        public static final int tableRow1=0x7f0c0017;
+        public static final int button_0=0x7f0c0010;
+        public static final int button_1=0x7f0c0006;
+        public static final int button_2=0x7f0c0007;
+        public static final int button_3=0x7f0c0008;
+        public static final int button_4=0x7f0c0009;
+        public static final int button_5=0x7f0c000a;
+        public static final int button_6=0x7f0c000b;
+        public static final int button_7=0x7f0c000c;
+        public static final int button_8=0x7f0c000d;
+        public static final int button_9=0x7f0c000e;
+        public static final int button_C=0x7f0c0011;
+        public static final int button_currency=0x7f0c0004;
+        public static final int button_dot=0x7f0c000f;
+        public static final int calendar_gridview=0x7f0c0021;
+        public static final int calendar_left_arrow=0x7f0c001b;
+        public static final int calendar_month_year_textview=0x7f0c001c;
+        public static final int calendar_right_arrow=0x7f0c001d;
+        public static final int calendar_title_view=0x7f0c001a;
+        public static final int calendar_tv=0x7f0c0020;
+        public static final int entertainment=0x7f0c0016;
+        public static final int food=0x7f0c0012;
+        public static final int fragment_content=0x7f0c0026;
+        public static final int fragment_tab=0x7f0c0024;
+        public static final int grid_view_tab=0x7f0c0023;
+        public static final int history=0x7f0c0018;
+        public static final int list_label=0x7f0c0027;
+        public static final int list_view_tab=0x7f0c0022;
+        public static final int menu_administration=0x7f0c002b;
+        public static final int menu_settings=0x7f0c002a;
+        public static final int months_infinite_pager=0x7f0c001f;
+        public static final int other=0x7f0c0017;
+        public static final int shopping=0x7f0c0014;
+        public static final int tableRow1=0x7f0c0019;
         public static final int textView1=0x7f0c0000;
-        public static final int total_image=0x7f0c0025;
-        public static final int transport=0x7f0c0011;
-        public static final int weekday_gridview=0x7f0c001c;
+        public static final int total_image=0x7f0c0028;
+        public static final int transport=0x7f0c0013;
+        public static final int weekday_gridview=0x7f0c001e;
     }
     public static final class integer {
         public static final int length_of_amount=0x7f090000;
     }
     public static final class layout {
         public static final int activity_admin=0x7f030000;
-        public static final int activity_home=0x7f030001;
-        public static final int calendar_view=0x7f030002;
-        public static final int date_cell=0x7f030003;
-        public static final int date_grid_fragment=0x7f030004;
-        public static final int fragment_tab=0x7f030005;
-        public static final int history_activity=0x7f030006;
-        public static final int item_totals_list=0x7f030007;
-        public static final int settings=0x7f030008;
+        public static final int activity_currency=0x7f030001;
+        public static final int activity_home=0x7f030002;
+        public static final int calendar_view=0x7f030003;
+        public static final int date_cell=0x7f030004;
+        public static final int date_grid_fragment=0x7f030005;
+        public static final int fragment_tab=0x7f030006;
+        public static final int history_activity=0x7f030007;
+        public static final int item_currencies_list=0x7f030008;
+        public static final int item_totals_list=0x7f030009;
+        public static final int settings=0x7f03000a;
     }
     public static final class menu {
-        public static final int main=0x7f0b0000;
-        public static final int settings=0x7f0b0001;
+        public static final int currency=0x7f0b0000;
+        public static final int main=0x7f0b0001;
+        public static final int settings=0x7f0b0002;
     }
     public static final class string {
         public static final int DestroyData=0x7f060011;
@@ -148,33 +153,34 @@ public final class R {
         public static final int hello_world=0x7f060003;
         public static final int hotelButton=0x7f060008;
         public static final int otherButton=0x7f06000b;
-        public static final int pref_data_wipe=0x7f060019;
-        public static final int pref_default_display_name=0x7f060017;
-        public static final int pref_description_social_recommendations=0x7f060015;
+        public static final int pref_data_wipe=0x7f06001a;
+        public static final int pref_default_display_name=0x7f060018;
+        public static final int pref_description_social_recommendations=0x7f060016;
         /**  Example settings for Data & Sync 
          */
-        public static final int pref_header_data_sync=0x7f06001a;
+        public static final int pref_header_data_sync=0x7f06001b;
         /**  Strings related to Settings 
  Example General settings 
          */
-        public static final int pref_header_general=0x7f060013;
+        public static final int pref_header_general=0x7f060014;
         /**  Example settings for Notifications 
          */
-        public static final int pref_header_notifications=0x7f06001d;
-        public static final int pref_ringtone_silent=0x7f060020;
-        public static final int pref_title_add_friends_to_messages=0x7f060018;
-        public static final int pref_title_display_name=0x7f060016;
-        public static final int pref_title_new_message_notifications=0x7f06001e;
-        public static final int pref_title_ringtone=0x7f06001f;
-        public static final int pref_title_social_recommendations=0x7f060014;
-        public static final int pref_title_sync_frequency=0x7f06001b;
-        public static final int pref_title_system_sync_settings=0x7f06001c;
-        public static final int pref_title_vibrate=0x7f060021;
+        public static final int pref_header_notifications=0x7f06001e;
+        public static final int pref_ringtone_silent=0x7f060021;
+        public static final int pref_title_add_friends_to_messages=0x7f060019;
+        public static final int pref_title_display_name=0x7f060017;
+        public static final int pref_title_new_message_notifications=0x7f06001f;
+        public static final int pref_title_ringtone=0x7f060020;
+        public static final int pref_title_social_recommendations=0x7f060015;
+        public static final int pref_title_sync_frequency=0x7f06001c;
+        public static final int pref_title_system_sync_settings=0x7f06001d;
+        public static final int pref_title_vibrate=0x7f060022;
         public static final int selectDate=0x7f06000d;
         public static final int shoppingButton=0x7f060009;
+        public static final int title_activity_currency=0x7f060012;
         public static final int title_activity_history=0x7f06000c;
         public static final int title_activity_main=0x7f06000f;
-        public static final int title_activity_user_settings=0x7f060012;
+        public static final int title_activity_user_settings=0x7f060013;
         public static final int transportButton=0x7f060007;
     }
     public static final class style {

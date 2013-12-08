@@ -105,6 +105,22 @@ public class CurrencyDBHelperSpec {
 	}
 	
 	@Test
+	public void itShouldGetAllCurrencies(){
+		TKCurrency currency1 = new TKCurrency("UAH", "Ukrainian Hryvnia", 8233000, false, true);
+		TKCurrency currency2 = new TKCurrency("EUR", "Euro", 1233000, false, false);
+		
+		try {
+			cm.create(currency1);
+			cm.create(currency2);
+		
+			assertEquals(2, cm.getWholeList().size());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Test
 	public void itShouldSetEntranceCurrency(){
 		
 		TKCurrency currency1 = new TKCurrency("UAH", "Ukrainian Hryvnia", 8233000, false, true);

@@ -8,12 +8,12 @@
 	<classpathentry kind="lib" path="libs/jmock-legacy-2.6.0.jar"/>
 	<classpathentry kind="lib" path="libs/objenesis-1.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/adrobnych/dev/TravelKeeper/libs/commons-logging-1.1.jar"/>
-	<classpathentry kind="lib" path="/home/adrobnych/dev/TravelKeeper/libs/ormlite-core-4.43.jar"/>
-	<classpathentry kind="lib" path="/home/adrobnych/dev/TravelKeeper/libs/ormlite-jdbc-4.43.jar"/>
-	<classpathentry kind="lib" path="/home/adrobnych/dev/TravelKeeper/libs/sqlite-jdbc-3.7.2.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/model"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="/home/adrobnych/dev/TravelKeeper/libs/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Sites/droid_brew/TravelAppFinal/travelkeeper/libs/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Sites/droid_brew/TravelAppFinal/travelkeeper/libs/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Sites/droid_brew/TravelAppFinal/travelkeeper/libs/ormlite-core-4.43.jar"/>
+	<classpathentry kind="lib" path="C:/Sites/droid_brew/TravelAppFinal/travelkeeper/libs/ormlite-jdbc-4.43.jar"/>
+	<classpathentry kind="lib" path="C:/Sites/droid_brew/TravelAppFinal/travelkeeper/libs/sqlite-jdbc-3.7.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

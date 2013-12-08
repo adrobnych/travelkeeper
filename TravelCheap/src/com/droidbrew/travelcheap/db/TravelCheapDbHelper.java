@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.droidbrew.travelkeeper.model.entity.Expense;
+import com.droidbrew.travelkeeper.model.entity.TKCurrency;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
@@ -27,6 +28,7 @@ public class TravelCheapDbHelper extends OrmLiteSqliteOpenHelper {
 	        try {
 
 	            TableUtils.createTableIfNotExists(connectionSource, Expense.class);
+	            TableUtils.createTableIfNotExists(connectionSource, TKCurrency.class);
 
 	        } catch (java.sql.SQLException e) {
 	            Log.e(TAG, "onCreate", e);

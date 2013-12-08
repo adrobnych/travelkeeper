@@ -1,14 +1,22 @@
 package com.droidbrew.travelcheap;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,11 +25,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.droidbrew.travelkeeper.model.entity.Expense;
+import com.droidbrew.travelkeeper.model.entity.TKCurrency;
+import com.droidbrew.travelkeeper.model.manager.CurrencyHTTPHelper;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
 
 
 public class HomeActivity extends FragmentActivity{
+	
+	private static final String LOG = "com.droidbrew.dfa.HomeActivity";
 	private CaldroidFragment dialogCaldroidFragment;
 	private CaldroidFragment caldroidFragment;
 	private Bundle savedInstanceState;
@@ -35,10 +47,24 @@ public class HomeActivity extends FragmentActivity{
 		savedInstanceState = _savedInstanceState;
 		setContentView(R.layout.activity_home);
 		amount = (TextView) findViewById(R.id.amount);
+        loadCurrencies();
+	}
 
+	private void loadCurrencies() {
+		try {
+			if(((TravelApp)getApplication()).getCurrencyManager().getWholeList().size() == 0)
+				loadCurrenciesFromAssets();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
+	private void loadCurrenciesFromAssets() {
+		CurrencyLoadTask clt = new CurrencyLoadTask();
+		clt.execute();
+	}
 
 
 	public void onClick(View view) {
@@ -212,6 +238,51 @@ public class HomeActivity extends FragmentActivity{
 		}
 
 	}
+	
+	public void onCurrencyClick(View view){
+		Intent myIntent = new Intent(HomeActivity.this, CurrencyActivity.class);
+		HomeActivity.this.startActivity(myIntent);
+	}
 
 
+	class CurrencyLoadTask extends AsyncTask<Void, Void, Void> {
+
+	    @Override
+	    protected Void doInBackground(Void... params) {
+	    	AssetManager am = getApplication().getAssets();
+            StringBuffer xmlString = new StringBuffer();
+            StringBuffer cnamesString = new StringBuffer();
+            try {
+            	InputStream is = am.open("quote.xml");
+            	BufferedReader breader = new BufferedReader(new InputStreamReader(is));
+            	String line;
+            	while ((line = breader.readLine()) != null) {
+            		xmlString.append(line + "\n");
+            	}       
+            	is = am.open("currency_names.yml");
+            	breader = new BufferedReader(new InputStreamReader(is));
+            	while ((line = breader.readLine()) != null) {
+            		cnamesString.append(line + "\n");
+            	}
+            } catch (IOException e) {
+                    Log.e(LOG, "xml file read error: " + e);
+            }
+
+            CurrencyHTTPHelper currencyHTTPHelper = new CurrencyHTTPHelper();
+            
+            Map<String, TKCurrency> cMap = currencyHTTPHelper.buildCurrencyMap(xmlString.toString(), 
+            		cnamesString.toString());
+            
+            for(TKCurrency currency : cMap.values())
+				try {
+					((TravelApp)getApplication()).getCurrencyManager().create(currency);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+            	
+            return null;
+
+	    }
+
+	  }
 }

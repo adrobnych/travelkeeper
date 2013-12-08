@@ -54,5 +54,9 @@ public class CurrencyDBManager {
 			getCurrencyDao().queryBuilder()
 				.where().eq("selected_for_entrance", true).queryForFirst().getCode();
 	}
+
+	public List<TKCurrency> getWholeList() throws SQLException {
+		return getCurrencyDao().queryForAll();
+	}
 	
 }

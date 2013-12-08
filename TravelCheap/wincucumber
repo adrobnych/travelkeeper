@@ -1,0 +1,2 @@
+C:/dev/adt-bundle-windows-x86_64-20131030/sdk/platform-tools/adb shell date -s 20131112.104533
+calabash-android run ./bin/TravelCheap.apk RESET_BETWEEN_SCENARIOS=1

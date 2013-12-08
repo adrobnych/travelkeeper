@@ -26,6 +26,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import org.yaml.snakeyaml.Yaml;
 
 
 import com.droidbrew.travelkeeper.model.entity.TKCurrency;
@@ -66,7 +67,7 @@ public class CurrencyHTTPHelper {
 
 	}
 
-	public Map<String, TKCurrency> buildCurrencyMap(String xmlString) {
+	public Map<String, TKCurrency> buildCurrencyMap(String xmlString, String cNames) {
 		
 		Map<String, TKCurrency> cMap = new HashMap<String, TKCurrency>();
 		
@@ -74,7 +75,7 @@ public class CurrencyHTTPHelper {
 		DocumentBuilder builder;
 		InputSource is;
 		
-		Map<String, Currency> namesDictionary = getAllCurrencyNames();
+		Map<String, String> namesDictionary = buildCurrencyNamesMap(cNames);
 
 		try {
 			builder = factory.newDocumentBuilder();
@@ -92,7 +93,7 @@ public class CurrencyHTTPHelper {
 
 					cMap.put(currencyCode,
 							new TKCurrency(currencyCode,
-									namesDictionary.get(currencyCode).getDisplayName(),
+									namesDictionary.get(currencyCode), //.getDisplayName(Locale.getDefault()),
 									new Long(course), false, false));
 					
 				}
@@ -115,6 +116,8 @@ public class CurrencyHTTPHelper {
 	
 	private Map<String, Currency> getAllCurrencyNames()
     {
+		// this method doesn't work in side Android jvm
+		
         Map<String, Currency> currencyDictionary = new HashMap<String, Currency>();
         Locale[] locs = Locale.getAvailableLocales();
 
@@ -131,7 +134,16 @@ public class CurrencyHTTPHelper {
         }
 
         return currencyDictionary;
+		
+		
+		
     }
+
+	@SuppressWarnings("unchecked")
+	public Map<String, String> buildCurrencyNamesMap(String cnamesString) {
+		Yaml yaml = new Yaml();
+        return (Map<String, String>) yaml.load(cnamesString);
+	}
 
 
 }
