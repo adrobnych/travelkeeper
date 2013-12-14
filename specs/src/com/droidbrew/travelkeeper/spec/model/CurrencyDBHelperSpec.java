@@ -141,4 +141,26 @@ public class CurrencyDBHelperSpec {
 		}
 		
 	}
+	
+	@Test
+	public void itShouldSetReportCurrency(){
+		
+		TKCurrency currency1 = new TKCurrency("UAH", "Ukrainian Hryvnia", 8233000, true, false);
+		TKCurrency currency2 = new TKCurrency("EUR", "Euro", 1233000, false, false);
+		
+		try {
+			cm.create(currency1);
+			cm.create(currency2);
+			
+			assertEquals("UAH", cm.getReportCurrency());
+			
+			cm.setAsReportCurrency("EUR");
+
+			assertEquals("EUR", cm.getReportCurrency());
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 }

@@ -76,8 +76,9 @@ public class HistoryActivity extends FragmentActivity {
 		Intent i;
 		switch (item.getItemId()) {
 
-		case R.id.menu_settings:
-			i = new Intent(this, UserSettingsActivity.class);
+		case R.id.menu_report_currency:
+			i = new Intent(this, CurrencyActivity.class);
+			i.putExtra("type", "currency_for_report");
 			startActivityForResult(i, RESULT_SETTINGS);
 			break;
 		case R.id.menu_administration:

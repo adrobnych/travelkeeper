@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">TravelCheap</string>
+    <string name="report_currency">Currency for Reports</string>
     <string name="action_settings">Settings</string>
     <string name="action_administration">Administration</string>
     <string name="hello_world">Hello world!</string>

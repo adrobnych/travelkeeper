@@ -130,17 +130,22 @@ public class HomeActivity extends FragmentActivity{
 				e.printStackTrace();
 			}
 		}
-		new AlertDialog.Builder(this)
-		.setTitle(composeDialogTitle(amountLine))
-		.setMessage("Today you spent " + 
-				(((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate(type, time)/100.0)
-				+ " Euro for " + type)
-				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) { 
-						amount.setText("0");
-					}
-				})
-				.show();
+		try {
+			new AlertDialog.Builder(this)
+			.setTitle(composeDialogTitle(amountLine))
+			.setMessage("Today you spent " + 
+					(((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate(type, time)/100.0)
+					+ " " + ((TravelApp)getApplication()).getCurrencyManager().getReportCurrency()
+					+ " for " + type)
+					.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) { 
+							amount.setText("0");
+						}
+					})
+					.show();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private String composeDialogTitle(String amountValue){
@@ -225,8 +230,9 @@ public class HomeActivity extends FragmentActivity{
 		Intent i;
 		switch (item.getItemId()) {
 
-		case R.id.menu_settings:
-			i = new Intent(this, UserSettingsActivity.class);
+		case R.id.menu_report_currency:
+			i = new Intent(this, CurrencyActivity.class);
+			i.putExtra("type", "currency_for_report");
 			startActivityForResult(i, RESULT_SETTINGS);
 			break;
 		case R.id.menu_administration:

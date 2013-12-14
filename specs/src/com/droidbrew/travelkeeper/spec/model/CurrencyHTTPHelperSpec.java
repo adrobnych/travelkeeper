@@ -29,8 +29,8 @@ public class CurrencyHTTPHelperSpec {
 		String xmlString = null;
 		String cnamesString = null;
 		try {
-			xmlString = FileUtils.readFileToString(new File("C:/Sites/droid_brew/TravelAppFinal/travelkeeper/TravelCheap/assets/quote.xml"));
-			cnamesString = FileUtils.readFileToString(new File("C:/Sites/droid_brew/TravelAppFinal/travelkeeper/TravelCheap/assets/currency_names.yml"));
+			xmlString = FileUtils.readFileToString(new File("/home/adrobnych/dev/TravelKeeper/TravelCheap/assets/quote.xml"));
+			cnamesString = FileUtils.readFileToString(new File("/home/adrobnych/dev/TravelKeeper/TravelCheap/assets/currency_names.yml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -48,7 +48,7 @@ public class CurrencyHTTPHelperSpec {
 	public void itCanLoadCurrencyNames() {
 		String cnamesString = null;
 		try {
-			cnamesString = FileUtils.readFileToString(new File("C:/Sites/droid_brew/TravelAppFinal/travelkeeper/TravelCheap/assets/currency_names.yml"));
+			cnamesString = FileUtils.readFileToString(new File("/home/adrobnych/dev/TravelKeeper/TravelCheap/assets/currency_names.yml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

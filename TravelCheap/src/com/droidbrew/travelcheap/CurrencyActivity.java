@@ -16,12 +16,23 @@ import android.widget.ListView;
 
 public class CurrencyActivity extends Activity {
 	
+	private String mode = "expenses";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_currency);
 	
-		setTitle("select currency for your expenses");
+		Intent i = getIntent();
+		String extra = i.getStringExtra("type");
+		if(extra != null){
+			setTitle("select currency for your reports");
+			mode = "reports";
+		}
+		else{
+			setTitle("select currency for your expenses");
+			mode = "expenses";
+		}
 		
 		ListView cList = (ListView) findViewById(R.id.CurrencylistView);
 		try {
@@ -36,9 +47,14 @@ public class CurrencyActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> l, View v, int position, long id) {
 				try {
-					((TravelApp)getApplication()).getCurrencyManager().setAsEntranceCurrency(
+					if(mode.equals("expenses"))
+						((TravelApp)getApplication()).getCurrencyManager().setAsEntranceCurrency(
 							((TKCurrency)l.getItemAtPosition(position)).getCode()
-					);
+						);
+					else
+						((TravelApp)getApplication()).getCurrencyManager().setAsReportCurrency(
+							((TKCurrency)l.getItemAtPosition(position)).getCode()
+						);
 					Intent myIntent = new Intent(CurrencyActivity.this, HomeActivity.class);
 					CurrencyActivity.this.startActivity(myIntent);
 				} catch (SQLException e) {

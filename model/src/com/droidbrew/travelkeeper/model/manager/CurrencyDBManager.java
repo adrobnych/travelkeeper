@@ -63,5 +63,30 @@ public class CurrencyDBManager {
 		return getCurrencyDao().queryBuilder().orderBy("name", true).query();
 				//getCurrencyDao().queryForAll();
 	}
+
+	public Object getReportCurrency() throws SQLException {
+		String result = "EUR";
+		TKCurrency currency = 
+			getCurrencyDao().queryBuilder()
+				.where().eq("selected_for_report", true).queryForFirst();
+		if(null != currency)
+		   result = currency.getCode();
+		return result;
+	}
+
+	public void setAsReportCurrency(String currencyCode) throws SQLException {
+		List<TKCurrency> currenciesToRemoveFlag = 
+				getCurrencyDao().queryBuilder().where().eq("selected_for_report", true).query();
+			
+			for(TKCurrency currency : currenciesToRemoveFlag){
+				currency.setSelectedForReport(false);
+				getCurrencyDao().update(currency);
+			}
+			
+			TKCurrency newReportCurrency = find(currencyCode);
+			newReportCurrency.setSelectedForReport(true);
+			getCurrencyDao().update(newReportCurrency);
+		
+	}
 	
 }
