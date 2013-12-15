@@ -172,128 +172,213 @@
                 android:layout_weight="1"
                 android:onClick="onClick"
            	/>
+        </TableRow><TableRow
+            android:layout_width="match_parent"
+            android:layout_height="60dp" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <Button
+                        android:id="@+id/food"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/button_food_selector"
+                        android:onClick="onExpenseClick"
+                        android:tag="@string/foodButton"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginBottom="2dp"
+                        android:text="food"
+                        android:textColor="#000000" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <Button
+                        android:id="@+id/transport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/button_transport_selector"
+                        android:onClick="onExpenseClick"
+                        android:tag="@string/transportButton"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginBottom="2dp"
+                        android:text="transport"
+                        android:textColor="#000000" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <Button
+                        android:id="@+id/shopping"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/button_shopping_selector"
+                        android:onClick="onExpenseClick"
+                        android:tag="@string/shoppingButton"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginBottom="2dp"
+                        android:text="shopping"
+                        android:textColor="#000000" />
+                </LinearLayout>
+            </RelativeLayout>
         </TableRow>
-        
+
         <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/expenses_margin" >
+            android:layout_width="match_parent"
+            android:layout_height="60dp" >
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center" >
 
-                <Button
-                    android:id="@+id/food"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/icon_food_7"
-                    android:onClick="onExpenseClick"
-                    android:tag="@string/foodButton"
-                    android:text="" />
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <Button
+                        android:id="@+id/accommodation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/button_hotel_selector"
+                        android:onClick="onExpenseClick"
+                        android:tag="@string/hotelButton"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginBottom="2dp"
+                        android:text="hotel"
+                        android:textColor="#000000" />
+                </LinearLayout>
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center" >
 
-                <Button
-                    android:id="@+id/transport"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/icon_transport_6"
-                    android:onClick="onExpenseClick"
-                    android:tag="@string/transportButton"
-                    android:text="" />
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <Button
+                        android:id="@+id/entertainment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/button_entertainment_selector"
+                        android:onClick="onExpenseClick"
+                        android:tag="@string/entertainmentButton"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginBottom="2dp"
+                        android:text="fun"
+                        android:textColor="#000000" />
+                </LinearLayout>
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center" >
 
-                <Button
-                    android:id="@+id/shopping"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/icon_shopping_11"
-                    android:onClick="onExpenseClick"
-                    android:tag="@string/shoppingButton"
-                    android:text="" />
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <Button
+                        android:id="@+id/other"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/button_other_selector"
+                        android:onClick="onExpenseClick"
+                        android:tag="@string/otherButton"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginBottom="2dp"
+                        android:text="other"
+                        android:textColor="#000000" />
+                </LinearLayout>
             </RelativeLayout>
         </TableRow>
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center" >
-
-                <Button
-                    android:id="@+id/accommodation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/button_hotel_selector"
-                    android:onClick="onExpenseClick"
-                    android:tag="@string/hotelButton"
-                    android:text="" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center" >
-
-                <Button
-                    android:id="@+id/entertainment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/icon_entertainment_9"
-                    android:onClick="onExpenseClick"
-                    android:tag="@string/entertainmentButton"
-                    android:text="" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center" >
-
-                <Button
-                    android:id="@+id/other"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/icon_other_9"
-                    android:onClick="onExpenseClick"
-                    android:tag="@string/otherButton"
-                    android:text="" />
-            </RelativeLayout>
-
-        </TableRow>
-         
    
     </TableLayout>
     <LinearLayout
