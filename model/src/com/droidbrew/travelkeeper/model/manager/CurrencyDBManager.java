@@ -64,7 +64,7 @@ public class CurrencyDBManager {
 				//getCurrencyDao().queryForAll();
 	}
 
-	public Object getReportCurrency() throws SQLException {
+	public String getReportCurrency() throws SQLException {
 		String result = "EUR";
 		TKCurrency currency = 
 			getCurrencyDao().queryBuilder()

@@ -114,7 +114,7 @@ public class HomeActivity extends FragmentActivity{
 	}
 	
 	public void onExpenseClick(View view){
-		
+
 		String amountLine = amount.getText().toString();
 
 		String type = (String)view.getTag();
@@ -123,14 +123,14 @@ public class HomeActivity extends FragmentActivity{
 		expense.setAmount((long)(100 * Double.valueOf(amountLine)));
 		final long time = (new Date()).getTime();
 		expense.setDateAndTime(time);
-		if(!amountLine.equals("0")){
-			try {
-				((TravelApp)getApplication()).getExpenseManager().create(expense);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
 		try {
+			expense.setCurrencyCode(
+					((TravelApp)getApplication()).getCurrencyManager().getEntranceCurrency()
+					);
+			if(!amountLine.equals("0")){
+				((TravelApp)getApplication()).getExpenseManager().create(expense);
+			}
+
 			new AlertDialog.Builder(this)
 			.setTitle(composeDialogTitle(amountLine))
 			.setMessage("Today you spent " + 

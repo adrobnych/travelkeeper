@@ -1,6 +1,6 @@
 package com.droidbrew.travelkeeper.spec.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
 
@@ -9,6 +9,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.droidbrew.travelkeeper.model.entity.Expense;
+import com.droidbrew.travelkeeper.model.entity.TKCurrency;
+import com.droidbrew.travelkeeper.model.manager.CurrencyDBManager;
 import com.droidbrew.travelkeeper.model.manager.ExpenseManager;
 import com.droidbrew.travelkeeper.spec.model.db.TestDbHelper;
 import com.j256.ormlite.dao.Dao;
@@ -19,6 +21,7 @@ import com.j256.ormlite.table.TableUtils;
 public class ExpenceManagerSpec {
 	static ExpenseManager em = null;
 	static ConnectionSource connectionSource = null;
+	static long eurToUsd = 736540;
 
 	@BeforeClass
     public static void setUpDatabaseLayer() throws SQLException {
@@ -32,6 +35,22 @@ public class ExpenceManagerSpec {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		TableUtils.createTableIfNotExists(connectionSource, TKCurrency.class);
+		CurrencyDBManager cm = new CurrencyDBManager();
+		Dao<TKCurrency, String> currencyDao;
+		try {
+			currencyDao = DaoManager.createDao(connectionSource, TKCurrency.class);
+			cm.setCurrencyDao(currencyDao);
+			TableUtils.clearTable(connectionSource, TKCurrency.class);
+			TKCurrency currency = new TKCurrency("EUR", "Euro", 736540, true, true);
+			cm.create(currency);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		em.setCurrencyManager(cm);
+		
 		
     }
 	
@@ -50,6 +69,9 @@ public class ExpenceManagerSpec {
 		expense1.setAmount(1200L);
 		time1 = 12000000000L;
 		expense1.setDateAndTime(time1);
+		expense1.setCurrencyCode("EUR");
+		
+		
 		
 		try {
 			em.create(expense1);
@@ -62,6 +84,8 @@ public class ExpenceManagerSpec {
 		expense2.setAmount(1000L);
 		long time2 = 12000000100L;
 		expense2.setDateAndTime(time2);
+		expense2.setCurrencyCode("EUR");
+		
 		
 		try {
 			em.create(expense2);
@@ -74,6 +98,8 @@ public class ExpenceManagerSpec {
 		expense3.setAmount(1000L);
 		long time3 = 200000000000000100L;
 		expense3.setDateAndTime(time3);
+		expense3.setCurrencyCode("EUR");
+		
 		
 		try {
 			em.create(expense3);
@@ -85,6 +111,8 @@ public class ExpenceManagerSpec {
 		expense4.setType("transport");
 		expense4.setAmount(1000L);
 		expense4.setDateAndTime(time2);
+		expense4.setCurrencyCode("EUR");
+
 		
 		try {
 			em.create(expense4);
@@ -136,4 +164,33 @@ public class ExpenceManagerSpec {
 		
 		assertEquals(null, ex);
 	}
+	
+	@Test
+	public void itSouldKnowCodeOfCurrency(){
+		int first_expense_id = -1;
+		Expense ex = null;
+		try {
+			first_expense_id = em.getExpenseDao().queryForAll().get(0).getId();
+			ex = em.getExpenseDao().queryForId(first_expense_id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		assertEquals("EUR", ex.getCurrencyCode());
+	}
+	
+	@Test
+	public void itSouldKnowUSDEquivalent(){
+		int first_expense_id = -1;
+		Expense ex = null;
+		try {
+			first_expense_id = em.getExpenseDao().queryForAll().get(0).getId();
+			ex = em.getExpenseDao().queryForId(first_expense_id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		assertEquals(1200, ex.getAmount().longValue());
+		assertEquals(1629, ex.getUsdAmount().longValue());
+		
+	}
+	
 }

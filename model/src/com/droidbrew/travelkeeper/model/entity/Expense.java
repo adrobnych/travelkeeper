@@ -9,9 +9,25 @@ public class Expense {
     private Integer id;
     @DatabaseField(columnName = "type", canBeNull = false, index = true, indexName = "type_index")
     private String type;
+    @DatabaseField(columnName = "currency_code", canBeNull = false)
+    private String currencyCode;
     @DatabaseField(columnName = "amount", canBeNull = false)
     private Long amount;
-    @DatabaseField(columnName = "date_and_time", canBeNull = false)
+    @DatabaseField(columnName = "usd_amount", canBeNull = false)
+    private Long usdAmount;
+    public String getCurrencyCode() {
+		return currencyCode;
+	}
+	public void setCurrencyCode(String currencyCode) {
+		this.currencyCode = currencyCode;
+	}
+	public Long getUsdAmount() {
+		return usdAmount;
+	}
+	public void setUsdAmount(Long usdAmount) {
+		this.usdAmount = usdAmount;
+	}
+	@DatabaseField(columnName = "date_and_time", canBeNull = false)
     private Long dateAndTime;
 
 	public Integer getId() {

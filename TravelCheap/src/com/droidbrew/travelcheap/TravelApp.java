@@ -43,6 +43,7 @@ public class TravelApp extends Application {
 	        		try {
 	        			expenseDao = DaoManager.createDao(dbHelper.getConnectionSource(), Expense.class);
 	        			expenseManager.setExpenseDao(expenseDao);
+	        			expenseManager.setCurrencyManager(getCurrencyManager());
 	        		} catch (SQLException e) {
 	        			Log.e(TAG, "getExpenseManager", e);
 	        		}

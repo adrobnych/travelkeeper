@@ -16,7 +16,7 @@ Feature: History
         And I press the "4" button
         And I press the "9" button
         And I press view with id "other"
-        Then I see "Today you spent 249.0 Euro for other things"
+        Then I see "Today you spent 249.0 EUR for other things"
         When I press the "Ok" button
         And I press the "History" button
         Then I see "Select a date"
@@ -32,7 +32,7 @@ Feature: History
         When I press the "4" button
         And I press the "9" button
         And I press view with id "food"
-        Then I see "Today you spent 49.0 Euro for food"
+        Then I see "Today you spent 49.0 EUR for food"
         When I press the "Ok" button
         And I press the "History" button
         Then I see "Select a date"

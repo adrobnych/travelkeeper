@@ -32,4 +32,4 @@ Feature: Currency
         And I press "8"
         Then I see "48"
         When I press view with id "entertainment"
-        Then I see "Today you spent 52.0 USD for entertainment"
+        Then I see "Today you spent 65.17 USD for entertainment"

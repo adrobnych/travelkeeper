@@ -19,6 +19,7 @@ import com.j256.ormlite.table.TableUtils;
 public class ExpenseDaoSpec {
 	static Dao<Expense, Integer> eDao = null;
 	static ConnectionSource connectionSource = null;
+	static long eurToUsd = 736540;
 
 	@BeforeClass
     public static void setUpDatabaseLayer() throws SQLException {
@@ -49,6 +50,8 @@ public class ExpenseDaoSpec {
 		expense.setType("food");
 		expense.setAmount(1200L);
 		expense.setDateAndTime(123445L);
+		expense.setCurrencyCode("EUR");
+		expense.setUsdAmount(Math.round(1200/(eurToUsd/1000000.0)));
 		
 		try {
 			eDao.create(expense);
@@ -75,6 +78,8 @@ public class ExpenseDaoSpec {
 		expense.setAmount(1200L);
 		long now = System.currentTimeMillis();
 		expense.setDateAndTime(now);
+		expense.setCurrencyCode("EUR");
+		expense.setUsdAmount(Math.round(1200/(eurToUsd/1000000.0)));
 		
 		try {
 			eDao.create(expense);

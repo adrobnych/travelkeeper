@@ -9,6 +9,13 @@ import com.j256.ormlite.dao.Dao;
 
 public class ExpenseManager {
 	private Dao<Expense, Integer> expenseDao = null;
+	private CurrencyDBManager currencyManager = null;
+	
+	
+
+	public void setCurrencyManager(CurrencyDBManager currencyManager) {
+		this.currencyManager = currencyManager;
+	}
 
 	public Dao<Expense, Integer> getExpenseDao() {
 		return expenseDao;
@@ -19,21 +26,47 @@ public class ExpenseManager {
 	}
 
 	public void create(Expense expense) throws SQLException {
+		long amount = expense.getAmount();
+		String currencyCode = expense.getCurrencyCode();
+		long course = currencyManager.find(currencyCode).getCourse();
+		
+		expense.setUsdAmount(Math.round(amount/(course/1000000.0)));
+		
 		getExpenseDao().create(expense);	
 	}
 
 	public Long sumAmountByTypeAndDate(String type, long time_of_day) {
+		Long result = null;
 		
 		try {
-			return getExpenseDao().queryRawValue(
-					"select sum(amount) from expenses where type = ? and date_and_time >= ? and date_and_time <= ?",
+			Long usdSum =  getExpenseDao().queryRawValue(
+					"select sum(usd_amount) from expenses where type = ? and date_and_time >= ? and date_and_time <= ?",
 					type, firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day)
 					);
+			String repCurrency = currencyManager.getReportCurrency();
+			
+			long repCourse = currencyManager.find(repCurrency).getCourse();
+			
+			result = Math.round(usdSum * repCourse/1000000.0);
+					
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return result;
 	}
+	
+//	public Long sumAmountByTypeAndDate(String type, long time_of_day) {
+//		
+//		try {
+//			return getExpenseDao().queryRawValue(
+//					"select sum(amount) from expenses where type = ? and date_and_time >= ? and date_and_time <= ?",
+//					type, firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day)
+//					);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 	
 	private String firstMSecondOfTheDay(long time_of_day_millis){
 		Calendar cal = Calendar.getInstance();
