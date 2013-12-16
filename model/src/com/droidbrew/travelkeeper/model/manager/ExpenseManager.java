@@ -89,16 +89,36 @@ public class ExpenseManager {
 	}
 
 	public Long sumAmountByDate(long time_of_day) {
+		Long result = null;
 		try {
-			return getExpenseDao().queryRawValue(
-					"select sum(amount) from expenses where date_and_time >= ? and date_and_time <= ?",
+			long usdSum =  getExpenseDao().queryRawValue(
+					"select sum(usd_amount) from expenses where date_and_time >= ? and date_and_time <= ?",
 					firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day)
 					);
+
+			String repCurrency = currencyManager.getReportCurrency();
+			
+			long repCourse = currencyManager.find(repCurrency).getCourse();
+			
+			result = Math.round(usdSum * repCourse/1000000.0);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return result;
 	}
+	
+//	public Long sumAmountByDate(long time_of_day) {
+//		try {
+//			return getExpenseDao().queryRawValue(
+//					"select sum(amount) from expenses where date_and_time >= ? and date_and_time <= ?",
+//					firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day)
+//					);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
 	public List<Expense> expensesByDate(long time_of_day) {
 		try {

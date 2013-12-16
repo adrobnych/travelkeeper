@@ -16,7 +16,7 @@ Feature: Currency
         Then I wait for the "HomeActivity" screen to appear
         And I see "UAH"
 
-    @VIP
+
     Scenario: As a user I can change Report Currencies
         Given this new app installation
         And I am on "HomeActivity" screen

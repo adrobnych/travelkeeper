@@ -48,6 +48,7 @@ public class HomeActivity extends FragmentActivity{
 		setContentView(R.layout.activity_home);
 		amount = (TextView) findViewById(R.id.amount);
         loadCurrencies();
+        setTitle("Spend money in smart way!");
 	}
 
 	@Override

@@ -82,7 +82,7 @@ public class RecordsListAdapter extends BaseAdapter {
         viewHolder.imageView.setImageResource(record.getPicture());
         String time = "[" + formatter.format(record.getTimeMillis()) + "] ";
         time = time.replace("AM", "am").replace("PM","pm");
-        viewHolder.textView.setText(time + record.getType() + ": " + record.getAmount());
+        viewHolder.textView.setText(time + record.getType() + ": " + record.getAmount() + " " + record.getCurrencyCode());
         
         return view;
     }

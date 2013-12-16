@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import com.droidbrew.travelcheap.fragment.TabFragment;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 public class HistoryActivity extends FragmentActivity {
@@ -27,7 +28,13 @@ public class HistoryActivity extends FragmentActivity {
         dateValue = intent.getLongExtra("date", -1);
         
         setContentView(R.layout.history_activity);
-        setTitle(compileFullTotal(dateValue) + " EUR spent on " + formatter.format(dateValue));
+        try {
+			setTitle(compileFullTotal(dateValue) + " " +
+					((TravelApp)getApplication()).getCurrencyManager().getReportCurrency() +
+					" spent on " + formatter.format(dateValue));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
         FragmentManager fm = getSupportFragmentManager();
         TabFragment tabFragment = (TabFragment) fm.findFragmentById(R.id.fragment_tab);
@@ -39,11 +46,18 @@ public class HistoryActivity extends FragmentActivity {
         	tabFragment.gotoGridView();
     }
     
+    
     @Override
     protected void onResume() {
     	super.onResume();
         
-        setTitle(compileFullTotal(dateValue) + " EUR spent on " + formatter.format(dateValue));
+    	 try {
+ 			setTitle(compileFullTotal(dateValue) + " " +
+ 					((TravelApp)getApplication()).getCurrencyManager().getReportCurrency() +
+ 					" spent on " + formatter.format(dateValue));
+ 		} catch (SQLException e) {
+ 			e.printStackTrace();
+ 		}
 
     }
     

@@ -44,7 +44,7 @@ public class ValueObjectFactory {
 		List<ExpenseRecord> expenseVOs = new ArrayList<ExpenseRecord>();
 
 		for(Expense e : ((TravelApp)app).getExpenseManager().expensesByDate(date)){
-			ExpenseRecord er = new ExpenseRecord(e.getId(), e.getDateAndTime(), e.getType(), pictureMap.get(e.getType()), e.getAmount()/100.0);
+			ExpenseRecord er = new ExpenseRecord(e.getId(), e.getDateAndTime(), e.getType(), pictureMap.get(e.getType()), e.getCurrencyCode(), e.getAmount()/100.0);
 			expenseVOs.add(er);
 		}
 		

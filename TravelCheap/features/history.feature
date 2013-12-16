@@ -142,4 +142,34 @@ Feature: History
         Then I see "0.0 EUR spent on "
         And I should not see "food:"
 
+    @VIP
+    Scenario: As a user I can see history data in right entrance and report currencies
+        Given this new app installation
+        And I am on "HomeActivity" screen
+        When I press the "EUR" button
+        Then I wait for the "CurrencyActivity" screen to appear
+        And I see "select currency for your expenses"
+        When I touch the "USD" text
+        Then I wait for the "HomeActivity" screen to appear
+        And I see "USD"
+        When I press the menu key
+        And I touch the "Currency for Reports" text
+        Then I wait for the "CurrencyActivity" screen to appear
+        And I see "select currency for your reports"
+        When I touch the "UAH" text
+        Then I wait for the "HomeActivity" screen to appear
+        When I press the "1" button
+        And I press the "0" button
+        And I press view with id "food"
+        And I press the "Ok" button
+        And I press the "History" button
+        Then I see "Select a date"
+        When I touch today's date
+        And I wait for the "HistoryActivity" screen to appear
+        Then I see "82.33 UAH spent on "
+        And I see "food: 82.33 UAH"
+        When I press the "Records" button 
+        Then I see "food: 10.0 USD"
+
+
 

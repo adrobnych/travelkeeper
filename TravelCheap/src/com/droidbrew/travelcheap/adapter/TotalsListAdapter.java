@@ -1,6 +1,7 @@
 package com.droidbrew.travelcheap.adapter;
 
 
+import java.sql.SQLException;
 import java.util.List;
 
 import android.content.Context;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.droidbrew.travelcheap.R;
+import com.droidbrew.travelcheap.TravelApp;
 import com.droidbrew.travelcheap.valueobject.ExpenseDayTotal;
 
 public class TotalsListAdapter extends BaseAdapter {
@@ -23,10 +25,12 @@ public class TotalsListAdapter extends BaseAdapter {
     
     private List<ExpenseDayTotal> totals;
     private LayoutInflater  mInflater;
+    Context context;
     
     public TotalsListAdapter(Context context, List<ExpenseDayTotal> totals) {
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.totals = totals;
+        this.context = context;
     }
     
     @Override
@@ -78,7 +82,15 @@ public class TotalsListAdapter extends BaseAdapter {
         ExpenseDayTotal total = totals.get(position);
         
         viewHolder.imageView.setImageResource(total.getPicture());
-        viewHolder.textView.setText(total.getType() + ": " + total.getAmount());
+        
+        String reportCurrency = "";
+        try {
+			reportCurrency = ((TravelApp)context.getApplicationContext()).getCurrencyManager().getReportCurrency();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+        
+        viewHolder.textView.setText(total.getType() + ": " + total.getAmount() + " " + reportCurrency);
         
         return view;
     }

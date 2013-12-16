@@ -6,6 +6,14 @@ public class ExpenseRecord {
 	private String type;
 	private int picture;
 	private double amount;
+	private String currencyCode;
+	
+	public String getCurrencyCode() {
+		return currencyCode;
+	}
+	public void setCurrencyCode(String currencyCode) {
+		this.currencyCode = currencyCode;
+	}
 	public double getAmount() {
 		return amount;
 	}
@@ -36,12 +44,13 @@ public class ExpenseRecord {
 	public void setPicture(int picture) {
 		this.picture = picture;
 	}
-	public ExpenseRecord(int id, long timeMillis, String type, int picture, double amount) {
+	public ExpenseRecord(int id, long timeMillis, String type, int picture, String currencyCode, double amount) {
 		this.id = id;
 		this.timeMillis = timeMillis;
 		this.type = type;
 		this.picture = picture;
 		this.amount = amount;
+		this.currencyCode = currencyCode;
 	}
 	
 }
