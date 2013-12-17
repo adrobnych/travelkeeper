@@ -235,6 +235,7 @@ public class HomeActivity extends FragmentActivity{
 			i = new Intent(this, CurrencyActivity.class);
 			i.putExtra("type", "currency_for_report");
 			startActivityForResult(i, RESULT_SETTINGS);
+			finish();
 			break;
 		case R.id.menu_administration:
 			i = new Intent(this, AdminActivity.class);
@@ -262,6 +263,7 @@ public class HomeActivity extends FragmentActivity{
 	public void onCurrencyClick(View view){
 		Intent myIntent = new Intent(HomeActivity.this, CurrencyActivity.class);
 		HomeActivity.this.startActivity(myIntent);
+		finish();
 	}
 
 
@@ -308,4 +310,9 @@ public class HomeActivity extends FragmentActivity{
 		}
 
 	}
+	
+//	@Override
+//	public void onBackPressed() {
+//	    finish();
+//	}
 }

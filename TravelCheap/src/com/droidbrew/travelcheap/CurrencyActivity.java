@@ -57,6 +57,7 @@ public class CurrencyActivity extends Activity {
 						);
 					Intent myIntent = new Intent(CurrencyActivity.this, HomeActivity.class);
 					CurrencyActivity.this.startActivity(myIntent);
+					finish();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}				

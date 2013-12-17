@@ -142,7 +142,6 @@ Feature: History
         Then I see "0.0 EUR spent on "
         And I should not see "food:"
 
-    @VIP
     Scenario: As a user I can see history data in right entrance and report currencies
         Given this new app installation
         And I am on "HomeActivity" screen
