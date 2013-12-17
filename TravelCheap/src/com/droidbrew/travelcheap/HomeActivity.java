@@ -170,6 +170,7 @@ public class HomeActivity extends FragmentActivity{
 			historyIntent.putExtra("date", date.getTime());
 			historyIntent.putExtra("tab", "totals");
 			HomeActivity.this.startActivity(historyIntent);
+			finish();
 
 		}
 
@@ -235,7 +236,6 @@ public class HomeActivity extends FragmentActivity{
 			i = new Intent(this, CurrencyActivity.class);
 			i.putExtra("type", "currency_for_report");
 			startActivityForResult(i, RESULT_SETTINGS);
-			finish();
 			break;
 		case R.id.menu_administration:
 			i = new Intent(this, AdminActivity.class);
@@ -247,23 +247,22 @@ public class HomeActivity extends FragmentActivity{
 		return true;
 	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-
-		switch (requestCode) {
-		case RESULT_SETTINGS:
-			//showUserSettings();
-			break;
-
-		}
-
-	}
+//	@Override
+//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//		super.onActivityResult(requestCode, resultCode, data);
+//
+//		switch (requestCode) {
+//		case RESULT_SETTINGS:
+//			//showUserSettings();
+//			break;
+//
+//		}
+//
+//	}
 	
 	public void onCurrencyClick(View view){
 		Intent myIntent = new Intent(HomeActivity.this, CurrencyActivity.class);
 		HomeActivity.this.startActivity(myIntent);
-		finish();
 	}
 
 
@@ -311,8 +310,5 @@ public class HomeActivity extends FragmentActivity{
 
 	}
 	
-//	@Override
-//	public void onBackPressed() {
-//	    finish();
-//	}
+
 }

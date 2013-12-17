@@ -55,8 +55,8 @@ public class CurrencyActivity extends Activity {
 						((TravelApp)getApplication()).getCurrencyManager().setAsReportCurrency(
 							((TKCurrency)l.getItemAtPosition(position)).getCode()
 						);
-					Intent myIntent = new Intent(CurrencyActivity.this, HomeActivity.class);
-					CurrencyActivity.this.startActivity(myIntent);
+//					Intent myIntent = new Intent(CurrencyActivity.this, HomeActivity.class);
+//					CurrencyActivity.this.startActivity(myIntent);
 					finish();
 				} catch (SQLException e) {
 					e.printStackTrace();

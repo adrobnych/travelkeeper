@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">TravelKeeper</string>
+    <string name="app_name">Travel Keeper</string>
     <string name="report_currency">Currency for Reports</string>
     <string name="action_settings">Settings</string>
     <string name="action_administration">Administration</string>

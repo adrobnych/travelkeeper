@@ -105,19 +105,24 @@ public class HistoryActivity extends FragmentActivity {
 		return true;
 	}
 
+//	@Override
+//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//		super.onActivityResult(requestCode, resultCode, data);
+//
+//		switch (requestCode) {
+//		case RESULT_SETTINGS:
+//			//showUserSettings();
+//			break;
+//
+//		}
+//
+//	}
+
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-
-		switch (requestCode) {
-		case RESULT_SETTINGS:
-			//showUserSettings();
-			break;
-
-		}
-
+	public void onBackPressed() {
+		Intent homeIntent = new Intent(HistoryActivity.this, HomeActivity.class);
+		HistoryActivity.this.startActivity(homeIntent);
+		finish();
 	}
-
-
 
 }
