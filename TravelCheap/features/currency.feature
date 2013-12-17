@@ -33,3 +33,32 @@ Feature: Currency
         Then I see "48"
         When I press view with id "entertainment"
         Then I see "Today you spent 65.17 USD for entertainment"
+
+    @VIP
+    Scenario: As a user I can update courses of currencies
+        Given this new app installation
+        And I am on "HomeActivity" screen
+        And I see "EUR"
+        When I press the menu key
+        And I touch the "Currency for Reports" text
+        Then I wait for the "CurrencyActivity" screen to appear
+        And I see "select currency for your reports"
+        When I touch the "UAH" text
+        Then I wait for the "HomeActivity" screen to appear
+        And I see "EUR"
+        When I press "1"
+        And I press "0"
+        When I press view with id "entertainment"
+        Then I see "Today you spent 111.8 UAH for entertainment"
+        And I press "Ok"
+        When I press the menu key
+        And I touch the "Administration" text
+        And I press "Update Courses"
+        And I wait
+        Then I go back
+        Then I wait for the "HomeActivity" screen to appear
+        And I see "EUR"
+        When I press "1"
+        And I press "0"
+        And I press view with id "food"
+        Then I should not see "Today you spent 111.8 UAH for food"

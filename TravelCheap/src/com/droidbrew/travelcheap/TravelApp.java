@@ -10,6 +10,7 @@ import com.droidbrew.travelcheap.valueobject.ValueObjectFactory;
 import com.droidbrew.travelkeeper.model.entity.Expense;
 import com.droidbrew.travelkeeper.model.entity.TKCurrency;
 import com.droidbrew.travelkeeper.model.manager.CurrencyDBManager;
+import com.droidbrew.travelkeeper.model.manager.CurrencyHTTPHelper;
 import com.droidbrew.travelkeeper.model.manager.ExpenseManager;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
@@ -20,7 +21,17 @@ public class TravelApp extends Application {
 		private CurrencyDBManager currencyManager = null;
 		private TravelCheapDbHelper dbHelper = null; 
 		private ValueObjectFactory voFactory = null;
+		private CurrencyHTTPHelper currencyHTTPHelper = null;
 		
+		public CurrencyHTTPHelper getCurrencyHTTPHelper() {
+			
+			if (null == currencyHTTPHelper) {
+				currencyHTTPHelper = new CurrencyHTTPHelper();
+			}
+   
+			return currencyHTTPHelper;
+		}
+
 		public ValueObjectFactory getVoFactory() {
 			return voFactory;
 		}

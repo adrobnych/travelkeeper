@@ -1,18 +1,32 @@
 package com.droidbrew.travelcheap;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
+import java.util.Map;
 
+import android.R.bool;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.res.AssetManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Toast;
 
+import com.droidbrew.travelcheap.HomeActivity.CurrencyLoadTask;
 import com.droidbrew.travelkeeper.model.entity.Expense;
+import com.droidbrew.travelkeeper.model.entity.TKCurrency;
+import com.droidbrew.travelkeeper.model.manager.CurrencyHTTPHelper;
 import com.j256.ormlite.table.TableUtils;
 
 public class AdminActivity extends Activity {
+
+	public static final String LOG = "com.droidbrew.travelcheap.AdminActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,30 +41,95 @@ public class AdminActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+
+	public void onWipeDataClick(View view){
+
+
+		new AlertDialog.Builder(this)
+		.setTitle("Are you sure?")
+		.setMessage("ALL DATA WILL BE LOST")
+		.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) { 
+				destroyAllData();
+				finish();
+			}})
+			.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {finish();}})
+				.show();
+	}
+
+	private void destroyAllData(){
+		try {
+			TableUtils.clearTable(((TravelApp)getApplication()).getDbHelper().getConnectionSource(),
+					Expense.class);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void onUpdateCoursesClick(View view){
+		CurrencyRemoteLoadTask clt = new CurrencyRemoteLoadTask();
+		clt.execute();
+	}
 	
-public void onWipeDataClick(View view){
+	class CurrencyRemoteLoadTask extends AsyncTask<Void, Void, Void> {
+		private boolean success = false;
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			AssetManager am = getApplication().getAssets();
+			CurrencyHTTPHelper cHTTPHelper = ((TravelApp)getApplication()).getCurrencyHTTPHelper();
+			String xmlString = null;
+			StringBuffer cnamesString = new StringBuffer();
+			try {
+				
+				String entranceCode = ((TravelApp)getApplication()).getCurrencyManager().getEntranceCurrency();
+				String reportCode = ((TravelApp)getApplication()).getCurrencyManager().getReportCurrency();
+
+				xmlString = cHTTPHelper.getRemoteFullListAsXMLString();
+
+				String line = null;
+				InputStream is = am.open("currency_names.yml");
+				BufferedReader breader = new BufferedReader(new InputStreamReader(is));
+				while ((line = breader.readLine()) != null) {
+					cnamesString.append(line + "\n");
+				}
+
+				Map<String, TKCurrency> cMap = cHTTPHelper.buildCurrencyMap(xmlString, 
+						cnamesString.toString());
+
+				TableUtils.clearTable(((TravelApp)getApplication()).getDbHelper().getConnectionSource(),
+						TKCurrency.class);
+
+				for(TKCurrency currency : cMap.values())
+					((TravelApp)getApplication()).getCurrencyManager().create(currency);
+
+
+				((TravelApp)getApplication()).getCurrencyManager().setAsEntranceCurrency(entranceCode);
+				((TravelApp)getApplication()).getCurrencyManager().setAsReportCurrency(reportCode);
+				
+				success = true;
+				
+			} catch (Exception e) {
+				Log.e(LOG, "courses update error: " + e);
+				success = false;
+			}
+
+			return null;
+
+		}
 		
 
-	new AlertDialog.Builder(this)
-	.setTitle("Are you sure?")
-	.setMessage("ALL DATA WILL BE LOST")
-	.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		public void onClick(DialogInterface dialog, int which) { 
-			destroyAllData();
-			finish();
-		}})
-	.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-		public void onClick(DialogInterface dialog, int which) {finish();}})
-	.show();
-	}
+		@Override
+		protected void onPostExecute(Void result) {
+			if(success)
+				Toast.makeText(getApplicationContext(), "courses loaded succsessfully",
+						Toast.LENGTH_LONG).show();
+			else
+				Toast.makeText(getApplicationContext(), "courses loading failed ",
+						Toast.LENGTH_LONG).show();
+		}
 
-private void destroyAllData(){
-	try {
-		TableUtils.clearTable(((TravelApp)getApplication()).getDbHelper().getConnectionSource(),
-			Expense.class);
-	} catch (SQLException e) {
-		e.printStackTrace();
 	}
-}
 
 }

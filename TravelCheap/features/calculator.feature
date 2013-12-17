@@ -151,7 +151,7 @@ Feature: Calculator
 		And I press the "3" button
 		Then I should not see "333"
 
-    @VIP
+ 
     Scenario: As a user I can press back button on HomeActivity
         Given this new app installation
         And I am on "HomeActivity" screen
