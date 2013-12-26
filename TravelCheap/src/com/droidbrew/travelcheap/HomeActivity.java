@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.Map;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -38,6 +39,7 @@ public class HomeActivity extends FragmentActivity{
 	private CaldroidFragment caldroidFragment;
 	private Bundle savedInstanceState;
 	private TextView amount;
+	private ProgressDialog pd = null;
 	
 	private static final int RESULT_SETTINGS = 1;
 
@@ -76,6 +78,8 @@ public class HomeActivity extends FragmentActivity{
 
 
 	private void loadCurrenciesFromAssets() {
+		pd = ProgressDialog.show(this, "Working..", "Loading of All Currencies at first launch", true,
+                false);
 		CurrencyLoadTask clt = new CurrencyLoadTask();
 		clt.execute();
 	}
@@ -306,6 +310,11 @@ public class HomeActivity extends FragmentActivity{
 
 			return null;
 
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			pd.dismiss();
 		}
 
 	}

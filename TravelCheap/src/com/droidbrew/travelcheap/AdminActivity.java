@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.Map;
 
-import android.R.bool;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
@@ -18,13 +18,13 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 
-import com.droidbrew.travelcheap.HomeActivity.CurrencyLoadTask;
 import com.droidbrew.travelkeeper.model.entity.Expense;
 import com.droidbrew.travelkeeper.model.entity.TKCurrency;
 import com.droidbrew.travelkeeper.model.manager.CurrencyHTTPHelper;
 import com.j256.ormlite.table.TableUtils;
 
 public class AdminActivity extends Activity {
+	private ProgressDialog pd = null;
 
 	public static final String LOG = "com.droidbrew.travelcheap.AdminActivity";
 
@@ -69,6 +69,8 @@ public class AdminActivity extends Activity {
 
 	public void onUpdateCoursesClick(View view){
 		CurrencyRemoteLoadTask clt = new CurrencyRemoteLoadTask();
+		pd = ProgressDialog.show(this, "Working..", "Updating of Currency Courses", true,
+                false);
 		clt.execute();
 	}
 	
@@ -128,6 +130,7 @@ public class AdminActivity extends Activity {
 			else
 				Toast.makeText(getApplicationContext(), "courses loading failed ",
 						Toast.LENGTH_LONG).show();
+			pd.dismiss();
 		}
 
 	}
