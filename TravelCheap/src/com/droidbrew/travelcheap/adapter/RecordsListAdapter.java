@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.droidbrew.travelcheap.R;
+import com.droidbrew.travelcheap.TravelApp;
 import com.droidbrew.travelcheap.valueobject.ExpenseRecord;
 
 public class RecordsListAdapter extends BaseAdapter {

@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import android.app.AlertDialog;
@@ -14,6 +15,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -27,10 +29,15 @@ import android.widget.Toast;
 
 import com.droidbrew.travelkeeper.model.entity.Expense;
 import com.droidbrew.travelkeeper.model.entity.TKCurrency;
+import com.droidbrew.travelkeeper.model.entity.Trip;
 import com.droidbrew.travelkeeper.model.manager.CurrencyHTTPHelper;
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
 
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
 
 public class HomeActivity extends FragmentActivity{
 	
@@ -50,12 +57,18 @@ public class HomeActivity extends FragmentActivity{
 		setContentView(R.layout.activity_home);
 		amount = (TextView) findViewById(R.id.amount);
         loadCurrencies();
-        setTitle("Spend money in smart way!");
+       // setTitle("Spend money in smart way!");
+        
+        setTitle(((TravelApp)getApplication()).getTripManager().getNameById(
+        		((TravelApp)getApplication()).getTripManager().getDefaultTripId()));
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+        setTitle(((TravelApp)getApplication()).getTripManager().getNameById(
+        		((TravelApp)getApplication()).getTripManager().getDefaultTripId()));
+
 		Button cButton = (Button) findViewById(R.id.button_currency);
         try {
 			cButton.setText(
@@ -129,6 +142,8 @@ public class HomeActivity extends FragmentActivity{
 		final long time = (new Date()).getTime();
 		expense.setDateAndTime(time);
 		try {
+			expense.setTripId(((TravelApp)getApplication()).getTripManager().getDefaultTripId());
+			//Log.d(LOG, expense.toString());
 			expense.setCurrencyCode(
 					((TravelApp)getApplication()).getCurrencyManager().getEntranceCurrency()
 					);
@@ -221,10 +236,21 @@ public class HomeActivity extends FragmentActivity{
 			dialogCaldroidFragment.setArguments(bundle);
 		}
 
+		List<String> dates = ((TravelApp)getApplication()).getExpenseManager().datesByTrip(
+				((TravelApp)getApplication()).getTripManager().getDefaultTripId());
+		for(String date : dates)
+			dialogCaldroidFragment.setBackgroundResourceForDate(
+					R.color.caldroid_holo_blue_light, new Date(Long.parseLong(date)));
+		
 		dialogCaldroidFragment.show(getSupportFragmentManager(),
 				dialogTag);
 	}
 
+	public void onMyTripsClick(View view){
+		Intent intent = new Intent(this, MyTripsActivity.class);
+		startActivity(intent);
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.settings, menu);

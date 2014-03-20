@@ -1,15 +1,18 @@
 package com.droidbrew.travelcheap.valueobject;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.droidbrew.travelcheap.R;
 import com.droidbrew.travelcheap.TravelApp;
 import com.droidbrew.travelkeeper.model.entity.Expense;
+import com.droidbrew.travelkeeper.model.manager.TripManager;
 
 public class ValueObjectFactory {
 	Application app;
@@ -40,14 +43,55 @@ public class ValueObjectFactory {
     	return totals;
 	}
 
+	public List<ExpenseTripTotal> getExpenceTripTotals(){
+		
+		List<ExpenseTripTotal> totals = new ArrayList<ExpenseTripTotal>();
+		int tripId = ((TripManager) ((TravelApp)app).getTripManager()).getDefaultTripId();
+		
+		for(String pictureKey : pictureMap.keySet()){
+			totals.add(new ExpenseTripTotal(0, pictureKey, tripId,
+    			pictureMap.get(pictureKey), ((TravelApp)app).getExpenseManager()));
+		}
+		totals.add(new ExpenseTripTotal(1, "last 3 days", tripId,
+				pictureMap.get("other things"), ((TravelApp)app).getExpenseManager()));
+		totals.add(new ExpenseTripTotal(2, "last week", tripId,
+				pictureMap.get("other things"), ((TravelApp)app).getExpenseManager()));
+		totals.add(new ExpenseTripTotal(3, "last month", tripId,
+				pictureMap.get("other things"), ((TravelApp)app).getExpenseManager()));
+		
+    	return totals;
+	}
+
 	public List<ExpenseRecord> getExpenseRecords(long date){
 		List<ExpenseRecord> expenseVOs = new ArrayList<ExpenseRecord>();
 
 		for(Expense e : ((TravelApp)app).getExpenseManager().expensesByDate(date)){
-			ExpenseRecord er = new ExpenseRecord(e.getId(), e.getDateAndTime(), e.getType(), pictureMap.get(e.getType()), e.getCurrencyCode(), e.getAmount()/100.0);
+			ExpenseRecord er = new ExpenseRecord(e.getId(), e.getDateAndTime(), e.getType(), pictureMap.get(e.getType()), e.getCurrencyCode(), e.getAmount()/100.0, e.getTripId());
 			expenseVOs.add(er);
 		}
 		
+		return expenseVOs;
+	}
+
+	public List<ExpenseRecord> getExpenseRecordsByTrip(){
+		List<ExpenseRecord> expenseVOs = new ArrayList<ExpenseRecord>();
+		int id = ((TripManager) ((TravelApp)app).getTripManager()).getDefaultTripId();
+		List<String> dates = ((TravelApp)app).getExpenseManager().datesByTrip(id);
+
+		try {
+		for(String date : dates) {
+			long d = Long.parseLong(date);
+			ExpenseRecord er = new ExpenseRecord(0, 
+					d, "other", pictureMap.get("other things"), 
+					((TravelApp)app).getCurrencyManager().getReportCurrency(), 
+					((TravelApp)app).getExpenseManager().sumAmountByDateAndTrip(d,id)/100.0, 
+					id);
+			expenseVOs.add(er);
+		}
+		}catch(SQLException e) {
+			Log.e("deb","getExpensesByTrip", e);
+		}
+
 		return expenseVOs;
 	}
 }

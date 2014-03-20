@@ -40,6 +40,12 @@
             android:screenOrientation="portrait" 
             android:label="@string/title_activity_currency" >
         </activity>
+        <activity android:name="MyTripsActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name="HistoryTripsActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

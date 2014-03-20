@@ -8,8 +8,12 @@ import android.util.Log;
 import com.droidbrew.travelkeeper.model.entity.Expense;
 import com.droidbrew.travelkeeper.model.entity.TKCurrency;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
+import com.droidbrew.travelkeeper.model.entity.Trip;
+//import com.droidbrew.travelkeeper.model.entity.TKCurrency;
 
 
 public class TravelCheapDbHelper extends OrmLiteSqliteOpenHelper {
@@ -25,13 +29,20 @@ public class TravelCheapDbHelper extends OrmLiteSqliteOpenHelper {
 
 	    @Override
 	    public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
-	        try {
+	    	
+	    	try {
 
 	            TableUtils.createTableIfNotExists(connectionSource, Expense.class);
 	            TableUtils.createTableIfNotExists(connectionSource, TKCurrency.class);
-
+	            TableUtils.createTableIfNotExists(connectionSource, Trip.class);
+	            
+	            Dao<Trip, String> tripDao =
+	                    DaoManager.createDao(connectionSource, Trip.class);
+	            tripDao.create(new Trip("default trip", true));
+	            
 	        } catch (java.sql.SQLException e) {
 	            Log.e(TAG, "onCreate", e);
+	            e.printStackTrace();
 	        } 
 	    }
 

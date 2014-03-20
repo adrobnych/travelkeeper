@@ -1,6 +1,5 @@
 package com.droidbrew.travelcheap.fragment;
 
-import android.R.color;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

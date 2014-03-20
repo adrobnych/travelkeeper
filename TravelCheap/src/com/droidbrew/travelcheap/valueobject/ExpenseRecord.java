@@ -7,6 +7,15 @@ public class ExpenseRecord {
 	private int picture;
 	private double amount;
 	private String currencyCode;
+	private int tripId;
+	
+	public int getTripId() {
+		return this.tripId;
+	}
+	
+	public void setTripId(int id) {
+		this.tripId = id;
+	}
 	
 	public String getCurrencyCode() {
 		return currencyCode;
@@ -44,13 +53,14 @@ public class ExpenseRecord {
 	public void setPicture(int picture) {
 		this.picture = picture;
 	}
-	public ExpenseRecord(int id, long timeMillis, String type, int picture, String currencyCode, double amount) {
+	public ExpenseRecord(int id, long timeMillis, String type, int picture, String currencyCode, double amount, int tripId) {
 		this.id = id;
 		this.timeMillis = timeMillis;
 		this.type = type;
 		this.picture = picture;
 		this.amount = amount;
 		this.currencyCode = currencyCode;
+		this.tripId = tripId;
 	}
 	
 }

@@ -1,22 +1,36 @@
 package com.droidbrew.travelcheap;
 
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.droidbrew.travelcheap.fragment.TabFragment;
-
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
+import com.droidbrew.travelkeeper.model.entity.Expense;
+import com.droidbrew.travelkeeper.model.entity.Trip;
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
 
 public class HistoryActivity extends FragmentActivity {
 	
 	public Long dateValue = null;
 	private static final int RESULT_SETTINGS = 2;
 	private SimpleDateFormat formatter;
+	private int itemChoosed = 0;
+	TabFragment tabFragment = null;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +51,7 @@ public class HistoryActivity extends FragmentActivity {
 		}
 
         FragmentManager fm = getSupportFragmentManager();
-        TabFragment tabFragment = (TabFragment) fm.findFragmentById(R.id.fragment_tab);
+        tabFragment = (TabFragment) fm.findFragmentById(R.id.fragment_tab);
         
         String targetTab = intent.getStringExtra("tab");
         if(targetTab.equals("totals"))
@@ -118,6 +132,68 @@ public class HistoryActivity extends FragmentActivity {
 //
 //	}
 
+	public void onAddExpenseClick(View viev){
+		  final String[] mChoose = { "Food", "Transport", "Shopping" 
+				  ,"Accommodation","Entertainment","Other things"};
+		  final EditText input = new EditText(this);
+		   AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		    builder.setTitle("Add Expense")
+		            .setCancelable(false)
+		       
+		       .setView(input)
+		      .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					if(input.getText().toString().equals("")) {
+						Toast.makeText(
+                                getApplicationContext(),
+                                "Enter the correct amount",
+                                Toast.LENGTH_SHORT).show();
+						return;
+					}
+					Expense expense = new Expense();
+					expense.setType(mChoose[itemChoosed].toLowerCase());
+					expense.setAmount((long)(100 * Double.valueOf(input.getText().toString())));
+					expense.setDateAndTime(dateValue);
+					try {
+						expense.setTripId(((TravelApp)getApplication()).getTripManager().getDefaultTripId());
+						//Log.d(LOG, expense.toString());
+						expense.setCurrencyCode(
+								((TravelApp)getApplication()).getCurrencyManager().getEntranceCurrency()
+								);
+						((TravelApp)getApplication()).getExpenseManager().create(expense);
+						
+						tabFragment.gotoGridView();
+
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			})
+			.setNegativeButton("Cansel", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					
+				}
+			})
+		      		    
+		    .setSingleChoiceItems(mChoose, -1,
+                  new DialogInterface.OnClickListener() {
+                      @Override
+                      public void onClick(DialogInterface dialog,
+                              int item) {
+                         itemChoosed = item;
+                      }
+                  });
+		    builder.show();
+		    
+	  }
+	
+	
+	
 	@Override
 	public void onBackPressed() {
 		Intent homeIntent = new Intent(HistoryActivity.this, HomeActivity.class);

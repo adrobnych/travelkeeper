@@ -18,12 +18,20 @@
     <FrameLayout
         android:id="@+id/fragment_content"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="310dp">
 
     </FrameLayout>
     
-        
-
-
-
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+<Button
+            android:id="@+id/AddExpense"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="onAddExpenseClick"
+            android:text="Add Expense" />
+    
+</LinearLayout>
 </LinearLayout>

@@ -393,9 +393,19 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:onClick="onHistoryClick"
-                android:text="History" />
+                android:text="Calendar" />
+            
+            <Button
+                android:id="@+id/MyTrips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onClick="onMyTripsClick"
+                android:text="My Trips" />
 
         </LinearLayout>
 
 
+    
 </LinearLayout>

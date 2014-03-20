@@ -8,11 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.droidbrew.travelcheap.R;
-import com.droidbrew.travelcheap.valueobject.ExpenseRecord;
 import com.droidbrew.travelkeeper.model.entity.TKCurrency;
 
 public class CurrencyListAdapter extends BaseAdapter {
