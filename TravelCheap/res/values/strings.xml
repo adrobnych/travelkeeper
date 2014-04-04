@@ -18,9 +18,68 @@
     <string name="selectDate">Please select date for the report</string>
     <string name="clearData">Dangerous Area</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="pdStartHomeActivity">Loading of All Currencies at first launch</string>
     <string name="WipeDataWarning">Warning: this operation will destroy all data collected in many trips!</string>
     <string name="DestroyData">Destroy All Data</string>
     <string name="title_activity_currency">CurrencyActivity</string>
+    <string name="UpdateCourses">Update Courses</string>
+    <string name="CurrencyAdministration">Update Courses</string>
+    <string name="DangerousArea">Dangerous Area</string>
+    <string name="AdminDialogTitle">Are you sure?</string>
+    <string name="AdminDialogMessage">ALL DATA WILL BE LOST</string>
+    <string name="AdminDialogNB">Cancel</string>
+    <string name="AdminDialogTitleUpd">Working..</string>
+    <string name="AdminDialogMassageUpd">Updating of Currency Courses</string>
+    <string name="toastSuccessMessage">Courses loaded successfully</string>
+    <string name="toastFailedMessage">Courses loading failed</string>
+    <string name="currencyActivityTitle">Select currency for your reports</string>
+    <string name="currencyActivityTitleElse">Select currency for your expenses</string>
+    <string name="spentOn">spent on</string>
+    <string name="GridViewSetText">Click to remove</string>
+    <string name="addExpensTitle">Add Expense</string>
+    <string name="addExpensPB">Add</string>
+    <string name="homeActivityDialogMessage">Today you spent</string>
+    <string name="dialogFor">for</string>
+    <string name="composeDialogTitleElse">New expense reported</string>
+    <string name="myTripDialogNewTitle">New Trips</string>
+    <string name="myTripDialogNewMassage">Enter new trips</string>
+    <string name="myTripDialodDelTitle">Delete Trip</string>
+    <string name="myTripDialodDelMassage">Are you sure you want to delete the trip</string>
+    <string name="dialogDelPB">Delete</string>
+    <string name="myTripDialogDefaultTitle">Default trip</string>
+    <string name="myTripDialogDefaultMassage">Set default trip</string>
+    <string name="historyTabFtagmentText">Click to view</string>
+    <string name="recordListDialogTitle">Are you sure?</string>
+    <string name="recordListDialogMassage">Record to be deleted: </string>
+    <string name="statrFragmentToast">Money spent on </string>
+    <string name="foodTextButtot">food</string>
+    <string name="transportTextButtot">transport</string>
+    <string name="shoppingTextButtot">shopping</string>
+    <string name="hotelTextButtot">hotel</string>
+    <string name="funTextButtot">fun</string>
+    <string name="otherTextButtot">other</string>
+    <string name="calendarTextButtot">Calendar</string>
+    <string name="myTripTextButtot">My trips</string>
+    <string name="myTripActivityTextButtot">My trips</string>
+    <string name="myTripActivityButtonNew">New Trips</string>
+    <string name="myTripActivityButtonHistory">History</string>
+    <string name="myTripActivityButtonDefoult">Set As Default</string>
+    <string name="myTripActivityButtonDelete">Delete</string>
+    <string name="fragmentTabButtonTotal">Totals</string>
+    <string name="fragmentTabButtonRecord">Records</string>
+    <string name="fragmentTabButtonHistory">History</string>
+    <string name="fragmentTabButtonStats">Stats</string>
+    
+    
+    
+    <string-array name="mChoose">
+      <item>Food</item>
+      <item>Transport</item>
+      <item>Shopping</item>
+      <item>Accommodation</item>
+      <item>Entertainment</item>
+      <item>Other things</item>
+</string-array>
 	
 
 </resources>

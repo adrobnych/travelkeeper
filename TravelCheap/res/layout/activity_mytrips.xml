@@ -1,7 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -9,70 +10,71 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MyTripsActivity" > 
 
-<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-
 <TextView
             android:id="@+id/updateTextView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Trips"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
+            android:text="@string/myTripActivityTextButtot"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_gravity="top" />
 
 <ListView
  android:id="@+id/LView"
- android:layout_width="match_parent"
- android:layout_height="300dp">
+ android:layout_width="fill_parent"
+ android:layout_height="fill_parent"
+ android:layout_weight="1"
+ android:layout_gravity="center_vertical">
+ 
 </ListView>
 
 <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center_horizontal" >
-		
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" >
+        
 <Button
             android:id="@+id/NewTrips"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:onClick="onNewTripsClick"
-            android:text="New Trips" />
-
+            android:text="@string/myTripActivityButtonNew" />
 <Button
-            android:id="@+id/history"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:onClick="onHistoryClick"
-            android:text="History" />
-</LinearLayout>
-<LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center_horizontal">
-<Button
-            android:id="@+id/SetAsDefault"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:onClick="onDefaultClick"
-            android:text="Set As Default" />
-            
-<Button
+    
             android:id="@+id/Delete"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:onClick="onDeleteClick"
-            android:text="Delete" />
+            android:text="@string/myTripActivityButtonDelete" />
+
 </LinearLayout>
+
+<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" >
+<Button
+            android:id="@+id/SetAsDefault"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:onClick="onDefaultClick"
+            android:text="@string/myTripActivityButtonDefoult" />
+<Button
+            android:id="@+id/history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:onClick="onHistoryClick"
+            android:text="@string/myTripActivityButtonHistory" />
+
+
 </LinearLayout>
+
+
 </LinearLayout>

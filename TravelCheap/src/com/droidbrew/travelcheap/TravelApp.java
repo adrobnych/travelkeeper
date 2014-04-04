@@ -22,6 +22,18 @@ public class TravelApp extends Application {
 		private ValueObjectFactory voFactory = null;
 		private CurrencyHTTPHelper currencyHTTPHelper = null;
 		private TripManager tripManager = null;
+		private LangManager langManager = null;
+		
+		public LangManager getLanguageManager() {
+
+			if (null == langManager) {
+				langManager = new LangManager(getResources().getConfiguration().locale
+						.getLanguage());
+			}
+   
+			return langManager;
+
+		}
 		
 		public CurrencyHTTPHelper getCurrencyHTTPHelper() {
 			

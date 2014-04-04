@@ -3,11 +3,14 @@ package com.droidbrew.travelcheap.fragment;
 import java.util.List;
 
 import com.droidbrew.travelcheap.HistoryActivity;
+import com.droidbrew.travelcheap.LangManager;
 import com.droidbrew.travelcheap.TravelApp;
 import com.droidbrew.travelcheap.adapter.StatListAdapter;
 import com.droidbrew.travelcheap.adapter.TotalsListAdapter;
 import com.droidbrew.travelcheap.valueobject.ExpenseDayTotal;
 import com.droidbrew.travelcheap.valueobject.ExpenseTripTotal;
+import com.droidbrew.travelcheap.R;
+
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -21,12 +24,14 @@ public class StatFragment extends ListFragment {
 
 	private List<ExpenseTripTotal> totals; 
 	private Activity activity;
+	private LangManager lm;
     
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         
         activity = getActivity();
+        lm = new LangManager(getResources().getConfiguration().locale.getLanguage());
         
         refreshTotals();
     }
@@ -53,7 +58,7 @@ public class StatFragment extends ListFragment {
             ListAdapter listAdapter = getListAdapter();
             ExpenseTripTotal expenseTotal = (ExpenseTripTotal) listAdapter.getItem(position);
             
-            Toast.makeText(activity, "Money spent on " + expenseTotal.getType() + ": " + expenseTotal.getAmount(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, getString(R.string.statrFragmentToast)+ " " + lm.getTypeFromDB(expenseTotal.getType()) + ": " + expenseTotal.getAmount(), Toast.LENGTH_SHORT).show();
         }
     }
 

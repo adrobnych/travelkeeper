@@ -20,7 +20,7 @@
             android:id="@+id/updateTextView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Currency Administration"
+            android:text="@string/CurrencyAdministration"
             android:textAppearance="?android:attr/textAppearanceLarge" />
         
 
@@ -29,13 +29,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onUpdateCoursesClick"
-            android:text="Update Courses" />
+            android:text="@string/UpdateCourses" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dangerous Area"
+            android:text="@string/DangerousArea"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_marginTop="16dp" />
         

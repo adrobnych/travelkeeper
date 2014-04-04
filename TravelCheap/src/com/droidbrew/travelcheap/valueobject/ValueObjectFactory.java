@@ -36,7 +36,8 @@ public class ValueObjectFactory {
 		List<ExpenseDayTotal> totals = new ArrayList<ExpenseDayTotal>();
 		
 		for(String pictureKey : pictureMap.keySet()){
-			totals.add(new ExpenseDayTotal(0, pictureKey, date,
+			totals.add(new ExpenseDayTotal(0, pictureKey,
+					((TravelApp)app).getLanguageManager().getTypeFromDB(pictureKey), date,
     			pictureMap.get(pictureKey), ((TravelApp)app).getExpenseManager()));
 		}
 		
@@ -49,14 +50,18 @@ public class ValueObjectFactory {
 		int tripId = ((TripManager) ((TravelApp)app).getTripManager()).getDefaultTripId();
 		
 		for(String pictureKey : pictureMap.keySet()){
-			totals.add(new ExpenseTripTotal(0, pictureKey, tripId,
+			totals.add(new ExpenseTripTotal(0, pictureKey,
+					((TravelApp)app).getLanguageManager().getTypeFromDB(pictureKey), tripId,
     			pictureMap.get(pictureKey), ((TravelApp)app).getExpenseManager()));
 		}
-		totals.add(new ExpenseTripTotal(1, "last 3 days", tripId,
+		totals.add(new ExpenseTripTotal(1, "other things",
+				((TravelApp)app).getLanguageManager().getMsg1(), tripId,
 				pictureMap.get("other things"), ((TravelApp)app).getExpenseManager()));
-		totals.add(new ExpenseTripTotal(2, "last week", tripId,
+		totals.add(new ExpenseTripTotal(2, "other things",
+				((TravelApp)app).getLanguageManager().getMsg2(), tripId,
 				pictureMap.get("other things"), ((TravelApp)app).getExpenseManager()));
-		totals.add(new ExpenseTripTotal(3, "last month", tripId,
+		totals.add(new ExpenseTripTotal(3, "other things",
+				((TravelApp)app).getLanguageManager().getMsg3(), tripId,
 				pictureMap.get("other things"), ((TravelApp)app).getExpenseManager()));
 		
     	return totals;
@@ -66,7 +71,8 @@ public class ValueObjectFactory {
 		List<ExpenseRecord> expenseVOs = new ArrayList<ExpenseRecord>();
 
 		for(Expense e : ((TravelApp)app).getExpenseManager().expensesByDate(date)){
-			ExpenseRecord er = new ExpenseRecord(e.getId(), e.getDateAndTime(), e.getType(), pictureMap.get(e.getType()), e.getCurrencyCode(), e.getAmount()/100.0, e.getTripId());
+			ExpenseRecord er = new ExpenseRecord(e.getId(), e.getDateAndTime(), 
+					((TravelApp)app).getLanguageManager().getTypeFromDB(e.getType()), pictureMap.get(e.getType()), e.getCurrencyCode(), e.getAmount()/100.0, e.getTripId());
 			expenseVOs.add(er);
 		}
 		

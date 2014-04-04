@@ -8,6 +8,7 @@ public class ExpenseDayTotal {
 	private int id;
 	private long dayMillis;
 	private String type;
+	private String vtype;
 	private int picture;
 	
 	public void setPicture(int picture) {
@@ -29,15 +30,16 @@ public class ExpenseDayTotal {
 	}
 
 	public String getType() {
-		return type;
+		return vtype;
 	}
 	
-	public ExpenseDayTotal(int id, String type, long dayMillis, int imageResource, ExpenseManager em){
+	public ExpenseDayTotal(int id, String type, String vtype, long dayMillis, int imageResource, ExpenseManager em){
 		this.id = id;
 		this.type = type;
 		this.dayMillis = dayMillis;
 		this.picture = imageResource;
 		this.em = em;
+		this.vtype = vtype;
 	}
 	
 	public double getAmount(){

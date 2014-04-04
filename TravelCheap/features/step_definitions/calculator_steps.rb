@@ -9,6 +9,11 @@ Given /^I am on "([^\"]*)" screen$/ do | expected_activity |
 end
 
 
+
+And /I enter "([^\"]*)" as the newTrip/ do |name|
+  query "edittext", :setText => name
+end
+
 def are_the_same? actual_activity, expected_activity
 	 actual_activity == expected_activity  ||  actual_activity == expected_activity + 'Activity' 
 end
@@ -28,17 +33,17 @@ When(/^I touch today's date$/) do
   # p query("SquareTextView marked:'#{10}'").size
   # p query("SquareTextView marked:'#{29}'").size
 
-  # `/home/adrobnych/dev/adt-bundle-linux-x86_64-20130917/sdk/platform-tools/adb shell date -s 20131112.104533`
+  #` D:/Android/sdk/platform-tools/adb shell date -s 20131112.104533`
 
   if(query("SquareTextView marked:'12'").size > 4)
     touch("SquareTextView marked:'12' index:1")
   else
-    touch("SquareTextView marked:'12'")
+    touch("SquareTextView marked:'29'")
   end
 end
 
 Given(/^this new app installation$/) do
-  #`/home/adrobnych/dev/adt-bundle-linux-x86_64-20130917/sdk/platform-tools/adb shell date -s 20131112.104533`
+  # D:/Android/sdk/platform-tools/adb shell date -s 20131112.104533`
   performAction('select_from_menu', 'Administration')
   performAction('press_button_with_text', "Destroy All Data")
   performAction('press_button_with_text', "Ok")

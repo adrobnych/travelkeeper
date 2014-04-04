@@ -56,7 +56,7 @@ public class HistoryTabFragments extends Fragment {
     
     public void gotoHistoryView() {
     	TextView tv = (TextView) getActivity().findViewById(R.id.StatusLine1);
-    	tv.setText("Click to view");
+    	tv.setText(R.string.historyTabFtagmentText);
     	totalsViewTab.setBackgroundColor(Color.LTGRAY);
         recordViewTab.setBackgroundColor(Color.DKGRAY);
     	

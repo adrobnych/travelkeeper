@@ -12,6 +12,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.droidbrew.travelcheap.HistoryActivity;
+import com.droidbrew.travelcheap.LangManager;
+import com.droidbrew.travelcheap.R;
 import com.droidbrew.travelcheap.TravelApp;
 import com.droidbrew.travelcheap.adapter.TotalsListAdapter;
 import com.droidbrew.travelcheap.valueobject.ExpenseDayTotal;
@@ -22,12 +24,14 @@ public class TotalsListFragment extends ListFragment {
 		
 	private List<ExpenseDayTotal> totals; 
 	private Activity activity;
+	private LangManager lm;
     
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         
         activity = getActivity();
+        lm = new LangManager(getResources().getConfiguration().locale.getLanguage());
         
         refreshTotals();
     }
@@ -55,7 +59,7 @@ public class TotalsListFragment extends ListFragment {
             ListAdapter listAdapter = getListAdapter();
             ExpenseDayTotal expenseTotal = (ExpenseDayTotal) listAdapter.getItem(position);
             
-            Toast.makeText(activity, "Money spent on " + expenseTotal.getType() + ": " + expenseTotal.getAmount(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, getString(R.string.statrFragmentToast) + " " + lm.getTypeFromDB(expenseTotal.getType()) + ": " + expenseTotal.getAmount(), Toast.LENGTH_SHORT).show();
         }
     }
        

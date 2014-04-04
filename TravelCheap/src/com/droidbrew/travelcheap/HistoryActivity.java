@@ -45,7 +45,7 @@ public class HistoryActivity extends FragmentActivity {
         try {
 			setTitle(compileFullTotal(dateValue) + " " +
 					((TravelApp)getApplication()).getCurrencyManager().getReportCurrency() +
-					" spent on " + formatter.format(dateValue));
+					" " + getString(R.string.spentOn) + " " + formatter.format(dateValue));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -68,7 +68,7 @@ public class HistoryActivity extends FragmentActivity {
     	 try {
  			setTitle(compileFullTotal(dateValue) + " " +
  					((TravelApp)getApplication()).getCurrencyManager().getReportCurrency() +
- 					" spent on " + formatter.format(dateValue));
+ 					" " + getString(R.string.spentOn) + " " + formatter.format(dateValue));
  		} catch (SQLException e) {
  			e.printStackTrace();
  		}
@@ -131,17 +131,33 @@ public class HistoryActivity extends FragmentActivity {
 //		}
 //
 //	}
+	
+	private String getTag(String tagG) {
+		String tag = tagG;
+		if(tag.equals("Еда"))
+			return "food";
+		if(tag.equals("Транспорт"))
+			return "transport";
+		if(tag.equals("Жилье"))
+			return "accommodation";
+		if(tag.equals("Покупка товаров"))
+			return "shopping";
+		if(tag.equals("Развлечения"))
+			return "entertainment";
+		if(tag.equals("Другие вещи"))
+			return "other things";
+		return tag;
+	}
 
 	public void onAddExpenseClick(View viev){
-		  final String[] mChoose = { "Food", "Transport", "Shopping" 
-				  ,"Accommodation","Entertainment","Other things"};
+		  final String[] mChoose = getResources().getStringArray(R.array.mChoose);
 		  final EditText input = new EditText(this);
 		   AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		    builder.setTitle("Add Expense")
+		    builder.setTitle(R.string.addExpensTitle)
 		            .setCancelable(false)
 		       
 		       .setView(input)
-		      .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+		      .setPositiveButton(R.string.addExpensPB, new DialogInterface.OnClickListener() {
 				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
@@ -153,7 +169,8 @@ public class HistoryActivity extends FragmentActivity {
 						return;
 					}
 					Expense expense = new Expense();
-					expense.setType(mChoose[itemChoosed].toLowerCase());
+					
+					expense.setType(getTag(mChoose[itemChoosed]).toLowerCase());
 					expense.setAmount((long)(100 * Double.valueOf(input.getText().toString())));
 					expense.setDateAndTime(dateValue);
 					try {
@@ -171,7 +188,7 @@ public class HistoryActivity extends FragmentActivity {
 					}
 				}
 			})
-			.setNegativeButton("Cansel", new DialogInterface.OnClickListener() {
+			.setNegativeButton(R.string.AdminDialogNB, new DialogInterface.OnClickListener() {
 				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {

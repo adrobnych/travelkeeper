@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".HomeActivity" 
-    android:background="#EC7703">
+    android:background="@drawable/bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginRight="@dimen/amount_margin"
             android:layout_weight="4"
-            android:background="#CC7703"
+            android:background="#00a0e8"
             android:gravity="center_vertical|right"
             android:maxLength="@integer/length_of_amount"
             android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -204,7 +204,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:layout_marginBottom="2dp"
-                        android:text="food"
+                        android:text="@string/foodTextButtot"
                         android:textColor="#000000" />
                 </LinearLayout>
             </RelativeLayout>
@@ -237,7 +237,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:layout_marginBottom="2dp"
-                        android:text="transport"
+                        android:text="@string/transportTextButtot"
                         android:textColor="#000000" />
                 </LinearLayout>
             </RelativeLayout>
@@ -270,7 +270,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:layout_marginBottom="2dp"
-                        android:text="shopping"
+                        android:text="@string/shoppingTextButtot"
                         android:textColor="#000000" />
                 </LinearLayout>
             </RelativeLayout>
@@ -308,7 +308,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:layout_marginBottom="2dp"
-                        android:text="hotel"
+                        android:text="@string/hotelTextButtot"
                         android:textColor="#000000" />
                 </LinearLayout>
             </RelativeLayout>
@@ -341,7 +341,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:layout_marginBottom="2dp"
-                        android:text="fun"
+                        android:text="@string/funTextButtot"
                         android:textColor="#000000" />
                 </LinearLayout>
             </RelativeLayout>
@@ -374,7 +374,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:layout_marginBottom="2dp"
-                        android:text="other"
+                        android:text="@string/otherTextButtot"
                         android:textColor="#000000" />
                 </LinearLayout>
             </RelativeLayout>
@@ -383,8 +383,9 @@
     </TableLayout>
     <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:paddingTop="@dimen/expenses_margin" >
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/expenses_margin"
+            android:layout_gravity="bottom" >
 
             <Button
                 android:id="@+id/history"
@@ -393,7 +394,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:onClick="onHistoryClick"
-                android:text="Calendar" />
+                android:text="@string/calendarTextButtot" />
             
             <Button
                 android:id="@+id/MyTrips"
@@ -402,7 +403,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:onClick="onMyTripsClick"
-                android:text="My Trips" />
+                android:text="@string/myTripTextButtot" />
 
         </LinearLayout>
 

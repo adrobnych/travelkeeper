@@ -25,11 +25,11 @@ public class CurrencyActivity extends Activity {
 		Intent i = getIntent();
 		String extra = i.getStringExtra("type");
 		if(extra != null){
-			setTitle("select currency for your reports");
+			setTitle(R.string.currencyActivityTitle);
 			mode = "reports";
 		}
 		else{
-			setTitle("select currency for your expenses");
+			setTitle(R.string.currencyActivityTitleElse);
 			mode = "expenses";
 		}
 		

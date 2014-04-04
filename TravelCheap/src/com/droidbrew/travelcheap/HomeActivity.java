@@ -58,7 +58,7 @@ public class HomeActivity extends FragmentActivity{
 		amount = (TextView) findViewById(R.id.amount);
         loadCurrencies();
        // setTitle("Spend money in smart way!");
-        
+
         setTitle(((TravelApp)getApplication()).getTripManager().getNameById(
         		((TravelApp)getApplication()).getTripManager().getDefaultTripId()));
 	}
@@ -91,7 +91,7 @@ public class HomeActivity extends FragmentActivity{
 
 
 	private void loadCurrenciesFromAssets() {
-		pd = ProgressDialog.show(this, "Working..", "Loading of All Currencies at first launch", true,
+		pd = ProgressDialog.show(this, getString(R.string.AdminDialogTitleUpd), getString(R.string.pdStartHomeActivity), true,
                 false);
 		CurrencyLoadTask clt = new CurrencyLoadTask();
 		clt.execute();
@@ -130,12 +130,29 @@ public class HomeActivity extends FragmentActivity{
 	private boolean thisIsNotSecondDot(String amountLine){
 		return (amountLine.indexOf(".") == -1);
 	}
+
+	private String getTag(String tagG) {
+		String tag = tagG;
+		if(tag.equals("еда"))
+			return "food";
+		if(tag.equals("транспорт"))
+			return "transport";
+		if(tag.equals("жилье"))
+			return "accommodation";
+		if(tag.equals("покупка"))
+			return "shopping";
+		if(tag.equals("развлечения"))
+			return "entertainment";
+		if(tag.equals("другие вещи"))
+			return "other things";
+		return tag;
+	}
 	
 	public void onExpenseClick(View view){
 
 		String amountLine = amount.getText().toString();
 
-		String type = (String)view.getTag();
+		String type = getTag((String)view.getTag());
 		Expense expense = new Expense();
 		expense.setType(type);
 		expense.setAmount((long)(100 * Double.valueOf(amountLine)));
@@ -153,10 +170,10 @@ public class HomeActivity extends FragmentActivity{
 
 			new AlertDialog.Builder(this)
 			.setTitle(composeDialogTitle(amountLine))
-			.setMessage("Today you spent " + 
+			.setMessage( getString(R.string.homeActivityDialogMessage) + " " + 
 					(((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate(type, time)/100.0)
 					+ " " + ((TravelApp)getApplication()).getCurrencyManager().getReportCurrency()
-					+ " for " + type)
+					+ " " + getString(R.string.dialogFor) + " " + (String)view.getTag())
 					.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) { 
 							amount.setText("0");
@@ -172,7 +189,7 @@ public class HomeActivity extends FragmentActivity{
 		if(amountValue.equals("0"))
 			return "Today\'s expenses";
 		else
-			return "New expense reported";
+			return getString(R.string.composeDialogTitleElse);
 
 	}
 

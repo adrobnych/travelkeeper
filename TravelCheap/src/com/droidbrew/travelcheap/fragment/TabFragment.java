@@ -85,7 +85,7 @@ public class TabFragment extends Fragment {
     
     public void gotoGridView() {
     	TextView tv = (TextView) getActivity().findViewById(R.id.StatusLine);
-    	tv.setText("Click to remove");
+    	tv.setText(R.string.GridViewSetText);
     	totalsViewTab.setBackgroundColor(Color.DKGRAY);
         recordViewTab.setBackgroundColor(Color.LTGRAY);
         // See gotoListView(). This method does the same thing except it loads

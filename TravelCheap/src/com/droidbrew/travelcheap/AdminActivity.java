@@ -3,9 +3,12 @@ package com.droidbrew.travelcheap;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.sql.SQLException;
 import java.util.Map;
 
+import android.R.integer;
+import android.R.string;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -32,7 +35,7 @@ public class AdminActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_admin);
-		setTitle("Administration");
+		setTitle(R.string.action_administration);
 	}
 
 	@Override
@@ -46,14 +49,14 @@ public class AdminActivity extends Activity {
 
 
 		new AlertDialog.Builder(this)
-		.setTitle("Are you sure?")
-		.setMessage("ALL DATA WILL BE LOST")
+		.setTitle(R.string.AdminDialogTitle)
+		.setMessage(R.string.AdminDialogMessage)
 		.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) { 
 				destroyAllData();
 				finish();
 			}})
-			.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+			.setNegativeButton(R.string.AdminDialogNB, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {finish();}})
 				.show();
 	}
@@ -68,9 +71,10 @@ public class AdminActivity extends Activity {
 	}
 
 	public void onUpdateCoursesClick(View view){
+		
 		CurrencyRemoteLoadTask clt = new CurrencyRemoteLoadTask();
-		pd = ProgressDialog.show(this, "Working..", "Updating of Currency Courses", true,
-                false);
+		pd = ProgressDialog.show(this, getString(R.string.AdminDialogTitleUpd), getString(R.string.AdminDialogMassageUpd), 
+				true, false);
 		clt.execute();
 	}
 	
@@ -125,10 +129,10 @@ public class AdminActivity extends Activity {
 		@Override
 		protected void onPostExecute(Void result) {
 			if(success)
-				Toast.makeText(getApplicationContext(), "courses loaded succsessfully",
+				Toast.makeText(getApplicationContext(), R.string.toastSuccessMessage,
 						Toast.LENGTH_LONG).show();
 			else
-				Toast.makeText(getApplicationContext(), "courses loading failed ",
+				Toast.makeText(getApplicationContext(), R.string.toastFailedMessage,
 						Toast.LENGTH_LONG).show();
 			pd.dismiss();
 		}

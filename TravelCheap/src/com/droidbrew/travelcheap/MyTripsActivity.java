@@ -76,8 +76,8 @@ public class MyTripsActivity extends Activity {
 	  
 	  public void onNewTripsClick(View view) {
 		  AlertDialog.Builder alert = new AlertDialog.Builder(this);
-		  alert.setTitle("New Trips");
-		  alert.setMessage("Enter new trips");
+		  alert.setTitle(R.string.myTripDialogNewTitle);
+		  alert.setMessage(R.string.myTripDialogNewMassage);
 		  
 		
 		  final EditText input = new EditText(this);
@@ -101,7 +101,7 @@ public class MyTripsActivity extends Activity {
 			}
 		});
 		  
-		  alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		  alert.setNegativeButton(R.string.AdminDialogNB, new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
@@ -123,9 +123,9 @@ public class MyTripsActivity extends Activity {
 		  if(lView.getCheckedItemPosition() == -1)
 			  return;
 		  AlertDialog.Builder alert = new AlertDialog.Builder(this);
-		  alert.setTitle("Delete Trip");
-		  alert.setMessage("Are you sure you want to delete the trip");
-		  alert.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+		  alert.setTitle(R.string.myTripDialodDelTitle);
+		  alert.setMessage(R.string.myTripDialodDelMassage);
+		  alert.setPositiveButton(R.string.dialogDelPB, new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -151,7 +151,7 @@ public class MyTripsActivity extends Activity {
 			}
 		});
 		
-		alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		alert.setNegativeButton(R.string.AdminDialogNB, new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -168,10 +168,10 @@ public class MyTripsActivity extends Activity {
 		  if(lView.getCheckedItemPosition() == -1)
 			  return;
 		  AlertDialog.Builder alert = new AlertDialog.Builder(this);
-		  alert.setTitle("Default Trip");
-		  alert.setMessage("Set default trip");
+		  alert.setTitle(R.string.myTripDialogDefaultTitle);
+		  alert.setMessage(R.string.myTripDialogDefaultMassage);
 		  
-		  alert.setPositiveButton("Default", new DialogInterface.OnClickListener() {
+		  alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -196,7 +196,7 @@ public class MyTripsActivity extends Activity {
 				
 			}
 		});
-		  alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		  alert.setNegativeButton(R.string.AdminDialogNB, new DialogInterface.OnClickListener() {
 				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {

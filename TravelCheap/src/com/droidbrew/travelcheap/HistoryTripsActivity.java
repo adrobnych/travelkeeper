@@ -18,7 +18,7 @@ import com.droidbrew.travelcheap.fragment.TabFragment;
 public class HistoryTripsActivity extends FragmentActivity {
 	public Long dateValue = null;
 	private static final int RESULT_SETTINGS = 2;
-	private static final String LOG = "com.droidbrew.dfa.HomeActivity";
+	
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {

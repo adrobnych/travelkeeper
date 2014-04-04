@@ -15,14 +15,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="History" />
+            android:text="@string/fragmentTabButtonHistory" />
 
         <Button
             android:id="@+id/stat_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Stats" />
+            android:text="@string/fragmentTabButtonStats" />
     </LinearLayout>
 
     <View

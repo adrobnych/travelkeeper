@@ -13,6 +13,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.droidbrew.travelcheap.HistoryActivity;
+import com.droidbrew.travelcheap.R;
 import com.droidbrew.travelcheap.TravelApp;
 import com.droidbrew.travelcheap.adapter.RecordsListAdapter;
 import com.droidbrew.travelcheap.valueobject.ExpenseRecord;
@@ -56,9 +57,9 @@ public class RecordsListFragment extends ListFragment {
             
             //Toast.makeText(activity, "Money spent on " + expense.getType() + ": " + expense.getAmount(), Toast.LENGTH_SHORT).show();
             new AlertDialog.Builder(this.getActivity())
-        	.setTitle("Are you sure?")
-        	.setMessage("Record to be deleted: " + expense.getType() + ": " + expense.getAmount())
-        	.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+        	.setTitle(R.string.recordListDialogTitle)
+        	.setMessage(getString(R.string.recordListDialogMassage) + expense.getType() + ": " + expense.getAmount())
+        	.setPositiveButton(R.string.dialogDelPB, new DialogInterface.OnClickListener() {
         		public void onClick(DialogInterface dialog, int which) { 
         			((TravelApp)getActivity().getApplication()).getExpenseManager().deleteExpenseById(expense.getId());
         			getActivity().finish();
@@ -66,7 +67,7 @@ public class RecordsListFragment extends ListFragment {
         			intent.putExtra("tab", "records");
         			startActivity(intent);
         		}})
-        	.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        	.setNegativeButton(R.string.AdminDialogNB, new DialogInterface.OnClickListener() {
         		public void onClick(DialogInterface dialog, int which) {}})
         	.show();
         }

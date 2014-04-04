@@ -15,14 +15,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Totals" />
+            android:text="@string/fragmentTabButtonTotal" />
 
         <Button
             android:id="@+id/grid_view_tab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Records" />
+            android:text="@string/fragmentTabButtonRecord" />
     </LinearLayout>
 
     <View

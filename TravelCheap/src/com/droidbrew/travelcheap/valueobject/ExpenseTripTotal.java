@@ -11,6 +11,7 @@ public class ExpenseTripTotal {
 	private int tripId;
 	private String type;
 	private int picture;
+	private String vtype;
 	
 	public void setPicture(int picture) {
 		this.picture = picture;
@@ -31,15 +32,16 @@ public class ExpenseTripTotal {
 	}
 
 	public String getType() {
-		return type;
+		return vtype;
 	}
 	
-	public ExpenseTripTotal(int id, String type, int tripId, int imageResource, ExpenseManager em){
+	public ExpenseTripTotal(int id, String type, String vtype, int tripId, int imageResource, ExpenseManager em){
 		this.id = id;
 		this.type = type;
 		this.tripId = tripId;
 		this.picture = imageResource;
 		this.em = em;
+		this.vtype = vtype;
 	}
 	
 	public double getAmount(){
