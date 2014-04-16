@@ -137,9 +137,60 @@ public class HomeActivity extends FragmentActivity{
 	private boolean thisIsNotSecondDot(String amountLine){
 		return (amountLine.indexOf(".") == -1);
 	}
+	private String getTag(String tagG) {
+		String tag = tagG;
+		if(tag.equals("Еда"))
+			return "food";
+		if(tag.equals("Транспорт"))
+			return "transport";
+		if(tag.equals("Жилье"))
+			return "accommodation";
+		if(tag.equals("Покупка товаров"))
+			return "shopping";
+		if(tag.equals("Развлечения"))
+			return "entertainment";
+		if(tag.equals("Другие вещи"))
+			return "other things";
+		return tag;
+	}
 
+	public void onExpenseClick(View view){
 
+		String amountLine = amount.getText().toString();
 
+		String type = getTag((String)view.getTag());
+		Expense expense = new Expense();
+		expense.setType(type);
+		expense.setAmount((long)(100 * Double.valueOf(amountLine)));
+		final long time = (new Date()).getTime();
+		expense.setDateAndTime(time);
+		try {
+			expense.setTripId(((TravelApp)getApplication()).getTripManager().getDefaultTripId());
+			//Log.d(LOG, expense.toString());
+			expense.setCurrencyCode(
+					((TravelApp)getApplication()).getCurrencyManager().getEntranceCurrency()
+					);
+			if(!amountLine.equals("0")){
+				((TravelApp)getApplication()).getExpenseManager().create(expense);
+			}
+
+			new AlertDialog.Builder(this)
+			.setTitle(composeDialogTitle(amountLine))
+			.setMessage( getString(R.string.homeActivityDialogMessage) + " " + 
+					(((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate(type, time)/100.0)
+					+ " " + ((TravelApp)getApplication()).getCurrencyManager().getReportCurrency()
+					+ " " + getString(R.string.dialogFor) + " " + (String)view.getTag())
+					
+					.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) { 
+							amount.setText("0");
+						}
+					})
+					.show();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	private String composeDialogTitle(String amountValue){
 		if(amountValue.equals("0"))
 			return "Today\'s expenses";
