@@ -161,6 +161,7 @@ public class HomeActivity extends FragmentActivity{
 		String type = getTag((String)view.getTag());
 		Expense expense = new Expense();
 		expense.setType(type);
+		Log.d("Type home", type);
 		expense.setAmount((long)(100 * Double.valueOf(amountLine)));
 		final long time = (new Date()).getTime();
 		expense.setDateAndTime(time);
