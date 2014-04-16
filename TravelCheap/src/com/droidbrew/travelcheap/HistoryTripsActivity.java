@@ -68,6 +68,10 @@ public class HistoryTripsActivity extends FragmentActivity {
 			i = new Intent(this, AdminActivity.class);
 			startActivityForResult(i, RESULT_SETTINGS);
 			break;
+		case R.id.menu_language:
+			i = new Intent(this, LanguageActivity.class);
+			startActivityForResult(i, RESULT_SETTINGS);
+			break;
 
 		}
 

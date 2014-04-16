@@ -1,7 +1,9 @@
 package com.droidbrew.travelkeeper.model.manager;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import com.droidbrew.travelkeeper.model.entity.Expense;
@@ -43,6 +45,45 @@ public class ExpenseManager {
 					"select sum(usd_amount) from expenses where type = ? and date_and_time >= ? and date_and_time <= ?",
 					type, firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day)
 					);
+			String repCurrency = currencyManager.getReportCurrency();
+			
+			long repCourse = currencyManager.find(repCurrency).getCourse();
+			
+			result = Math.round(usdSum * repCourse/1000000.0);
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public Long getBeetwenDays(int tripId, long before, long after) {
+		Long result = null;
+		
+		try {
+			Long usdSum =  getExpenseDao().queryRawValue(
+					"select sum(usd_amount) from expenses where trip_id = ? and date_and_time >= ? and date_and_time <= ?",
+					""+tripId, firstMSecondOfTheDay(before), lastMSecondOfTheDay(after)
+					);
+			String repCurrency = currencyManager.getReportCurrency();
+			
+			long repCourse = currencyManager.find(repCurrency).getCourse();
+			
+			result = Math.round(usdSum * repCourse/1000000.0);
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public Long sumAmountByTypeAndTrip(String type, int tripId) {
+		Long result = null;
+		
+		try {
+			Long usdSum =  getExpenseDao().queryRawValue(
+					"select sum(usd_amount) from expenses where type = ? and trip_id = ?",
+					type, ""+tripId);
 			String repCurrency = currencyManager.getReportCurrency();
 			
 			long repCourse = currencyManager.find(repCurrency).getCourse();
@@ -106,6 +147,45 @@ public class ExpenseManager {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public Long sumAmountByDateAndTrip(long time_of_day, int tripId) {
+		Long result = null;
+		try {
+			long usdSum =  getExpenseDao().queryRawValue(
+					"select sum(usd_amount) from expenses where trip_id = ? and " +
+					"date_and_time >= ? and date_and_time <= ?", ""+tripId,
+					firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day)
+					);
+
+			String repCurrency = currencyManager.getReportCurrency();
+			
+			long repCourse = currencyManager.find(repCurrency).getCourse();
+			
+			result = Math.round(usdSum * repCourse/1000000.0);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public List<String> datesByTrip(int tripId) {
+		List<String> dates = new ArrayList<String>();
+		try {
+			List<Expense> list = getExpenseDao().queryBuilder()
+					.where().eq("trip_id", tripId).query();
+			
+			for(Expense e : list) {
+				String time = lastMSecondOfTheDay(e.getDateAndTime());
+				if(dates.contains(time))
+					continue;
+				dates.add(time);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return dates;
 	}
 	
 //	public Long sumAmountByDate(long time_of_day) {

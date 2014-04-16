@@ -10,9 +10,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
@@ -47,6 +51,7 @@ public class HomeActivity extends FragmentActivity{
 	private Bundle savedInstanceState;
 	private TextView amount;
 	private ProgressDialog pd = null;
+	PendingIntent intent;
 	
 	private static final int RESULT_SETTINGS = 1;
 
@@ -59,6 +64,8 @@ public class HomeActivity extends FragmentActivity{
         loadCurrencies();
        // setTitle("Spend money in smart way!");
 
+        intent = PendingIntent.getActivity(getApplicationContext(), 0,
+	            new Intent(getIntent()), 0);
         setTitle(((TravelApp)getApplication()).getTripManager().getNameById(
         		((TravelApp)getApplication()).getTripManager().getDefaultTripId()));
 	}
@@ -131,59 +138,7 @@ public class HomeActivity extends FragmentActivity{
 		return (amountLine.indexOf(".") == -1);
 	}
 
-	private String getTag(String tagG) {
-		String tag = tagG;
-		if(tag.equals("еда"))
-			return "food";
-		if(tag.equals("транспорт"))
-			return "transport";
-		if(tag.equals("жилье"))
-			return "accommodation";
-		if(tag.equals("покупка"))
-			return "shopping";
-		if(tag.equals("развлечения"))
-			return "entertainment";
-		if(tag.equals("другие вещи"))
-			return "other things";
-		return tag;
-	}
-	
-	public void onExpenseClick(View view){
 
-		String amountLine = amount.getText().toString();
-
-		String type = getTag((String)view.getTag());
-		Expense expense = new Expense();
-		expense.setType(type);
-		expense.setAmount((long)(100 * Double.valueOf(amountLine)));
-		final long time = (new Date()).getTime();
-		expense.setDateAndTime(time);
-		try {
-			expense.setTripId(((TravelApp)getApplication()).getTripManager().getDefaultTripId());
-			//Log.d(LOG, expense.toString());
-			expense.setCurrencyCode(
-					((TravelApp)getApplication()).getCurrencyManager().getEntranceCurrency()
-					);
-			if(!amountLine.equals("0")){
-				((TravelApp)getApplication()).getExpenseManager().create(expense);
-			}
-
-			new AlertDialog.Builder(this)
-			.setTitle(composeDialogTitle(amountLine))
-			.setMessage( getString(R.string.homeActivityDialogMessage) + " " + 
-					(((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate(type, time)/100.0)
-					+ " " + ((TravelApp)getApplication()).getCurrencyManager().getReportCurrency()
-					+ " " + getString(R.string.dialogFor) + " " + (String)view.getTag())
-					.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) { 
-							amount.setText("0");
-						}
-					})
-					.show();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 
 	private String composeDialogTitle(String amountValue){
 		if(amountValue.equals("0"))
@@ -288,9 +243,11 @@ public class HomeActivity extends FragmentActivity{
 			i = new Intent(this, AdminActivity.class);
 			startActivityForResult(i, RESULT_SETTINGS);
 			break;
-
-		}
-
+		case R.id.menu_language:
+			i = new Intent(this, LanguageActivity.class);
+			startActivityForResult(i, RESULT_SETTINGS);
+			break;
+				}
 		return true;
 	}
 

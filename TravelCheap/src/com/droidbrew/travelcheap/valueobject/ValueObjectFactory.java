@@ -63,6 +63,9 @@ public class ValueObjectFactory {
 		totals.add(new ExpenseTripTotal(3, "other things",
 				((TravelApp)app).getLanguageManager().getMsg3(), tripId,
 				pictureMap.get("other things"), ((TravelApp)app).getExpenseManager()));
+		totals.add(new ExpenseTripTotal(4, "other things",
+				((TravelApp)app).getLanguageManager().getMsg4(), tripId,
+				pictureMap.get("other things"), ((TravelApp)app).getExpenseManager()));
 		
     	return totals;
 	}

@@ -57,5 +57,11 @@ public class LangManager {
 		else
 			return "Last month";
 	}
+	public String getMsg4() {
+		if(locale.equals("ru"))
+			return "Суммарный";
+		else
+			return "Total";
+	}
 	
 }

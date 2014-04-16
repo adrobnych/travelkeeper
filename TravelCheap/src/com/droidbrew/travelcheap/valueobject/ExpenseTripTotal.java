@@ -61,6 +61,10 @@ public class ExpenseTripTotal {
 				cal.add(Calendar.MONTH, -1);
 				return em.getBeetwenDays(tripId, cal.getTime().getTime(), today)/100.0;
 			}
+			if(id==4) {
+				cal.add(Calendar.YEAR, -10);
+				return em.getBeetwenDays(tripId, cal.getTime().getTime(), today)/100.0;
+			}
 
 		}
 		return 

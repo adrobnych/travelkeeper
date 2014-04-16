@@ -9,11 +9,13 @@ package com.droidbrew.travelcheap;
 
 public final class R {
     public static final class array {
-        public static final int mChoose=0x7f0a0000;
-        public static final int pref_example_list_titles=0x7f0a0001;
-        public static final int pref_example_list_values=0x7f0a0002;
-        public static final int pref_sync_frequency_titles=0x7f0a0003;
-        public static final int pref_sync_frequency_values=0x7f0a0004;
+        public static final int entries_lang=0x7f080000;
+        public static final int entryvalues_lang=0x7f080001;
+        public static final int mChoose=0x7f080002;
+        public static final int pref_example_list_titles=0x7f080003;
+        public static final int pref_example_list_values=0x7f080004;
+        public static final int pref_sync_frequency_titles=0x7f080005;
+        public static final int pref_sync_frequency_values=0x7f080006;
     }
     public static final class attr {
     }
@@ -43,11 +45,11 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f080000;
-        public static final int activity_vertical_margin=0x7f080001;
-        public static final int amount_margin=0x7f080003;
-        public static final int amount_text=0x7f080002;
-        public static final int expenses_margin=0x7f080004;
+        public static final int activity_horizontal_margin=0x7f090000;
+        public static final int activity_vertical_margin=0x7f090001;
+        public static final int amount_margin=0x7f090003;
+        public static final int amount_text=0x7f090002;
+        public static final int expenses_margin=0x7f090004;
     }
     public static final class drawable {
         public static final int bg=0x7f020000;
@@ -86,7 +88,7 @@ public final class R {
         public static final int round_corners=0x7f020021;
     }
     public static final class id {
-        public static final int AddExpense=0x7f0c002e;
+        public static final int AddExpense=0x7f0c0035;
         public static final int CurrencylistView=0x7f0c0005;
         public static final int Delete=0x7f0c001f;
         public static final int LView=0x7f0c001d;
@@ -94,11 +96,13 @@ public final class R {
         public static final int MyTrips=0x7f0c001c;
         public static final int NewTrips=0x7f0c001e;
         public static final int SetAsDefault=0x7f0c0020;
-        public static final int StatusLine=0x7f0c002c;
-        public static final int StatusLine1=0x7f0c0032;
+        public static final int StatusLine=0x7f0c0033;
+        public static final int StatusLine1=0x7f0c0039;
         public static final int accommodation=0x7f0c0018;
-        public static final int action_settings=0x7f0c0036;
+        public static final int action_settings=0x7f0c003d;
         public static final int amount=0x7f0c0008;
+        public static final int btnAddExpenseNB=0x7f0c002f;
+        public static final int btnAddExpensePB=0x7f0c002e;
         public static final int button1=0x7f0c0004;
         public static final int button_0=0x7f0c0013;
         public static final int button_1=0x7f0c0009;
@@ -119,33 +123,39 @@ public final class R {
         public static final int calendar_right_arrow=0x7f0c0024;
         public static final int calendar_title_view=0x7f0c0021;
         public static final int calendar_tv=0x7f0c0027;
+        public static final int edit_text_input=0x7f0c002b;
         public static final int entertainment=0x7f0c0019;
+        public static final int expense_dialog_id=0x7f0c0029;
         public static final int food=0x7f0c0015;
-        public static final int fragment_content=0x7f0c002d;
-        public static final int fragment_content1=0x7f0c0033;
-        public static final int fragment_tab=0x7f0c002b;
-        public static final int fragment_tab1=0x7f0c0031;
-        public static final int grid_view_tab=0x7f0c002a;
+        public static final int fragment_content=0x7f0c0034;
+        public static final int fragment_content1=0x7f0c003a;
+        public static final int fragment_tab=0x7f0c0032;
+        public static final int fragment_tab1=0x7f0c0038;
+        public static final int grid_view_tab=0x7f0c0031;
         public static final int history=0x7f0c001b;
-        public static final int history_view=0x7f0c002f;
-        public static final int list_label=0x7f0c0034;
-        public static final int list_view_tab=0x7f0c0029;
-        public static final int menu_administration=0x7f0c0038;
-        public static final int menu_report_currency=0x7f0c0037;
+        public static final int history_view=0x7f0c0036;
+        public static final int list_label=0x7f0c003b;
+        public static final int list_view_tab=0x7f0c0030;
+        public static final int menu_administration=0x7f0c003f;
+        public static final int menu_language=0x7f0c0040;
+        public static final int menu_report_currency=0x7f0c003e;
         public static final int months_infinite_pager=0x7f0c0026;
         public static final int other=0x7f0c001a;
         public static final int shopping=0x7f0c0017;
-        public static final int stat_view=0x7f0c0030;
+        public static final int spinner=0x7f0c002d;
+        public static final int stat_view=0x7f0c0037;
         public static final int textView1=0x7f0c0003;
         public static final int textView2=0x7f0c0002;
-        public static final int total_image=0x7f0c0035;
+        public static final int textView_label=0x7f0c002a;
+        public static final int textView_label_one=0x7f0c002c;
+        public static final int total_image=0x7f0c003c;
         public static final int transport=0x7f0c0016;
         public static final int updateButton1=0x7f0c0001;
         public static final int updateTextView2=0x7f0c0000;
         public static final int weekday_gridview=0x7f0c0025;
     }
     public static final class integer {
-        public static final int length_of_amount=0x7f090000;
+        public static final int length_of_amount=0x7f0a0000;
     }
     public static final class layout {
         public static final int activity_admin=0x7f030000;
@@ -155,13 +165,14 @@ public final class R {
         public static final int calendar_view=0x7f030004;
         public static final int date_cell=0x7f030005;
         public static final int date_grid_fragment=0x7f030006;
-        public static final int fragment_tab=0x7f030007;
-        public static final int history_activity=0x7f030008;
-        public static final int history_tab_fragments=0x7f030009;
-        public static final int history_two_activity=0x7f03000a;
-        public static final int item_currencies_list=0x7f03000b;
-        public static final int item_totals_list=0x7f03000c;
-        public static final int settings=0x7f03000d;
+        public static final int expense_dialog=0x7f030007;
+        public static final int fragment_tab=0x7f030008;
+        public static final int history_activity=0x7f030009;
+        public static final int history_tab_fragments=0x7f03000a;
+        public static final int history_two_activity=0x7f03000b;
+        public static final int item_currencies_list=0x7f03000c;
+        public static final int item_totals_list=0x7f03000d;
+        public static final int settings=0x7f03000e;
     }
     public static final class menu {
         public static final int main=0x7f0b0000;
@@ -177,6 +188,10 @@ public final class R {
         public static final int DangerousArea=0x7f060017;
         public static final int DestroyData=0x7f060013;
         public static final int GridViewSetText=0x7f060022;
+        public static final int LangDialogTitle=0x7f060047;
+        public static final int LangSummary=0x7f060048;
+        public static final int LangTitle=0x7f060046;
+        public static final int Restart=0x7f060045;
         public static final int ShoppingHint=0x7f060006;
         public static final int UpdateCourses=0x7f060015;
         public static final int WipeDataWarning=0x7f060012;
@@ -206,6 +221,9 @@ public final class R {
         public static final int homeActivityDialogMessage=0x7f060025;
         public static final int hotelButton=0x7f060009;
         public static final int hotelTextButtot=0x7f060036;
+        public static final int labelGroup=0x7f06004a;
+        public static final int labelSum=0x7f060049;
+        public static final int menu_language=0x7f060044;
         public static final int myTripActivityButtonDefoult=0x7f06003e;
         public static final int myTripActivityButtonDelete=0x7f06003f;
         public static final int myTripActivityButtonHistory=0x7f06003d;
@@ -221,28 +239,28 @@ public final class R {
         public static final int otherButton=0x7f06000c;
         public static final int otherTextButtot=0x7f060038;
         public static final int pdStartHomeActivity=0x7f060011;
-        public static final int pref_data_wipe=0x7f06004b;
-        public static final int pref_default_display_name=0x7f060049;
-        public static final int pref_description_social_recommendations=0x7f060047;
+        public static final int pref_data_wipe=0x7f060052;
+        public static final int pref_default_display_name=0x7f060050;
+        public static final int pref_description_social_recommendations=0x7f06004e;
         /**  Example settings for Data & Sync 
          */
-        public static final int pref_header_data_sync=0x7f06004c;
+        public static final int pref_header_data_sync=0x7f060053;
         /**  Strings related to Settings 
  Example General settings 
          */
-        public static final int pref_header_general=0x7f060045;
+        public static final int pref_header_general=0x7f06004c;
         /**  Example settings for Notifications 
          */
-        public static final int pref_header_notifications=0x7f06004f;
-        public static final int pref_ringtone_silent=0x7f060052;
-        public static final int pref_title_add_friends_to_messages=0x7f06004a;
-        public static final int pref_title_display_name=0x7f060048;
-        public static final int pref_title_new_message_notifications=0x7f060050;
-        public static final int pref_title_ringtone=0x7f060051;
-        public static final int pref_title_social_recommendations=0x7f060046;
-        public static final int pref_title_sync_frequency=0x7f06004d;
-        public static final int pref_title_system_sync_settings=0x7f06004e;
-        public static final int pref_title_vibrate=0x7f060053;
+        public static final int pref_header_notifications=0x7f060056;
+        public static final int pref_ringtone_silent=0x7f060059;
+        public static final int pref_title_add_friends_to_messages=0x7f060051;
+        public static final int pref_title_display_name=0x7f06004f;
+        public static final int pref_title_new_message_notifications=0x7f060057;
+        public static final int pref_title_ringtone=0x7f060058;
+        public static final int pref_title_social_recommendations=0x7f06004d;
+        public static final int pref_title_sync_frequency=0x7f060054;
+        public static final int pref_title_system_sync_settings=0x7f060055;
+        public static final int pref_title_vibrate=0x7f06005a;
         public static final int recordListDialogMassage=0x7f060031;
         public static final int recordListDialogTitle=0x7f060030;
         public static final int report_currency=0x7f060001;
@@ -254,7 +272,7 @@ public final class R {
         public static final int title_activity_currency=0x7f060014;
         public static final int title_activity_history=0x7f06000d;
         public static final int title_activity_main=0x7f060010;
-        public static final int title_activity_user_settings=0x7f060044;
+        public static final int title_activity_user_settings=0x7f06004b;
         public static final int toastFailedMessage=0x7f06001e;
         public static final int toastSuccessMessage=0x7f06001d;
         public static final int transportButton=0x7f060008;
@@ -315,5 +333,6 @@ public final class R {
         public static final int pref_general=0x7f040001;
         public static final int pref_headers=0x7f040002;
         public static final int pref_notification=0x7f040003;
+        public static final int preferences=0x7f040004;
     }
 }

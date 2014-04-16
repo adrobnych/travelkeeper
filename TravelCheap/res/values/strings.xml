@@ -69,6 +69,13 @@
     <string name="fragmentTabButtonRecord">Records</string>
     <string name="fragmentTabButtonHistory">History</string>
     <string name="fragmentTabButtonStats">Stats</string>
+    <string name="menu_language">Language</string>
+    <string name="Restart">Restart</string>
+    <string name="LangTitle">Language</string>
+	<string name="LangDialogTitle">Choose language:</string>
+	<string name="LangSummary">Application language.\nNeed restart application to apply changes.</string>
+	<string name="labelSum">Sum</string>
+	<string name="labelGroup">Group</string>
     
     
     

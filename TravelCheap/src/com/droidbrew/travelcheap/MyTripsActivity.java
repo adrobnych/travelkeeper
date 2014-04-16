@@ -11,6 +11,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -23,6 +25,7 @@ import com.j256.ormlite.dao.DaoManager;
 
 public class MyTripsActivity extends Activity {
 	private static final String TAG = "myLogs";
+	private static final int RESULT_SETTINGS = 1;
 	
 	List<String> trips;
 	ArrayAdapter<String> adapter;
@@ -55,6 +58,34 @@ public class MyTripsActivity extends Activity {
 		//		  android.R.layout.simple_list_item_single_choice, names);
 		//  lView.setAdapter(adapter);
 	  }
+	  
+	  @Override
+		public boolean onCreateOptionsMenu(Menu menu) {
+			getMenuInflater().inflate(R.menu.settings, menu);
+			return true;
+		}
+
+		@Override
+		public boolean onOptionsItemSelected(MenuItem item) {
+			Intent i;
+			switch (item.getItemId()) {
+
+			case R.id.menu_report_currency:
+				i = new Intent(this, CurrencyActivity.class);
+				i.putExtra("type", "currency_for_report");
+				startActivityForResult(i, RESULT_SETTINGS);
+				break;
+			case R.id.menu_administration:
+				i = new Intent(this, AdminActivity.class);
+				startActivityForResult(i, RESULT_SETTINGS);
+				break;
+			case R.id.menu_language:
+				i = new Intent(this, LanguageActivity.class);
+				startActivityForResult(i, RESULT_SETTINGS);
+				break;
+					}
+			return true;
+		}
 	  
 	  private void setTripList() throws SQLException {
 		  trips.clear();

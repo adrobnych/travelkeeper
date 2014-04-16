@@ -7,6 +7,8 @@ import com.j256.ormlite.table.DatabaseTable;
 public class Expense {
     @DatabaseField(generatedId = true)
     private Integer id;
+    @DatabaseField(columnName = "trip_id", canBeNull = false)
+    private Integer tripId;
     @DatabaseField(columnName = "type", canBeNull = false, index = true, indexName = "type_index")
     private String type;
     @DatabaseField(columnName = "currency_code", canBeNull = false)
@@ -35,6 +37,12 @@ public class Expense {
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public Integer getTripId() {
+		return tripId;
+	}
+	public void setTripId(Integer id) {
+		this.tripId = id;
 	}
 	public String getType() {
 		return type;

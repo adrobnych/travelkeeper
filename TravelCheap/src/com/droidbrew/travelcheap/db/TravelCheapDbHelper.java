@@ -19,7 +19,7 @@ import com.droidbrew.travelkeeper.model.entity.Trip;
 public class TravelCheapDbHelper extends OrmLiteSqliteOpenHelper {
 		private static final String TAG = "com.droidbrew.travelcheap.db.TravelCheapDbHelper";
 	    private static final String DB_NAME = "travelapp.db";
-	    private static final int DB_VERSION = 1;
+	    private static final int DB_VERSION = 2;
 	    private Context context;
 
 	    public TravelCheapDbHelper(Context context) throws SQLException {
@@ -49,7 +49,25 @@ public class TravelCheapDbHelper extends OrmLiteSqliteOpenHelper {
 	    @Override
 	    public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
 	       
-	    }
+	    	if (oldVersion == 1 && newVersion == 2){
+	    		try {
+
+		            //TableUtils.createTableIfNotExists(connectionSource, Expense.class);
+		            //TableUtils.createTableIfNotExists(connectionSource, TKCurrency.class);
+		            TableUtils.createTableIfNotExists(connectionSource, Trip.class);
+		            
+		            Dao<Trip, String> tripDao =
+		                    DaoManager.createDao(connectionSource, Trip.class);
+		            tripDao.create(new Trip("default trip", true));
+		            tripDao.executeRaw("ALTER TABLE `expenses` ADD COLUMN trip_id INTEGER DEFAULT '1'");
+		            
+		            
+		        } catch (java.sql.SQLException e) {
+		            Log.e(TAG, "onCreate", e);
+		            e.printStackTrace();
+		        } 
+	    	}
+	    	}
 
 	    public Context getContext() {
 	        return context;

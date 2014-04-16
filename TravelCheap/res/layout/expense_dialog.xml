@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/expense_dialog_id"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+ 
+ 
+        <TextView
+            android:id="@+id/textView_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/labelSum"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+ 
+ 
+        <EditText
+            android:id="@+id/edit_text_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+ 
+            <requestFocus />
+        </EditText>
+        
+        <Button
+                android:id="@+id/button_currency"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+             	android:layout_weight="0"
+                android:text="EUR" 
+                android:onClick="onCurrencyClick"
+                />
+     
+    </LinearLayout>
+<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+ 
+ 
+        <TextView
+            android:id="@+id/textView_label_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/labelGroup"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+ 
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+ 
+    </LinearLayout>
+<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+    
+    <Button 
+    	android:id="@+id/btnAddExpensePB"
+    	android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/addExpensPB" />
+    
+    <Button 
+    	android:id="@+id/btnAddExpenseNB"
+    	android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/AdminDialogNB" />
+    
+</LinearLayout>
+    
+
+</LinearLayout>

@@ -68,7 +68,13 @@
     <string name="fragmentTabButtonRecord">Учет</string>
     <string name="fragmentTabButtonHistory">История</string>
     <string name="fragmentTabButtonStats">Статистика</string>
-    
+     <string name="menu_language">Язык</string>
+    <string name="Restart">Перезапуск</string>
+<string name="LangTitle">Язык</string>
+<string name="LangDialogTitle">Выберите язык:</string>
+<string name="LangSummary">Язык приложения.\nНеобходимо перезапустить приложение для принятия изменений.</string> 
+<string name="labelSum">Cумма</string>
+<string name="labelGroup">Группа</string> 
     
     
     <string-array name="mChoose">

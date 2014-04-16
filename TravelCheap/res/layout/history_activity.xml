@@ -37,4 +37,5 @@
             android:text="@string/addExpensTitle" />
     
 </LinearLayout>
+
 </LinearLayout>
