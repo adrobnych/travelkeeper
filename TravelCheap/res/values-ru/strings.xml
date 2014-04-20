@@ -53,9 +53,9 @@
     <string name="statrFragmentToast">Деньги, потраченные на </string>
     <string name="foodTextButtot">еда</string>
     <string name="transportTextButtot">транспорт</string>
-    <string name="shoppingTextButtot">покупка</string>
-    <string name="hotelTextButtot">отель</string>
-    <string name="funTextButtot">веселье</string>
+    <string name="shoppingTextButtot">покупки</string>
+    <string name="hotelTextButtot">жилье</string>
+    <string name="funTextButtot">развлечения</string>
     <string name="otherTextButtot">другое</string>
     <string name="calendarTextButtot">Календарь</string>
     <string name="myTripTextButtot">Поездки</string>

@@ -47,6 +47,7 @@ public class ExpenseDaoSpec {
 	public void ExpenseCanBeStoredInDB(){
 		
 		Expense expense = new Expense();
+		expense.setTripId(1);
 		expense.setType("food");
 		expense.setAmount(1200L);
 		expense.setDateAndTime(123445L);
@@ -74,6 +75,7 @@ public class ExpenseDaoSpec {
 	@Test
 	public void ItSavesDateAndTimeofExpense(){
 		Expense expense = new Expense();
+		expense.setTripId(1);
 		expense.setType("food");
 		expense.setAmount(1200L);
 		long now = System.currentTimeMillis();

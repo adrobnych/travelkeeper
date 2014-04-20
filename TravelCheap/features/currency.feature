@@ -1,24 +1,21 @@
 Feature: Currency
 
     Scenario: As a user I can see current Currency selected for entrance
-        Given I wait for dialog to close
-        And this new app installation
-        And I am on "HomeActivity" screen
+        Given I wait for the "HomeActivity" screen to appear
         Then I see "EUR"
 
   
     Scenario: As a user I can change Entrance Currencies
-        Given this new app installation
-        And I am on "HomeActivity" screen
+        Given I wait for the "HomeActivity" screen to appear
         When I press the "EUR" button
         Then I wait for the "CurrencyActivity" screen to appear
-        And I see "select currency for your expenses"
+        And I see "Select currency"
         When I touch the "UAH" text
         Then I wait for the "HomeActivity" screen to appear
         And I see "UAH"
         When I press the "UAH" button
         Then I wait for the "CurrencyActivity" screen to appear
-        And I see "select currency for your expenses"
+        And I see "Select currency"
         When I touch the "EUR" text
         Then I wait for the "HomeActivity" screen to appear
         And I see "EUR"
@@ -26,11 +23,11 @@ Feature: Currency
 
     Scenario: As a user I can change Report Currencies
         Given this new app installation
-        And I am on "HomeActivity" screen
+        And I wait for the "HomeActivity" screen to appear
         When I press the menu key
         And I touch the "Currency for Reports" text
         Then I wait for the "CurrencyActivity" screen to appear
-        And I see "select currency for your reports"
+        And I see "Select currency"
         When I touch the "USD" text
         Then I wait for the "HomeActivity" screen to appear
         And I see "EUR"
@@ -43,18 +40,18 @@ Feature: Currency
         When I press the menu key
         And I touch the "Currency for Reports" text
         Then I wait for the "CurrencyActivity" screen to appear
-        And I see "select currency for your reports"
+        And I see "Select currency"
         When I touch the "EUR" text
 
-    @VIP
+ 
     Scenario: As a user I can update courses of currencies
         Given this new app installation
-        And I am on "HomeActivity" screen
+        And I wait for the "HomeActivity" screen to appear
         And I see "EUR"
         When I press the menu key
         And I touch the "Currency for Reports" text
         Then I wait for the "CurrencyActivity" screen to appear
-        And I see "select currency for your reports"
+        And I see "Select currency"
         When I touch the "UAH" text
         Then I wait for the "HomeActivity" screen to appear
         And I see "EUR"
@@ -66,7 +63,6 @@ Feature: Currency
         When I press the menu key
         And I touch the "Administration" text
         And I press "Update Courses"
-        And I see "Updating of Currency Courses"
         And I wait for dialog to close
         Then I go back
         Then I wait for the "HomeActivity" screen to appear

@@ -1,10 +1,8 @@
 Feature: Calculator
 
 	Scenario: As a user I can enter decimal digits on HomeActivity
-		Given I see "Loading of All Currencies at first launch"
-        And I wait for dialog to close
-        And this new app installation
-        And I am on "HomeActivity" screen
+		Given I wait for dialog to close
+        And I wait for the "HomeActivity" screen to appear
 		Then the view with id "amount" should have text "0"
 		When I press "7"
 		And I press "8"
@@ -12,8 +10,7 @@ Feature: Calculator
 		And I see "78"
 
 	Scenario: As a user I can enter 0s on HomeActivity
-		Given this new app installation
-        And I am on "HomeActivity" screen
+		Given I wait for the "HomeActivity" screen to appear
 		Then the view with id "amount" should have text "0"
 		When I press the "0" button
 		And I press the "0" button
@@ -21,8 +18,7 @@ Feature: Calculator
 		And I see "0"
 
 	Scenario: As a user I can enter 20 digits but no more on HomeActivity
-		Given this new app installation
-        And I am on "HomeActivity" screen
+		Given I wait for the "HomeActivity" screen to appear
 		Then the view with id "amount" should have text "0"
 		When I press the "4" button 20 times
 		Then I see "44444444444444444444"
@@ -31,8 +27,7 @@ Feature: Calculator
 
 
 	Scenario: As a user I can remove last digit in amount on HomeActivity
-		Given this new app installation
-        And I am on "HomeActivity" screen
+		Given I wait for the "HomeActivity" screen to appear
 		Then the view with id "amount" should have text "0"
 		When I press the "5" button
 		And I press the "6" button
@@ -40,8 +35,7 @@ Feature: Calculator
 		Then the view with id "amount" should have text "5"
 
   Scenario: As a user I can report my next expense and see expences spent for transport
-    Given this new app installation
-    And I wait for the "HomeActivity" screen to appear
+    Given I wait for the "HomeActivity" screen to appear
     When I press "1"
     And I press "2"
     Then I see "12"
@@ -55,8 +49,7 @@ Feature: Calculator
     
 
   Scenario: As a user I can report several expenses
-    Given this new app installation
-        And I wait for the "HomeActivity" screen to appear
+    Given I wait for the "HomeActivity" screen to appear
     When I press "1"
     And I press "2"
     Then I see "12"
@@ -70,8 +63,7 @@ Feature: Calculator
 
 
 	Scenario: As a user I can report my next expense and see expences spent for shopping
-    Given this new app installation
-        And I wait for the "HomeActivity" screen to appear
+    Given I wait for the "HomeActivity" screen to appear
     When I press "1"
     And I press "6"
     Then I see "16"
@@ -84,8 +76,7 @@ Feature: Calculator
     And I see "Today you spent 16.0 EUR for shopping"
 
 	Scenario: As a user I can report my next expense and see expences spent for accommodation
-    Given this new app installation
-        And I wait for the "HomeActivity" screen to appear
+    Given I wait for the "HomeActivity" screen to appear
     When I press "0"
     And I press "6"
     Then I see "6"
@@ -98,8 +89,7 @@ Feature: Calculator
     And I see "Today you spent 6.0 EUR for accommodation"
 
 	Scenario: As a user I can report my next expense and see expences spent for entertainment
-    Given this new app installation
-        And I wait for the "HomeActivity" screen to appear
+    Given I wait for the "HomeActivity" screen to appear
     When I press "4"
     And I press "8"
     Then I see "48"
@@ -112,8 +102,7 @@ Feature: Calculator
     And I see "Today you spent 48.0 EUR for entertainment"
 
 	Scenario: As a user I can report my next expense and see expences spent for other things
-    Given this new app installation
-        And I wait for the "HomeActivity" screen to appear
+    Given I wait for the "HomeActivity" screen to appear
     When I press "3"
     And I press "0"
     Then I see "30"
@@ -138,8 +127,7 @@ Feature: Calculator
     Then I see "Today you spent 3.45 EUR for other things"
 
   Scenario: As a user I can enter no more then one dot on HomeActivity
-		Given this new app installation
-        And I am on "HomeActivity" screen
+		Given I wait for the "HomeActivity" screen to appear
 		Then the view with id "amount" should have text "0"
 		When I press the "3" button
 		And I press the "\." button
@@ -147,8 +135,7 @@ Feature: Calculator
 		Then I should not see "3\.\."
 
 	Scenario: As a user I can enter no more then 2 digits after dot on HomeActivity
-		Given this new app installation
-        And I am on "HomeActivity" screen
+		Given I wait for the "HomeActivity" screen to appear
 		Then the view with id "amount" should have text "0"
 		When I press the "1" button
 		And I press the "\." button
@@ -159,8 +146,7 @@ Feature: Calculator
 
  
     Scenario: As a user I can press back button on HomeActivity
-        Given this new app installation
-        And I am on "HomeActivity" screen
+        Given I wait for the "HomeActivity" screen to appear
         When I press the "EUR" button
         Then I wait for the "CurrencyActivity" screen to appear
         And I touch the "AOA" text

@@ -65,6 +65,7 @@ public class ExpenceManagerSpec {
 		}
 		
 		Expense expense1 = new Expense();
+		expense1.setTripId(1);
 		expense1.setType("food");
 		expense1.setAmount(1200L);
 		time1 = 12000000000L;
@@ -80,6 +81,7 @@ public class ExpenceManagerSpec {
 		}
 		
 		Expense expense2 = new Expense();
+		expense2.setTripId(1);
 		expense2.setType("food");
 		expense2.setAmount(1000L);
 		long time2 = 12000000100L;
@@ -94,6 +96,7 @@ public class ExpenceManagerSpec {
 		}
 		
 		Expense expense3 = new Expense();
+		expense3.setTripId(1);
 		expense3.setType("food");
 		expense3.setAmount(1000L);
 		long time3 = 200000000000000100L;
@@ -108,6 +111,7 @@ public class ExpenceManagerSpec {
 		}
 		
 		Expense expense4 = new Expense();
+		expense4.setTripId(1);
 		expense4.setType("transport");
 		expense4.setAmount(1000L);
 		expense4.setDateAndTime(time2);

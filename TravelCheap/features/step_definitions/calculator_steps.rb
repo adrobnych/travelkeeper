@@ -34,11 +34,12 @@ When(/^I touch today's date$/) do
   # p query("SquareTextView marked:'#{29}'").size
 
   #` D:/Android/sdk/platform-tools/adb shell date -s 20131112.104533`
+  day = Time.now.day
 
-  if(query("SquareTextView marked:'12'").size > 4)
-    touch("SquareTextView marked:'12' index:1")
+  if(query("SquareTextView marked:'#{day}'").size > 4)
+    touch("SquareTextView marked:'#{day}' index:1")
   else
-    touch("SquareTextView marked:'29'")
+    touch("SquareTextView marked:'#{day}'")
   end
 end
 

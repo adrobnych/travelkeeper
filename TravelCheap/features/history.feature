@@ -3,24 +3,23 @@ Feature: History
 
     Scenario: As a user I can select some date in calendar for report
         Given I wait for dialog to close
-        And this new app installation
-        And I am on "HomeActivity" screen
-        When I press the "History" button
+        And I wait for the "HomeActivity" screen to appear
+        When I press the "Calendar" button
         Then I see "Select a date"
         When I touch the "10" text
         And I wait for the "HistoryActivity" screen to appear
 
-
+   @VIP
     Scenario: As a user I can see totals for some date in calendar
         Given this new app installation
-        And I am on "HomeActivity" screen
+        And I wait for the "HomeActivity" screen to appear
         When I press the "2" button
         And I press the "4" button
         And I press the "9" button
         And I press view with id "other"
         Then I see "Today you spent 249.0 EUR for other things"
         When I press the "Ok" button
-        And I press the "History" button
+        And I press the "Calendar" button
         Then I see "Select a date"
         When I touch today's date
         And I wait for the "HistoryActivity" screen to appear
@@ -30,13 +29,13 @@ Feature: History
 
     Scenario: As a user I can see totals for some date in calendar
         Given this new app installation
-        And I am on "HomeActivity" screen
+        And I wait for the "HomeActivity" screen to appear
         When I press the "4" button
         And I press the "9" button
         And I press view with id "food"
         Then I see "Today you spent 49.0 EUR for food"
         When I press the "Ok" button
-        And I press the "History" button
+        And I press the "Calendar" button
         Then I see "Select a date"
         When I touch today's date
         And I wait for the "HistoryActivity" screen to appear
@@ -46,14 +45,14 @@ Feature: History
     
     Scenario: As a user I can see total all types
         Given this new app installation
-        And I am on "HomeActivity" screen
+        And I wait for the "HomeActivity" screen to appear
         When I press the "4" button
         And I press view with id "food"
         And I press the "Ok" button
         And I press the "9" button
         And I press view with id "transport"
         And I press the "Ok" button
-        And I press the "History" button
+        And I press the "Calendar" button
         Then I see "Select a date"
         When I touch today's date
         And I wait for the "HistoryActivity" screen to appear
@@ -62,14 +61,14 @@ Feature: History
     
     Scenario: As a user I can see separate records
         Given this new app installation
-        And I am on "HomeActivity" screen
+        And I wait for the "HomeActivity" screen to appear
         When I press the "4" button
         And I press view with id "food"
         And I press the "Ok" button
         And I press the "9" button
         And I press view with id "transport"
         And I press the "Ok" button
-        And I press the "History" button
+        And I press the "Calendar" button
         Then I see "Select a date"
         When I touch today's date
         And I wait for the "HistoryActivity" screen to appear
@@ -80,10 +79,10 @@ Feature: History
 
     Scenario: (BUG FIX) As a user I can see not zero records
         Given this new app installation
-        And I am on "HomeActivity" screen
+        And I wait for the "HomeActivity" screen to appear
         When I press view with id "food"
         And I press the "Ok" button
-        And I press the "History" button
+        And I press the "Calendar" button
         Then I see "Select a date"
         When I touch today's date
         And I wait for the "HistoryActivity" screen to appear
@@ -93,11 +92,11 @@ Feature: History
     
     Scenario: As a user I can remove all data in the app
         Given this new app installation
-        And I am on "HomeActivity" screen
+        And I wait for the "HomeActivity" screen to appear
         And I press the "9" button
         When I press view with id "food"
         And I press the "Ok" button
-        And I press the "History" button
+        And I press the "Calendar" button
         Then I see "Select a date"
         When I touch today's date
         And I wait for the "HistoryActivity" screen to appear
@@ -111,11 +110,11 @@ Feature: History
      
     Scenario: As a user I can remove all data and no records will be in history
         Given this new app installation
-        And I am on "HomeActivity" screen
+        And I wait for the "HomeActivity" screen to appear
         And I press the "9" button
         When I press view with id "food"
         And I press the "Ok" button
-        And I press the "History" button
+        And I press the "Calendar" button
         Then I see "Select a date"
         When I touch today's date
         And I wait for the "HistoryActivity" screen to appear
@@ -129,14 +128,14 @@ Feature: History
 
     Scenario: As a user I can remove single record from history
         Given this new app installation
-        And I am on "HomeActivity" screen
+        And I wait for the "HomeActivity" screen to appear
         And I press the "9" button
         When I press view with id "food"
         And I press the "Ok" button
-        And I press the "History" button
+        And I press the "Calendar" button
         Then I see "Select a date"
         When I touch today's date
-        And I am on "HistoryActivity" screen
+        And I wait for the "HistoryActivity" screen to appear
         And I press the "Records" button 
         Then I see "food: 9.0"
         When I touch the "food: 9.0" text
@@ -146,24 +145,24 @@ Feature: History
 
     Scenario: As a user I can see history data in right entrance and report currencies
         Given this new app installation
-        And I am on "HomeActivity" screen
+        And I wait for the "HomeActivity" screen to appear
         When I press the "EUR" button
         Then I wait for the "CurrencyActivity" screen to appear
-        And I see "select currency for your expenses"
+        And I see "Select currency"
         When I touch the "USD" text
         Then I wait for the "HomeActivity" screen to appear
         And I see "USD"
         When I press the menu key
         And I touch the "Currency for Reports" text
         Then I wait for the "CurrencyActivity" screen to appear
-        And I see "select currency for your reports"
+        And I see "Select currency"
         When I touch the "UAH" text
         Then I wait for the "HomeActivity" screen to appear
         When I press the "1" button
         And I press the "0" button
         And I press view with id "food"
         And I press the "Ok" button
-        And I press the "History" button
+        And I press the "Calendar" button
         Then I see "Select a date"
         When I touch today's date
         And I wait for the "HistoryActivity" screen to appear
