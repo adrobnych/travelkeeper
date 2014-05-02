@@ -54,7 +54,7 @@ public class HomeActivity extends FragmentActivity{
 	private Bundle savedInstanceState;
 	private TextView amount;
 	private ProgressDialog pd = null;
-	PendingIntent intent;
+	private PendingIntent intent;
 	
 	private static final int RESULT_SETTINGS = 1;
 
