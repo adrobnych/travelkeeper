@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry exported="true" kind="lib" path="D:/Android/workspace/travelkeeper/libs/model.jar" sourcepath="D:/Android/workspace/travelkeeper/model/src/com/droidbrew/travelkeeper/model/entity">
+	<classpathentry exported="true" kind="lib" path="D:/Android4/workspace/travelkeeper/libs/model.jar" sourcepath="D:/Android/workspace/travelkeeper/model/src/com/droidbrew/travelkeeper/model/entity">
 		<attributes>
 			<attribute name="source_encoding" value="UTF-8"/>
 		</attributes>
@@ -13,11 +13,11 @@
 	<classpathentry exported="true" kind="lib" path="D:/Android4/workspace/travelkeeper/libs/commons-io-2.4.jar"/>
 	<classpathentry kind="lib" path="D:/Android4/workspace/travelkeeper/libs/commons-logging-1.1.jar"/>
 	<classpathentry kind="lib" path="D:/Android4/workspace/travelkeeper/libs/httpclient-4.2.3.jar"/>
-	<classpathentry kind="lib" path="D:/Android/workspace/travelkeeper/libs/httpcore-4.2.2.jar"/>
-	<classpathentry kind="lib" path="D:/Android/workspace/travelkeeper/libs/ormlite-core-4.43.jar"/>
-	<classpathentry kind="lib" path="D:/Android/workspace/travelkeeper/libs/ormlite-jdbc-4.43.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/Android/workspace/travelkeeper/libs/snakeyaml-android-1.8-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="D:/Android/workspace/travelkeeper/libs/sqlite-jdbc-3.7.2.jar"/>
+	<classpathentry kind="lib" path="D:/Android4/workspace/travelkeeper/libs/httpcore-4.2.2.jar"/>
+	<classpathentry kind="lib" path="D:/Android4/workspace/travelkeeper/libs/ormlite-core-4.43.jar"/>
+	<classpathentry kind="lib" path="D:/Android4/workspace/travelkeeper/libs/ormlite-jdbc-4.43.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Android4/workspace/travelkeeper/libs/snakeyaml-android-1.8-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="D:/Android4/workspace/travelkeeper/libs/sqlite-jdbc-3.7.2.jar"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="lib" path="D:/Android4/workspace/Calendar/Caldroid/library/libs/android-support-v4.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
