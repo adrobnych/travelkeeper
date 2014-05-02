@@ -16,12 +16,14 @@ import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -31,6 +33,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.droidbrew.travelcheap.fragment.CurrencyCalcFragment;
 import com.droidbrew.travelkeeper.model.entity.Expense;
 import com.droidbrew.travelkeeper.model.entity.TKCurrency;
 import com.droidbrew.travelkeeper.model.entity.Trip;
@@ -62,12 +65,20 @@ public class HomeActivity extends FragmentActivity{
 		setContentView(R.layout.activity_home);
 		amount = (TextView) findViewById(R.id.amount);
         loadCurrencies();
-       // setTitle("Spend money in smart way!");
 
         intent = PendingIntent.getActivity(getApplicationContext(), 0,
 	            new Intent(getIntent()), 0);
         setTitle(((TravelApp)getApplication()).getTripManager().getNameById(
         		((TravelApp)getApplication()).getTripManager().getDefaultTripId()));
+        
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+		SharedPreferences.Editor editor = preferences.edit();
+		editor.putString("convert1", "USD");
+		editor.putString("convert2", "EUR");
+		editor.putString("convert3", "CNY");
+		editor.putString("convert4", "JPY");
+		editor.putString("convert5", "GBP");
+		editor.commit();
 	}
 
 	@Override
@@ -161,13 +172,11 @@ public class HomeActivity extends FragmentActivity{
 		String type = getTag((String)view.getTag());
 		Expense expense = new Expense();
 		expense.setType(type);
-		Log.d("Type home", type);
 		expense.setAmount((long)(100 * Double.valueOf(amountLine)));
 		final long time = (new Date()).getTime();
 		expense.setDateAndTime(time);
 		try {
 			expense.setTripId(((TravelApp)getApplication()).getTripManager().getDefaultTripId());
-			//Log.d(LOG, expense.toString());
 			expense.setCurrencyCode(
 					((TravelApp)getApplication()).getCurrencyManager().getEntranceCurrency()
 					);
@@ -275,9 +284,14 @@ public class HomeActivity extends FragmentActivity{
 		startActivity(intent);
 	}
 	
+	public void onCurrencyCalculatorClick(View view){
+		Intent intent = new Intent(this, CurrencyCalculatorActivity.class);
+		startActivity(intent);
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.settings, menu);
+		getMenuInflater().inflate(R.menu.menu_for_home, menu);
 		return true;
 	}
 
@@ -299,7 +313,7 @@ public class HomeActivity extends FragmentActivity{
 			i = new Intent(this, LanguageActivity.class);
 			startActivityForResult(i, RESULT_SETTINGS);
 			break;
-				}
+			}
 		return true;
 	}
 
@@ -360,6 +374,10 @@ public class HomeActivity extends FragmentActivity{
 				e.printStackTrace();
 			}
 
+			CurrencyCalcFragment frag = (CurrencyCalcFragment)getSupportFragmentManager()
+					.findFragmentById(R.id.fragment_currency);
+			if(frag!=null)
+				frag.setRefresh(true);
 			return null;
 
 		}
@@ -370,6 +388,4 @@ public class HomeActivity extends FragmentActivity{
 		}
 
 	}
-	
-
 }

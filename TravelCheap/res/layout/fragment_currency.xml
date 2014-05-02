@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout3"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+   
+<TextView
+            android:id="@+id/updateTextView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/CurrencyCalculator"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_gravity="center" />
+        
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp" >
+		
+        <Button
+                android:id="@+id/button_currency1"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:background="@drawable/my_button_selector"
+             	android:layout_weight="0"
+                android:text="EUR" 
+                android:layout_marginRight="16dp"
+                />
+        
+        <EditText
+            android:id="@+id/input_convert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#9919a9ea"
+            android:inputType="numberDecimal"
+            android:layout_weight="1" >
+ 
+            
+        </EditText>
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp" >
+		
+        <Button
+                android:id="@+id/btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:background="@drawable/my_button_selector"
+             	android:layout_weight="0"
+                android:text="EUR" 
+                android:layout_marginRight="16dp"
+                />
+        
+       <TextView
+            android:id="@+id/amount1"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="@dimen/amount_margin"
+            android:layout_weight="4"
+            android:gravity="center_vertical|right"
+            android:maxLength="@integer/length_of_amount"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:text="0"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/amount_text" />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+		
+        <Button
+                android:id="@+id/btn2"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:background="@drawable/my_button_selector"
+             	android:layout_weight="0"
+                android:text="EUR" 
+                android:layout_marginRight="16dp"
+                />
+        
+        <TextView
+            android:id="@+id/amount2"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="@dimen/amount_margin"
+            android:layout_weight="4"
+            android:gravity="center_vertical|right"
+            android:maxLength="@integer/length_of_amount"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:text="0"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/amount_text" />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+		
+        <Button
+                android:id="@+id/btn3"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:background="@drawable/my_button_selector"
+             	android:layout_weight="0"
+                android:text="EUR" 
+                android:layout_marginRight="16dp"
+                />
+        
+        <TextView
+            android:id="@+id/amount3"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="@dimen/amount_margin"
+            android:layout_weight="4"
+            android:gravity="center_vertical|right"
+            android:maxLength="@integer/length_of_amount"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:text="0"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/amount_text" />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+		
+        <Button
+                android:id="@+id/btn4"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:background="@drawable/my_button_selector"
+             	android:layout_weight="0"
+                android:text="EUR" 
+                android:layout_marginRight="16dp"
+                />
+        
+        <TextView
+            android:id="@+id/amount4"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="@dimen/amount_margin"
+            android:layout_weight="4"
+            android:gravity="center_vertical|right"
+            android:maxLength="@integer/length_of_amount"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:text="0"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/amount_text" />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+		
+        <Button
+                android:id="@+id/btn5"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:background="@drawable/my_button_selector"
+             	android:layout_weight="0"
+                android:text="EUR" 
+                android:layout_marginRight="16dp"
+                />
+        
+        <TextView
+            android:id="@+id/amount5"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="@dimen/amount_margin"
+            android:layout_weight="4"
+            android:gravity="center_vertical|right"
+            android:maxLength="@integer/length_of_amount"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:text="0"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/amount_text" />
+
+    </LinearLayout>
+
+</LinearLayout>

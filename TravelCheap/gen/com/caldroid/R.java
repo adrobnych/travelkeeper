@@ -24,25 +24,25 @@ public final class R {
 		public static final int cell_bg = 0x7f02000c;
 		public static final int disable_cell = 0x7f02000d;
 		public static final int ic_launcher = 0x7f020010;
-		public static final int left_arrow = 0x7f02001d;
-		public static final int red_border = 0x7f02001e;
-		public static final int red_border_gray_bg = 0x7f02001f;
-		public static final int right_arrow = 0x7f020020;
+		public static final int left_arrow = 0x7f02001e;
+		public static final int red_border = 0x7f020022;
+		public static final int red_border_gray_bg = 0x7f020023;
+		public static final int right_arrow = 0x7f020024;
 	}
 	public static final class id {
-		public static final int calendar_gridview = 0x7f0c0028;
-		public static final int calendar_left_arrow = 0x7f0c0022;
-		public static final int calendar_month_year_textview = 0x7f0c0023;
-		public static final int calendar_right_arrow = 0x7f0c0024;
-		public static final int calendar_title_view = 0x7f0c0021;
-		public static final int calendar_tv = 0x7f0c0027;
-		public static final int months_infinite_pager = 0x7f0c0026;
-		public static final int weekday_gridview = 0x7f0c0025;
+		public static final int calendar_gridview = 0x7f0c0037;
+		public static final int calendar_left_arrow = 0x7f0c0024;
+		public static final int calendar_month_year_textview = 0x7f0c0025;
+		public static final int calendar_right_arrow = 0x7f0c0026;
+		public static final int calendar_title_view = 0x7f0c0023;
+		public static final int calendar_tv = 0x7f0c0036;
+		public static final int months_infinite_pager = 0x7f0c0028;
+		public static final int weekday_gridview = 0x7f0c0027;
 	}
 	public static final class layout {
 		public static final int calendar_view = 0x7f030004;
-		public static final int date_cell = 0x7f030005;
-		public static final int date_grid_fragment = 0x7f030006;
+		public static final int date_cell = 0x7f030006;
+		public static final int date_grid_fragment = 0x7f030007;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f060000;

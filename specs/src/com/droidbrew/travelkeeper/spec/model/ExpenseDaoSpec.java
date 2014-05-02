@@ -47,12 +47,12 @@ public class ExpenseDaoSpec {
 	public void ExpenseCanBeStoredInDB(){
 		
 		Expense expense = new Expense();
-		expense.setTripId(1);
 		expense.setType("food");
 		expense.setAmount(1200L);
 		expense.setDateAndTime(123445L);
 		expense.setCurrencyCode("EUR");
 		expense.setUsdAmount(Math.round(1200/(eurToUsd/1000000.0)));
+		
 		
 		try {
 			eDao.create(expense);
@@ -75,13 +75,13 @@ public class ExpenseDaoSpec {
 	@Test
 	public void ItSavesDateAndTimeofExpense(){
 		Expense expense = new Expense();
-		expense.setTripId(1);
 		expense.setType("food");
 		expense.setAmount(1200L);
 		long now = System.currentTimeMillis();
 		expense.setDateAndTime(now);
 		expense.setCurrencyCode("EUR");
 		expense.setUsdAmount(Math.round(1200/(eurToUsd/1000000.0)));
+		
 		
 		try {
 			eDao.create(expense);

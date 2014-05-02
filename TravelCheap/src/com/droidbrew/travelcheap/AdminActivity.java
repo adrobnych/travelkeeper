@@ -13,11 +13,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -28,6 +30,7 @@ import com.j256.ormlite.table.TableUtils;
 
 public class AdminActivity extends Activity {
 	private ProgressDialog pd = null;
+	private static final int RESULT_SETTINGS = 2;
 
 	public static final String LOG = "com.droidbrew.travelcheap.AdminActivity";
 
@@ -41,7 +44,30 @@ public class AdminActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.menu_for_admin, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent i;
+		switch (item.getItemId()) {
+
+		case R.id.menu_report_currency:
+			i = new Intent(this, CurrencyActivity.class);
+			i.putExtra("type", "currency_for_report");
+			startActivityForResult(i, RESULT_SETTINGS);
+			break;
+		case R.id.menu_language:
+			i = new Intent(this, LanguageActivity.class);
+			startActivityForResult(i, RESULT_SETTINGS);
+			break;
+		case R.id.menu_home:
+			i = new Intent(this, HomeActivity.class);
+			startActivityForResult(i, RESULT_SETTINGS);
+			break;
+		}
+
 		return true;
 	}
 

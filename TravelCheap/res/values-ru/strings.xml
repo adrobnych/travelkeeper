@@ -18,7 +18,7 @@
     <string name="clearData">Опасная зона</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="pdStartHomeActivity">Загрузка всех валют при первом запуске</string>
-    <string name="WipeDataWarning">Предупреждение: эта операцыя уничтожить все данные, собранные во многих поездках!</string>
+    <string name="WipeDataWarning">Предупреждение: эта операция уничтожить все данные, собранные во многих поездках!</string>
     <string name="DestroyData">Уничтожить все данные</string>
     <string name="title_activity_currency">CurrencyActivity</string>
     <string name="UpdateCourses">Обновить Курсы</string>
@@ -34,7 +34,7 @@
     <string name="currencyActivityTitle">Выберите валюту для отчетов</string>
     <string name="currencyActivityTitleElse">Выберите валюту для своих расходов</string>
     <string name="spentOn">потрачено на</string>
-    <string name="GridViewSetText">Click to remove</string>
+    <string name="GridViewSetText">Нажмите, чтобы удалить</string>
     <string name="addExpensTitle">Добавить расходы</string>
     <string name="addExpensPB">Добавить</string>
     <string name="homeActivityDialogMessage">Сегодня вы провели</string>
@@ -53,9 +53,9 @@
     <string name="statrFragmentToast">Деньги, потраченные на </string>
     <string name="foodTextButtot">еда</string>
     <string name="transportTextButtot">транспорт</string>
-    <string name="shoppingTextButtot">покупки</string>
-    <string name="hotelTextButtot">жилье</string>
-    <string name="funTextButtot">развлечения</string>
+    <string name="shoppingTextButtot">покупка</string>
+    <string name="hotelTextButtot">отель</string>
+    <string name="funTextButtot">веселье</string>
     <string name="otherTextButtot">другое</string>
     <string name="calendarTextButtot">Календарь</string>
     <string name="myTripTextButtot">Поездки</string>
@@ -68,8 +68,11 @@
     <string name="fragmentTabButtonRecord">Учет</string>
     <string name="fragmentTabButtonHistory">История</string>
     <string name="fragmentTabButtonStats">Статистика</string>
-     <string name="menu_language">Язык</string>
-    <string name="Restart">Перезапуск</string>
+    <string name="menu_language">Язык</string>
+    <string name="menu_home">Главная</string>
+    <string name="enrestart">Английский</string>
+    <string name="rurestart">Русский</string>
+    <string name="CurrencyCalculator">Валютный Калькулятор</string>
 <string name="LangTitle">Язык</string>
 <string name="LangDialogTitle">Выберите язык:</string>
 <string name="LangSummary">Язык приложения.\nНеобходимо перезапустить приложение для принятия изменений.</string> 

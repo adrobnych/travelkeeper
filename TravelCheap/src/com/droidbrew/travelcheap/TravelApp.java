@@ -6,8 +6,10 @@ import java.util.Locale;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.webkit.WebView.FindListener;
 
 import com.droidbrew.travelcheap.db.TravelCheapDbHelper;
 import com.droidbrew.travelcheap.valueobject.ValueObjectFactory;
@@ -42,6 +44,7 @@ public class TravelApp extends Application {
 				config.locale = locale;
 				Log.i("Lang change", "Locale="+locale);
 				getBaseContext().getResources().updateConfiguration(config, null);
+				
 		}
 		
 		@Override
