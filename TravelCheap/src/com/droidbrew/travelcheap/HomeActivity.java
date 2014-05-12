@@ -71,14 +71,6 @@ public class HomeActivity extends FragmentActivity{
         setTitle(((TravelApp)getApplication()).getTripManager().getNameById(
         		((TravelApp)getApplication()).getTripManager().getDefaultTripId()));
         
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-		SharedPreferences.Editor editor = preferences.edit();
-		editor.putString("convert1", "USD");
-		editor.putString("convert2", "EUR");
-		editor.putString("convert3", "CNY");
-		editor.putString("convert4", "JPY");
-		editor.putString("convert5", "GBP");
-		editor.commit();
 	}
 
 	@Override

@@ -22,73 +22,98 @@ public class CurrencyCalculatorActivity extends Activity {
 	private static final int RESULT_SETTINGS = 2;
 	SharedPreferences pref;
 	
+	private String entranceCur = "EUR";
+	
 	 @Override
 	  protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.currency_calculator_activity);
-	    pref = PreferenceManager.getDefaultSharedPreferences(this);
+	    pref = this.getSharedPreferences("TravelApp", MODE_PRIVATE);
 	    
 	    EditText eField = (EditText) this.findViewById(R.id.input_convert);
-	    eField.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void afterTextChanged(Editable arg0) {}
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {}
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) { refresh();	}
-	    });
-	    
+	    eField.addTextChangedListener(new SomeWatcher(eField));
+
+	    eField = (EditText) this.findViewById(R.id.amount1);
+	    eField.addTextChangedListener(new SomeWatcher(eField));
+	    eField = (EditText) this.findViewById(R.id.amount2);
+	    eField.addTextChangedListener(new SomeWatcher(eField));
+	    eField = (EditText) this.findViewById(R.id.amount3);
+	    eField.addTextChangedListener(new SomeWatcher(eField));
+	    eField = (EditText) this.findViewById(R.id.amount4);
+	    eField.addTextChangedListener(new SomeWatcher(eField));
+	    eField = (EditText) this.findViewById(R.id.amount5);
+	    eField.addTextChangedListener(new SomeWatcher(eField));
+
 	 }
 	 
-	 private void refresh() {
+	 public void refresh(View view) {
 			try {
-				String str = ((TextView) this.findViewById(R.id.input_convert))
+				
+				if(view == null)
+					view = (TextView) findViewById(R.id.input_convert);
+				String str = ((TextView) view)
 						.getText().toString();
 				if(str.equals(""))
 					str = "0";
 				double amount = 100*Double.parseDouble(str.toString());
-				String code = ((TravelApp)getApplication())
-						.getCurrencyManager().getEntranceCurrency();
+				String code = "EUR";
+				switch(view.getId()) {
+				case R.id.input_convert:
+					code = entranceCur;
+					break;
+				case R.id.amount1:
+					code = pref.getString("convert1", "USD");
+					break;
+				case R.id.amount2:
+					code = pref.getString("convert2", "EUR");
+					break;
+				case R.id.amount3:
+					code = pref.getString("convert3", "CNY");
+					break;
+				case R.id.amount4:
+					code = pref.getString("convert4", "JPY");
+					break;
+				case R.id.amount5:
+					code = pref.getString("convert5", "GBP");
+					break;
+				
+				}
 				double course = ((TravelApp)getApplication())
 						.getCurrencyManager().find(code).getCourse();
 				long usdamount = Math.round(amount/(course/1000000.0));
 				
-				TextView tv = (TextView) findViewById(R.id.amount1);
-				tv.setText(""+Math.round(usdamount * 
-						((TravelApp)getApplication()).getCurrencyManager()
-						.find(pref.getString("convert1", "USD"))
-						.getCourse() / 1000000.0)/100.0);
+				if(view.getId() != R.id.input_convert)
+				((TextView) findViewById(R.id.input_convert))
+				.setText(getResult(usdamount, entranceCur));
+				if(view.getId() != R.id.amount1)
+				((TextView) findViewById(R.id.amount1))
+				.setText(getResult(usdamount, pref.getString("convert1", "USD")));
+				if(view.getId() != R.id.amount2)
+				((TextView) findViewById(R.id.amount2))
+				.setText(getResult(usdamount, pref.getString("convert2", "EUR")));
+				if(view.getId() != R.id.amount3)
+				((TextView) findViewById(R.id.amount3))
+				.setText(getResult(usdamount, pref.getString("convert3", "CNY")));
+				if(view.getId() != R.id.amount4)
+				((TextView) findViewById(R.id.amount4))
+				.setText(getResult(usdamount, pref.getString("convert4", "JPY")));
+				if(view.getId() != R.id.amount5)
+				((TextView) findViewById(R.id.amount5))
+				.setText(getResult(usdamount, pref.getString("convert5", "GBP")));
 				
-				tv = (TextView) findViewById(R.id.amount2);
-				tv.setText(""+Math.round(usdamount * 
-						((TravelApp)getApplication()).getCurrencyManager()
-						.find(pref.getString("convert2", "EUR"))
-						.getCourse() / 1000000.0)/100.0);
-				
-				tv = (TextView) findViewById(R.id.amount3);
-				tv.setText(""+Math.round(usdamount * 
-						((TravelApp)getApplication()).getCurrencyManager()
-						.find(pref.getString("convert3", "CNY"))
-						.getCourse() / 1000000.0)/100.0);
-				
-				tv = (TextView) findViewById(R.id.amount4);
-				tv.setText(""+Math.round(usdamount * 
-						((TravelApp)getApplication()).getCurrencyManager()
-						.find(pref.getString("convert4", "JPY"))
-						.getCourse() / 1000000.0)/100.0);
-				
-				tv = (TextView) findViewById(R.id.amount5);
-				tv.setText(""+Math.round(usdamount * 
-						((TravelApp)getApplication()).getCurrencyManager()
-						.find(pref.getString("convert5", "GBP"))
-						.getCourse() / 1000000.0)/100.0);
 				
 			}catch(SQLException ex) {
 				Log.e("CurrencyCalculatorActivity", ex.getMessage());
 			}
+
 		 
+	 }
+	 
+	 private String getResult(long usdamount, String code) throws SQLException {
+		 return ""+Math.round(usdamount * 
+					((TravelApp)getApplication()).getCurrencyManager()
+					.find(code)
+					.getCourse() / 1000000.0)/100.0;
 	 }
 	 
 	 public void onCurrencyClick(View view){
@@ -134,14 +159,15 @@ public class CurrencyCalculatorActivity extends Activity {
 			Button btn5 = (Button) findViewById(R.id.btn5);
 			btn5.setText(pref.getString("convert5", "GBP"));
 	        try {
+	        	entranceCur = ((TravelApp)getApplication()).getCurrencyManager().getEntranceCurrency();
 				cButton.setText(
-					((TravelApp)getApplication()).getCurrencyManager().getEntranceCurrency()
+					entranceCur
 				);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 	        
-	        refresh();
+	        refresh(null);
 		}
 		@Override
 		public boolean onCreateOptionsMenu(Menu menu) {
@@ -181,4 +207,29 @@ public class CurrencyCalculatorActivity extends Activity {
 			CurrencyCalculatorActivity.this.startActivity(homeIntent);
 			finish();
 		}
+		
+		
+		private class SomeWatcher implements TextWatcher {
+
+			private View view;
+		    private SomeWatcher(View view) {
+		        this.view = view;
+		    }
+			
+			@Override
+			public void afterTextChanged(Editable s) {}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				if(view.isFocused())
+					refresh(view);
+			}
+			
+		}
+		
 }

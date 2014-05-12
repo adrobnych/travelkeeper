@@ -2,17 +2,10 @@ package com.droidbrew.travelcheap.fragment;
 
 import java.sql.SQLException;
 
-import com.droidbrew.travelcheap.CurrencyActivity;
-import com.droidbrew.travelcheap.CurrencyCalculatorActivity;
-import com.droidbrew.travelcheap.R;
-import com.droidbrew.travelcheap.TravelApp;
-import com.droidbrew.travelkeeper.model.entity.TKCurrency;
-
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,6 +16,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.droidbrew.travelcheap.CurrencyActivity;
+import com.droidbrew.travelcheap.R;
+import com.droidbrew.travelcheap.TravelApp;
+import com.droidbrew.travelkeeper.model.entity.TKCurrency;
 
 
 public class CurrencyCalcFragment extends Fragment {
@@ -38,7 +36,9 @@ public class CurrencyCalcFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_currency, container, false);
-	    pref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
+	    this.getActivity();
+		pref = this.getActivity().getSharedPreferences("TravelApp", 
+	    		Context.MODE_PRIVATE);
 	    
 	    final Button cBut = (Button) view.findViewById(R.id.button_currency1);
 	    cBut.setOnClickListener(new Button.OnClickListener() {
@@ -72,16 +72,18 @@ public class CurrencyCalcFragment extends Fragment {
 
 
 	    EditText eField = (EditText) view.findViewById(R.id.input_convert);
-	    eField.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void afterTextChanged(Editable arg0) {}
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {}
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) { if(refresh) refresh();	}
-	    });
+	    eField.addTextChangedListener(new SomeWatcher(eField));
+
+	    eField = (EditText)view.findViewById(R.id.amount1);
+	    eField.addTextChangedListener(new SomeWatcher(eField));
+	    eField = (EditText) view.findViewById(R.id.amount2);
+	    eField.addTextChangedListener(new SomeWatcher(eField));
+	    eField = (EditText) view.findViewById(R.id.amount3);
+	    eField.addTextChangedListener(new SomeWatcher(eField));
+	    eField = (EditText) view.findViewById(R.id.amount4);
+	    eField.addTextChangedListener(new SomeWatcher(eField));
+	    eField = (EditText) view.findViewById(R.id.amount5);
+	    eField.addTextChangedListener(new SomeWatcher(eField));
         return view;
     }
     
@@ -106,7 +108,7 @@ public class CurrencyCalcFragment extends Fragment {
 			e.printStackTrace();
 		}
         setStart();
-        if(refresh) refresh();
+        if(refresh) refresh(null);
       }
     
     private void setStart() {
@@ -118,54 +120,79 @@ public class CurrencyCalcFragment extends Fragment {
     	}catch(SQLException ex) {}
     }
     
-	 private void refresh() {
+	 public void refresh(View view) {
 			try {
-				String str = ((TextView) this.getActivity().findViewById(R.id.input_convert))
+				
+				if(view == null)
+					view = (TextView) getActivity().findViewById(R.id.input_convert);
+				String str = ((TextView) view)
 						.getText().toString();
 				if(str.equals(""))
 					str = "0";
 				double amount = 100*Double.parseDouble(str.toString());
-				String code = ((TravelApp)this.getActivity().getApplication())
-						.getCurrencyManager().getEntranceCurrency();
-				double course = ((TravelApp)this.getActivity().getApplication())
+				String code = "EUR";
+				switch(view.getId()) {
+				case R.id.input_convert:
+					code = ((TravelApp)getActivity().getApplication()).getCurrencyManager()
+						.getEntranceCurrency();
+					break;
+				case R.id.amount1:
+					code = pref.getString("convert1", "USD");
+					break;
+				case R.id.amount2:
+					code = pref.getString("convert2", "EUR");
+					break;
+				case R.id.amount3:
+					code = pref.getString("convert3", "CNY");
+					break;
+				case R.id.amount4:
+					code = pref.getString("convert4", "JPY");
+					break;
+				case R.id.amount5:
+					code = pref.getString("convert5", "GBP");
+					break;
+				
+				}
+				double course = ((TravelApp)getActivity().getApplication())
 						.getCurrencyManager().find(code).getCourse();
 				long usdamount = Math.round(amount/(course/1000000.0));
 				
-				TextView tv = (TextView) this.getActivity().findViewById(R.id.amount1);
-				tv.setText(""+Math.round(usdamount * 
-						((TravelApp)this.getActivity().getApplication()).getCurrencyManager()
-						.find(pref.getString("convert1", "USD"))
-						.getCourse() / 1000000.0)/100.0);
+				if(view.getId() != R.id.input_convert)
+				((TextView) getActivity().findViewById(R.id.input_convert))
+				.setText(getResult(usdamount, ((TravelApp)getActivity().getApplication()).getCurrencyManager()
+						.getEntranceCurrency()));
+				if(view.getId() != R.id.amount1)
+				((TextView) getActivity().findViewById(R.id.amount1))
+				.setText(getResult(usdamount, pref.getString("convert1", "USD")));
+				if(view.getId() != R.id.amount2)
+				((TextView) getActivity().findViewById(R.id.amount2))
+				.setText(getResult(usdamount, pref.getString("convert2", "EUR")));
+				if(view.getId() != R.id.amount3)
+				((TextView) getActivity().findViewById(R.id.amount3))
+				.setText(getResult(usdamount, pref.getString("convert3", "CNY")));
+				if(view.getId() != R.id.amount4)
+				((TextView) getActivity().findViewById(R.id.amount4))
+				.setText(getResult(usdamount, pref.getString("convert4", "JPY")));
+				if(view.getId() != R.id.amount5)
+				((TextView) getActivity().findViewById(R.id.amount5))
+				.setText(getResult(usdamount, pref.getString("convert5", "GBP")));
 				
-				tv = (TextView) this.getActivity().findViewById(R.id.amount2);
-				tv.setText(""+Math.round(usdamount * 
-						((TravelApp)this.getActivity().getApplication()).getCurrencyManager()
-						.find(pref.getString("convert2", "EUR"))
-						.getCourse() / 1000000.0)/100.0);
-				
-				tv = (TextView) this.getActivity().findViewById(R.id.amount3);
-				tv.setText(""+Math.round(usdamount * 
-						((TravelApp)this.getActivity().getApplication()).getCurrencyManager()
-						.find(pref.getString("convert3", "CNY"))
-						.getCourse() / 1000000.0)/100.0);
-				
-				tv = (TextView) this.getActivity().findViewById(R.id.amount4);
-				tv.setText(""+Math.round(usdamount * 
-						((TravelApp)this.getActivity().getApplication()).getCurrencyManager()
-						.find(pref.getString("convert4", "JPY"))
-						.getCourse() / 1000000.0)/100.0);
-				
-				tv = (TextView) this.getActivity().findViewById(R.id.amount5);
-				tv.setText(""+Math.round(usdamount * 
-						((TravelApp)this.getActivity().getApplication()).getCurrencyManager()
-						.find(pref.getString("convert5", "GBP"))
-						.getCourse() / 1000000.0)/100.0);
 				
 			}catch(SQLException ex) {
 				Log.e("CurrencyCalculatorActivity", ex.getMessage());
 			}
+
 		 
 	 }
+	 
+	 private String getResult(long usdamount, String code) throws SQLException {
+		 return ""+Math.round(usdamount * 
+					((TravelApp)getActivity().getApplication()).getCurrencyManager()
+					.find(code)
+					.getCourse() / 1000000.0)/100.0;
+	 }
+	 
+	 
 	 public void onCurrencyClick(View view){
 		 int id = view.getId();
 			Intent i = new Intent(this.getActivity(), CurrencyActivity.class);
@@ -215,7 +242,30 @@ public class CurrencyCalcFragment extends Fragment {
 				e.printStackTrace();
 			}
 	        
-	        if(refresh) refresh();
+	        if(refresh) refresh(null);
 		}
 
+		
+		private class SomeWatcher implements TextWatcher {
+
+			private View view;
+		    private SomeWatcher(View view) {
+		        this.view = view;
+		    }
+			
+			@Override
+			public void afterTextChanged(Editable s) {}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				if(view.isFocused())
+					refresh(view);
+			}
+			
+		}
 }

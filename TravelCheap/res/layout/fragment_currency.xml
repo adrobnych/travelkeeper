@@ -57,7 +57,7 @@
                 android:layout_marginRight="16dp"
                 />
         
-       <TextView
+       <EditText
             android:id="@+id/amount1"
             android:layout_width="match_parent"
             android:layout_height="36dp"
@@ -68,6 +68,7 @@
             android:maxLength="@integer/length_of_amount"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:text="0"
+            android:inputType="numberDecimal"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="@dimen/amount_text" />
 
@@ -88,7 +89,7 @@
                 android:layout_marginRight="16dp"
                 />
         
-        <TextView
+        <EditText
             android:id="@+id/amount2"
             android:layout_width="match_parent"
             android:layout_height="36dp"
@@ -99,6 +100,7 @@
             android:maxLength="@integer/length_of_amount"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:text="0"
+            android:inputType="numberDecimal"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="@dimen/amount_text" />
 
@@ -119,13 +121,14 @@
                 android:layout_marginRight="16dp"
                 />
         
-        <TextView
+        <EditText
             android:id="@+id/amount3"
             android:layout_width="match_parent"
             android:layout_height="36dp"
             android:layout_marginTop="4dp"
             android:layout_marginRight="@dimen/amount_margin"
             android:layout_weight="4"
+            android:inputType="numberDecimal"
             android:gravity="center_vertical|right"
             android:maxLength="@integer/length_of_amount"
             android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -150,13 +153,14 @@
                 android:layout_marginRight="16dp"
                 />
         
-        <TextView
+        <EditText
             android:id="@+id/amount4"
             android:layout_width="match_parent"
             android:layout_height="36dp"
             android:layout_marginTop="4dp"
             android:layout_marginRight="@dimen/amount_margin"
             android:layout_weight="4"
+            android:inputType="numberDecimal"
             android:gravity="center_vertical|right"
             android:maxLength="@integer/length_of_amount"
             android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -180,7 +184,7 @@
                 android:layout_marginRight="16dp"
                 />
         
-        <TextView
+        <EditText
             android:id="@+id/amount5"
             android:layout_width="match_parent"
             android:layout_height="36dp"
@@ -191,6 +195,7 @@
             android:maxLength="@integer/length_of_amount"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:text="0"
+            android:inputType="numberDecimal"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="@dimen/amount_text" />
 

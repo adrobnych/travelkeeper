@@ -37,14 +37,25 @@ public class TravelApp extends Application {
 		public void onCreate() {
 			preferences = PreferenceManager.getDefaultSharedPreferences(this);
 			lang = preferences.getString("lang", "default");	
-				if (lang.equals("default")) {lang=getResources().getConfiguration().locale.getCountry();}
-				locale = new Locale(lang);
-				Locale.setDefault(locale);
-				Configuration config = new Configuration();
-				config.locale = locale;
-				Log.i("Lang change", "Locale="+locale);
-				getBaseContext().getResources().updateConfiguration(config, null);
+			if (lang.equals("default")) {lang=getResources().getConfiguration().locale.getCountry();}
+			locale = new Locale(lang);
+			Locale.setDefault(locale);
+			Configuration config = new Configuration();
+			config.locale = locale;
+			Log.i("Lang change", "Locale="+locale);
+			getBaseContext().getResources().updateConfiguration(config, null);
 				
+	        SharedPreferences preferences = this.getSharedPreferences("TravelApp", MODE_PRIVATE);
+			if(!preferences.contains("convert1")) {
+				SharedPreferences.Editor editor = preferences.edit();
+				editor.putString("convert1", "USD");
+				editor.putString("convert2", "EUR");
+				editor.putString("convert3", "CNY");
+				editor.putString("convert4", "JPY");
+				editor.putString("convert5", "GBP");
+				editor.commit();
+			}
+			
 		}
 		
 		@Override

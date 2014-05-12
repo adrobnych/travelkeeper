@@ -25,7 +25,7 @@ public class CurrencyActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_currency);
 		
-		pref = PreferenceManager.getDefaultSharedPreferences(this);
+		pref = this.getSharedPreferences("TravelApp", MODE_PRIVATE);
 		final SharedPreferences.Editor editor = pref.edit();
 	
 		Intent i = getIntent();
