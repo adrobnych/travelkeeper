@@ -69,6 +69,7 @@
     <string name="fragmentTabButtonRecord">Records</string>
     <string name="fragmentTabButtonHistory">History</string>
     <string name="fragmentTabButtonStats">Stats</string>
+    <string name="fragmentTabButtonCharts">Charts</string>
     <string name="menu_language">Language</string>
     <string name="menu_home">Home</string>
     <string name="enrestart">English</string>
@@ -79,10 +80,18 @@
 	<string name="labelSum">Sum</string>
 	<string name="labelGroup">Group</string>
 	<string name="CurrencyCalculator">Currency Calculator</string>
+	<string name="Radio_day">Day</string>
+	<string name="Radio_week">Week</string>
+	<string name="Radio_total">Total</string>
+	<string name="Button_prev">Previous</string>
+	<string name="Button_next">Next</string>
+	<string name="Total_spent">Total spent</string>
+	<string name="Total_trips">Total expenses for trip</string>
+	<string name="Nothing">Nothing</string>
     
     
     
-    <string-array name="mChoose">
+<string-array name="mChoose">
       <item>Food</item>
       <item>Transport</item>
       <item>Shopping</item>
@@ -90,6 +99,25 @@
       <item>Entertainment</item>
       <item>Other things</item>
 </string-array>
-	
+
+<string-array name="mChoose1">
+    <item>Other things</item>
+    <item>Shopping</item>
+    <item>Accommodation</item>
+    <item>Transport</item>
+    <item>Entertainment</item>
+      <item>Food</item>
+</string-array>
+
+<string-array name="dayss">
+      <item>Mon</item>
+      <item>Tue</item>
+      <item>Wen</item>
+      <item>Thu</item>
+      <item>Fri</item>
+      <item>Sat</item>
+      <item>Sun</item>
+</string-array>
+
 
 </resources>

@@ -37,13 +37,13 @@ public class ExpenseManager {
 		getExpenseDao().create(expense);	
 	}
 
-	public Long sumAmountByTypeAndDate(String type, long time_of_day) {
+	public Long sumAmountByTypeAndDate(String type, int trip_id, long time_of_day) {
 		Long result = null;
 		
 		try {
 			Long usdSum =  getExpenseDao().queryRawValue(
-					"select sum(usd_amount) from expenses where type = ? and date_and_time >= ? and date_and_time <= ?",
-					type, firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day)
+					"select sum(usd_amount) from expenses where type = ? and trip_id = ? and date_and_time >= ? and date_and_time <= ?",
+					type, ""+trip_id, firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day)
 					);
 			String repCurrency = currencyManager.getReportCurrency();
 			
@@ -84,6 +84,25 @@ public class ExpenseManager {
 			Long usdSum =  getExpenseDao().queryRawValue(
 					"select sum(usd_amount) from expenses where type = ? and trip_id = ?",
 					type, ""+tripId);
+			String repCurrency = currencyManager.getReportCurrency();
+			
+			long repCourse = currencyManager.find(repCurrency).getCourse();
+			
+			result = Math.round(usdSum * repCourse/1000000.0);
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public Long sumAmountByTrip(int tripId) {
+		Long result = null;
+		
+		try {
+			Long usdSum =  getExpenseDao().queryRawValue(
+					"select sum(usd_amount) from expenses where trip_id = ?",
+					""+tripId);
 			String repCurrency = currencyManager.getReportCurrency();
 			
 			long repCourse = currencyManager.find(repCurrency).getCourse();

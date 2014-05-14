@@ -47,7 +47,6 @@ public class ExpenseTripTotal {
 	public double getAmount(){
 		if(id!=0) {
 			Calendar cal = Calendar.getInstance();
-			Log.d("time", cal.getTime().toString());
 			long today = cal.getTime().getTime();
 			if(id==1) {
 				cal.add(Calendar.DAY_OF_MONTH, -3);
@@ -62,7 +61,7 @@ public class ExpenseTripTotal {
 				return em.getBeetwenDays(tripId, cal.getTime().getTime(), today)/100.0;
 			}
 			if(id==4) {
-				cal.add(Calendar.YEAR, -10);
+				cal.add(Calendar.YEAR, -15);
 				return em.getBeetwenDays(tripId, cal.getTime().getTime(), today)/100.0;
 			}
 

@@ -10,6 +10,7 @@ public class ExpenseDayTotal {
 	private String type;
 	private String vtype;
 	private int picture;
+	private int trip_id;
 	
 	public void setPicture(int picture) {
 		this.picture = picture;
@@ -33,17 +34,18 @@ public class ExpenseDayTotal {
 		return vtype;
 	}
 	
-	public ExpenseDayTotal(int id, String type, String vtype, long dayMillis, int imageResource, ExpenseManager em){
+	public ExpenseDayTotal(int id, int trip_id,String type, String vtype, long dayMillis, int imageResource, ExpenseManager em){
 		this.id = id;
 		this.type = type;
 		this.dayMillis = dayMillis;
 		this.picture = imageResource;
 		this.em = em;
 		this.vtype = vtype;
+		this.trip_id = trip_id;
 	}
 	
 	public double getAmount(){
 		return 
-				em.sumAmountByTypeAndDate(type, dayMillis)/100.0;
+				em.sumAmountByTypeAndDate(type, trip_id, dayMillis)/100.0;
 	}
 }

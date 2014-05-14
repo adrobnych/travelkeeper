@@ -40,7 +40,7 @@ public class StatFragment extends ListFragment {
     public void onResume(){
     	super.onResume();
  
-    	refreshTotals();
+    	//refreshTotals();
     }
     
     private void refreshTotals(){

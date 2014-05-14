@@ -7,5 +7,6 @@
     <dimen name="amount_text">22dp</dimen>
     <dimen name="amount_margin">3dp</dimen>
     <dimen name="expenses_margin">8dp</dimen>
+    <dimen name="expenses_home_margin">4dp</dimen>
 
 </resources>

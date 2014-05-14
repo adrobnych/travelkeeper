@@ -36,7 +36,6 @@ public class CurrencyCalcFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_currency, container, false);
-	    this.getActivity();
 		pref = this.getActivity().getSharedPreferences("TravelApp", 
 	    		Context.MODE_PRIVATE);
 	    

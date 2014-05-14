@@ -95,7 +95,10 @@ public class HistoryActivity extends FragmentActivity {
     
     private String compileFullTotal(long date){
     	String result = "";
-    	result += ((TravelApp)getApplication()).getExpenseManager().sumAmountByDate(date)/100.0;
+    	result += ((TravelApp)getApplication()).getExpenseManager().sumAmountByDateAndTrip(date,
+    			((TravelApp)getApplication())
+						.getTripManager()
+						.getDefaultTripId())/100.0;
     	return result;
     }
     
@@ -106,7 +109,8 @@ public class HistoryActivity extends FragmentActivity {
     	
     	for(String type : types)
     		result[i++] = "" +
-    			((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate(type, timeMillis)/100.0;
+    			((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate(type,
+    					((TravelApp)getApplication()).getTripManager().getDefaultTripId(), timeMillis)/100.0;
     	
     	return result;
     }

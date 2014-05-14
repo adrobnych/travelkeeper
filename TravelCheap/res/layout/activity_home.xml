@@ -51,7 +51,7 @@
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:paddingTop="@dimen/expenses_margin">
+            android:paddingTop="@dimen/expenses_home_margin">
 
             <Button
                 android:id="@+id/button_1"
@@ -445,7 +445,7 @@
                 android:background="@drawable/my_button_selector"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:layout_marginBottom="3dp"
+                android:layout_marginBottom="1dp"
                 android:layout_weight="1"
                 android:onClick="onHistoryClick"
                 android:text="@string/calendarTextButtot" />
@@ -458,7 +458,7 @@
                 android:background="@drawable/my_button_selector"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:layout_marginBottom="3dp"
+                android:layout_marginBottom="1dp"
                 android:layout_weight="1"
                 android:onClick="onMyTripsClick"
                 android:text="@string/myTripTextButtot"/>

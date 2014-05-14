@@ -1,19 +1,13 @@
 package com.droidbrew.travelcheap;
 
-
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.droidbrew.travelcheap.fragment.HistoryTabFragments;
-import com.droidbrew.travelcheap.fragment.TabFragment;
 
 public class HistoryTripsActivity extends FragmentActivity {
 	public Long dateValue = null;
@@ -29,24 +23,7 @@ public class HistoryTripsActivity extends FragmentActivity {
         FragmentManager fm = getSupportFragmentManager();
         HistoryTabFragments tabFragment = (HistoryTabFragments) fm.findFragmentById(R.id.fragment_tab1);
         tabFragment.gotoHistoryView();
-        //Log.d(LOG, tabFragment.toString());
     }
-    
-    
-/*    @Override
-    protected void onResume() {
-    	super.onResume();
-        
-    	 try {
- 			setTitle(compileFullTotal(dateValue) + " " +
- 					((TravelApp)getApplication()).getCurrencyManager().getReportCurrency() +
- 					" spent on " + formatter.format(dateValue));
- 		} catch (SQLException e) {
- 			e.printStackTrace();
- 		}
-
-    }
-*/    
 
     @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,19 +58,6 @@ public class HistoryTripsActivity extends FragmentActivity {
 
 		return true;
 	}
-
-//	@Override
-//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//		super.onActivityResult(requestCode, resultCode, data);
-//
-//		switch (requestCode) {
-//		case RESULT_SETTINGS:
-//			//showUserSettings();
-//			break;
-//
-//		}
-//
-//	}
 
 	@Override
 	public void onBackPressed() {

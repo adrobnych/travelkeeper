@@ -179,7 +179,8 @@ public class HomeActivity extends FragmentActivity{
 			new AlertDialog.Builder(this)
 			.setTitle(composeDialogTitle(amountLine))
 			.setMessage( getString(R.string.homeActivityDialogMessage) + " " + 
-					(((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate(type, time)/100.0)
+					(((TravelApp)getApplication()).getExpenseManager().sumAmountByTypeAndDate(type,
+							((TravelApp)getApplication()).getTripManager().getDefaultTripId(), time)/100.0)
 					+ " " + ((TravelApp)getApplication()).getCurrencyManager().getReportCurrency()
 					+ " " + getString(R.string.dialogFor) + " " + (String)view.getTag())
 					

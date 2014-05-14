@@ -68,16 +68,25 @@
     <string name="fragmentTabButtonRecord">Учет</string>
     <string name="fragmentTabButtonHistory">История</string>
     <string name="fragmentTabButtonStats">Статистика</string>
+    <string name="fragmentTabButtonCharts">Диаграммы</string>
     <string name="menu_language">Язык</string>
     <string name="menu_home">Главная</string>
     <string name="enrestart">Английский</string>
     <string name="rurestart">Русский</string>
     <string name="CurrencyCalculator">Валютный Калькулятор</string>
-<string name="LangTitle">Язык</string>
-<string name="LangDialogTitle">Выберите язык:</string>
-<string name="LangSummary">Язык приложения.\nНеобходимо перезапустить приложение для принятия изменений.</string> 
-<string name="labelSum">Cумма</string>
-<string name="labelGroup">Группа</string> 
+	<string name="LangTitle">Язык</string>
+	<string name="LangDialogTitle">Выберите язык:</string>
+	<string name="LangSummary">Язык приложения.\nНеобходимо перезапустить приложение для принятия изменений.</string> 
+	<string name="labelSum">Cумма</string>
+	<string name="labelGroup">Группа</string> 
+	<string name="Radio_day">День</string>
+	<string name="Radio_week">Неделя</string>
+	<string name="Radio_total">Общий</string>
+	<string name="Button_prev">Предыдущий</string>
+	<string name="Button_next">Следующий</string>
+	<string name="Total_spent">Суммарно потрачено</string>
+	<string name="Total_trips">Общая стоимость поездки</string>
+	<string name="Nothing">Ничего</string>
     
     
     <string-array name="mChoose">
@@ -87,7 +96,27 @@
       <item>Жилье</item>
       <item>Развлечения</item>
       <item>Другие вещи</item>
+	</string-array>
+
+    <string-array name="mChoose1">
+    <item>Другие вещи</item>
+    <item>Покупка товаров</item>
+    <item>Жилье</item>
+    <item>Транспорт</item>
+    <item>Развлечения</item>
+      <item>Еда</item>
 </string-array>
+    
+  	  <string-array name="dayss">
+      <item>Пн</item>
+      <item>Вт</item>
+      <item>Ср</item>
+      <item>Чт</item>
+      <item>Пт</item>
+      <item>Сб</item>
+      <item>Вс</item>
+	  </string-array>
+    
 	
 
 </resources>

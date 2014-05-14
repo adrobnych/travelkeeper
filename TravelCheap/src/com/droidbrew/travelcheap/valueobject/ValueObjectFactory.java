@@ -36,7 +36,7 @@ public class ValueObjectFactory {
 		List<ExpenseDayTotal> totals = new ArrayList<ExpenseDayTotal>();
 		
 		for(String pictureKey : pictureMap.keySet()){
-			totals.add(new ExpenseDayTotal(0, pictureKey,
+			totals.add(new ExpenseDayTotal(0,((TravelApp)app).getTripManager().getDefaultTripId(), pictureKey,
 					((TravelApp)app).getLanguageManager().getTypeFromDB(pictureKey), date,
     			pictureMap.get(pictureKey), ((TravelApp)app).getExpenseManager()));
 		}
