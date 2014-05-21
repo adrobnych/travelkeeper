@@ -88,6 +88,9 @@
 	<string name="Total_spent">Total spent</string>
 	<string name="Total_trips">Total expenses for trip</string>
 	<string name="Nothing">Nothing</string>
+	<string name="search_hint">Enter the currency to search</string>
+	<string name="calendar_massage">Today\'s expenses</string>
+	<string name="select_a_date">Select a date</string>
     
     
     

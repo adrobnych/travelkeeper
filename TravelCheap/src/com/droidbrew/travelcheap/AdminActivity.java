@@ -43,11 +43,10 @@ public class AdminActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.menu_for_admin, menu);
 		return true;
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent i;
@@ -67,102 +66,105 @@ public class AdminActivity extends Activity {
 			startActivityForResult(i, RESULT_SETTINGS);
 			break;
 		}
-
 		return true;
 	}
 
-	public void onWipeDataClick(View view){
-
+	public void onWipeDataClick(View view) {
 
 		new AlertDialog.Builder(this)
-		.setTitle(R.string.AdminDialogTitle)
-		.setMessage(R.string.AdminDialogMessage)
-		.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) { 
-				destroyAllData();
-				finish();
-			}})
-			.setNegativeButton(R.string.AdminDialogNB, new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {finish();}})
-				.show();
+				.setTitle(R.string.AdminDialogTitle)
+				.setMessage(R.string.AdminDialogMessage)
+				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						destroyAllData();
+						finish();
+					}
+				})
+				.setNegativeButton(R.string.AdminDialogNB,
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
+								finish();
+							}
+						}).show();
 	}
 
-	private void destroyAllData(){
+	private void destroyAllData() {
 		try {
-			TableUtils.clearTable(((TravelApp)getApplication()).getDbHelper().getConnectionSource(),
-					Expense.class);
+			TableUtils.clearTable(((TravelApp) getApplication()).getDbHelper()
+					.getConnectionSource(), Expense.class);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void onUpdateCoursesClick(View view){
-		
+	public void onUpdateCoursesClick(View view) {
+
 		CurrencyRemoteLoadTask clt = new CurrencyRemoteLoadTask();
-		pd = ProgressDialog.show(this, getString(R.string.AdminDialogTitleUpd), getString(R.string.AdminDialogMassageUpd), 
-				true, false);
+		pd = ProgressDialog.show(this, getString(R.string.AdminDialogTitleUpd),
+				getString(R.string.AdminDialogMassageUpd), true, false);
 		clt.execute();
 	}
-	
+
 	class CurrencyRemoteLoadTask extends AsyncTask<Void, Void, Void> {
 		private boolean success = false;
 
 		@Override
 		protected Void doInBackground(Void... params) {
 			AssetManager am = getApplication().getAssets();
-			CurrencyHTTPHelper cHTTPHelper = ((TravelApp)getApplication()).getCurrencyHTTPHelper();
+			CurrencyHTTPHelper cHTTPHelper = ((TravelApp) getApplication())
+					.getCurrencyHTTPHelper();
 			String xmlString = null;
 			StringBuffer cnamesString = new StringBuffer();
 			try {
-				
-				String entranceCode = ((TravelApp)getApplication()).getCurrencyManager().getEntranceCurrency();
-				String reportCode = ((TravelApp)getApplication()).getCurrencyManager().getReportCurrency();
+
+				String entranceCode = ((TravelApp) getApplication())
+						.getCurrencyManager().getEntranceCurrency();
+				String reportCode = ((TravelApp) getApplication())
+						.getCurrencyManager().getReportCurrency();
 
 				xmlString = cHTTPHelper.getRemoteFullListAsXMLString();
 
 				String line = null;
 				InputStream is = am.open("currency_names.yml");
-				BufferedReader breader = new BufferedReader(new InputStreamReader(is));
+				BufferedReader breader = new BufferedReader(
+						new InputStreamReader(is));
 				while ((line = breader.readLine()) != null) {
 					cnamesString.append(line + "\n");
 				}
 
-				Map<String, TKCurrency> cMap = cHTTPHelper.buildCurrencyMap(xmlString, 
-						cnamesString.toString());
+				Map<String, TKCurrency> cMap = cHTTPHelper.buildCurrencyMap(
+						xmlString, cnamesString.toString());
 
-				TableUtils.clearTable(((TravelApp)getApplication()).getDbHelper().getConnectionSource(),
-						TKCurrency.class);
+				TableUtils.clearTable(((TravelApp) getApplication())
+						.getDbHelper().getConnectionSource(), TKCurrency.class);
 
-				for(TKCurrency currency : cMap.values())
-					((TravelApp)getApplication()).getCurrencyManager().create(currency);
+				for (TKCurrency currency : cMap.values())
+					((TravelApp) getApplication()).getCurrencyManager().create(
+							currency);
+				((TravelApp) getApplication()).getCurrencyManager()
+						.setAsEntranceCurrency(entranceCode);
+				((TravelApp) getApplication()).getCurrencyManager()
+						.setAsReportCurrency(reportCode);
 
-
-				((TravelApp)getApplication()).getCurrencyManager().setAsEntranceCurrency(entranceCode);
-				((TravelApp)getApplication()).getCurrencyManager().setAsReportCurrency(reportCode);
-				
 				success = true;
-				
+
 			} catch (Exception e) {
 				Log.e(LOG, "courses update error: " + e);
 				success = false;
 			}
-
 			return null;
-
 		}
-		
 
 		@Override
 		protected void onPostExecute(Void result) {
-			if(success)
-				Toast.makeText(getApplicationContext(), R.string.toastSuccessMessage,
-						Toast.LENGTH_LONG).show();
+			if (success)
+				Toast.makeText(getApplicationContext(),
+						R.string.toastSuccessMessage, Toast.LENGTH_LONG).show();
 			else
-				Toast.makeText(getApplicationContext(), R.string.toastFailedMessage,
-						Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(),
+						R.string.toastFailedMessage, Toast.LENGTH_LONG).show();
 			pd.dismiss();
 		}
-
 	}
-
 }

@@ -22,35 +22,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp" >
-		
-        <Button
-                android:id="@+id/button_currency"
-                android:layout_width="wrap_content"
-                android:background="@drawable/my_button_selector"
-                android:layout_height="42dp"
-             	android:layout_weight="0"
-                android:text="EUR" 
-                android:layout_marginRight="16dp"
-                android:onClick="onCurrencyClick"
-                />
-        
-        <EditText
-            android:id="@+id/input_convert"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#9919a9ea"
-            android:inputType="numberDecimal"
-            android:layout_weight="1" >
- 
-            <requestFocus />
-        </EditText>
-
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginTop="16dp">
 		
         <Button
@@ -62,7 +33,6 @@
                 android:layout_marginLeft="3dp"
                 android:layout_marginBottom="3dp"
              	android:layout_weight="0"
-                android:text="EUR" 
                 android:onClick="onCurrencyClick"
                 />
         
@@ -76,7 +46,6 @@
             android:gravity="center_vertical|right"
             android:maxLength="@integer/length_of_amount"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:text="0"
             android:inputType="numberDecimal"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="@dimen/amount_text" />
@@ -85,7 +54,8 @@
     
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
 		
         <Button
                 android:id="@+id/btn2"
@@ -96,7 +66,6 @@
                 android:layout_marginLeft="3dp"
                 android:layout_marginBottom="3dp"
              	android:layout_weight="0"
-                android:text="EUR" 
                 android:onClick="onCurrencyClick"
                 />
         
@@ -110,7 +79,6 @@
             android:gravity="center_vertical|right"
             android:maxLength="@integer/length_of_amount"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:text="0"
             android:inputType="numberDecimal"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="@dimen/amount_text" />
@@ -119,7 +87,8 @@
     
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
 		
         <Button
                 android:id="@+id/btn3"
@@ -130,7 +99,6 @@
                 android:layout_marginLeft="3dp"
                 android:layout_marginBottom="3dp"
              	android:layout_weight="0"
-                android:text="EUR" 
                 android:onClick="onCurrencyClick"
                 />
         
@@ -144,7 +112,6 @@
             android:gravity="center_vertical|right"
             android:maxLength="@integer/length_of_amount"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:text="0"
             android:inputType="numberDecimal"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="@dimen/amount_text" />
@@ -153,7 +120,8 @@
     
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
 		
         <Button
                 android:id="@+id/btn4"
@@ -164,7 +132,6 @@
                 android:layout_marginLeft="3dp"
                 android:layout_marginBottom="3dp"
              	android:layout_weight="0"
-                android:text="EUR" 
                 android:onClick="onCurrencyClick"
                 />
         
@@ -178,7 +145,6 @@
             android:gravity="center_vertical|right"
             android:maxLength="@integer/length_of_amount"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:text="0"
             android:inputType="numberDecimal"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="@dimen/amount_text" />
@@ -187,7 +153,8 @@
     
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
 		
         <Button
                 android:id="@+id/btn5"
@@ -198,7 +165,6 @@
                 android:layout_marginLeft="3dp"
                 android:layout_marginBottom="3dp"
              	android:layout_weight="0"
-                android:text="EUR" 
                 android:onClick="onCurrencyClick"
                 />
         
@@ -212,7 +178,6 @@
             android:gravity="center_vertical|right"
             android:maxLength="@integer/length_of_amount"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:text="0"
             android:inputType="numberDecimal"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="@dimen/amount_text" />

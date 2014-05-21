@@ -11,7 +11,6 @@ import com.droidbrew.travelcheap.valueobject.ExpenseDayTotal;
 import com.droidbrew.travelcheap.valueobject.ExpenseTripTotal;
 import com.droidbrew.travelcheap.R;
 
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -22,44 +21,49 @@ import android.widget.Toast;
 
 public class StatFragment extends ListFragment {
 
-	private List<ExpenseTripTotal> totals; 
+	private List<ExpenseTripTotal> totals;
 	private Activity activity;
 	private LangManager lm;
-    
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        
-        activity = getActivity();
-        lm = new LangManager(getResources().getConfiguration().locale.getLanguage());
-        
-        refreshTotals();
-    }
-    
-    @Override
-    public void onResume(){
-    	super.onResume();
- 
-    	//refreshTotals();
-    }
-    
-    private void refreshTotals(){
-    	if (activity != null) {
-        	totals = ((TravelApp)activity.getApplication()).getVoFactory().getExpenceTripTotals();
-            setListAdapter(new StatListAdapter(activity, totals));
-        }
-    }
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        Activity activity = getActivity();
-        
-        if (activity != null) {   
-            ListAdapter listAdapter = getListAdapter();
-            ExpenseTripTotal expenseTotal = (ExpenseTripTotal) listAdapter.getItem(position);
-            
-            Toast.makeText(activity, getString(R.string.statrFragmentToast)+ " " + lm.getTypeFromDB(expenseTotal.getType()) + ": " + expenseTotal.getAmount(), Toast.LENGTH_SHORT).show();
-        }
-    }
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
 
+		activity = getActivity();
+		lm = new LangManager(
+				getResources().getConfiguration().locale.getLanguage());
+
+		refreshTotals();
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+	}
+
+	private void refreshTotals() {
+		if (activity != null) {
+			totals = ((TravelApp) activity.getApplication()).getVoFactory()
+					.getExpenceTripTotals();
+			setListAdapter(new StatListAdapter(activity, totals));
+		}
+	}
+
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		Activity activity = getActivity();
+
+		if (activity != null) {
+			ListAdapter listAdapter = getListAdapter();
+			ExpenseTripTotal expenseTotal = (ExpenseTripTotal) listAdapter
+					.getItem(position);
+
+			Toast.makeText(
+					activity,
+					getString(R.string.statrFragmentToast) + " "
+							+ lm.getTypeFromDB(expenseTotal.getType()) + ": "
+							+ expenseTotal.getAmount(), Toast.LENGTH_SHORT)
+					.show();
+		}
+	}
 }

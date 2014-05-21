@@ -19,8 +19,8 @@ import com.droidbrew.travelcheap.adapter.RecordsListAdapter;
 import com.droidbrew.travelcheap.valueobject.ExpenseRecord;
 
 public class RecordsListFragment extends ListFragment {
-    
-	private List<ExpenseRecord> expenses; 
+
+	private List<ExpenseRecord> expenses;
 	private Activity activity;
 
 	@Override
@@ -33,44 +33,55 @@ public class RecordsListFragment extends ListFragment {
 	}
 
 	@Override
-	public void onResume(){
+	public void onResume() {
 		super.onResume();
 
 		refreshRecords();
 	}
 
-	private void refreshRecords(){
+	private void refreshRecords() {
 		if (activity != null) {
-			expenses = ((TravelApp)activity.getApplication()).getVoFactory().getExpenseRecords(
-					((HistoryActivity)activity).dateValue);
+			expenses = ((TravelApp) activity.getApplication()).getVoFactory()
+					.getExpenseRecords(((HistoryActivity) activity).dateValue);
 			setListAdapter(new RecordsListAdapter(activity, expenses));
 		}
 	}
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        Activity activity = getActivity();
-        
-        if (activity != null) {   
-            ListAdapter listAdapter = getListAdapter();
-            final ExpenseRecord expense = (ExpenseRecord) listAdapter.getItem(position);
-            
-            //Toast.makeText(activity, "Money spent on " + expense.getType() + ": " + expense.getAmount(), Toast.LENGTH_SHORT).show();
-            new AlertDialog.Builder(this.getActivity())
-        	.setTitle(R.string.recordListDialogTitle)
-        	.setMessage(getString(R.string.recordListDialogMassage) + expense.getType() + ": " + expense.getAmount())
-        	.setPositiveButton(R.string.dialogDelPB, new DialogInterface.OnClickListener() {
-        		public void onClick(DialogInterface dialog, int which) { 
-        			((TravelApp)getActivity().getApplication()).getExpenseManager().deleteExpenseById(expense.getId());
-        			getActivity().finish();
-        			Intent intent = getActivity().getIntent();
-        			intent.putExtra("tab", "records");
-        			startActivity(intent);
-        		}})
-        	.setNegativeButton(R.string.AdminDialogNB, new DialogInterface.OnClickListener() {
-        		public void onClick(DialogInterface dialog, int which) {}})
-        	.show();
-        }
-    }
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		Activity activity = getActivity();
+
+		if (activity != null) {
+			ListAdapter listAdapter = getListAdapter();
+			final ExpenseRecord expense = (ExpenseRecord) listAdapter
+					.getItem(position);
+
+			new AlertDialog.Builder(this.getActivity())
+					.setTitle(R.string.recordListDialogTitle)
+					.setMessage(
+							getString(R.string.recordListDialogMassage)
+									+ expense.getType() + ": "
+									+ expense.getAmount())
+					.setPositiveButton(R.string.dialogDelPB,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									((TravelApp) getActivity().getApplication())
+											.getExpenseManager()
+											.deleteExpenseById(expense.getId());
+									getActivity().finish();
+									Intent intent = getActivity().getIntent();
+									intent.putExtra("tab", "records");
+									startActivity(intent);
+								}
+							})
+					.setNegativeButton(R.string.AdminDialogNB,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+								}
+							}).show();
+		}
+	}
 
 }

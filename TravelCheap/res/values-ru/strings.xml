@@ -87,6 +87,9 @@
 	<string name="Total_spent">Суммарно потрачено</string>
 	<string name="Total_trips">Общая стоимость поездки</string>
 	<string name="Nothing">Ничего</string>
+	<string name="search_hint">Введите валюту для поиска</string>
+	<string name="calendar_massage">Сегодняшние расходы</string>
+	<string name="select_a_date">Выберите дату</string>
     
     
     <string-array name="mChoose">

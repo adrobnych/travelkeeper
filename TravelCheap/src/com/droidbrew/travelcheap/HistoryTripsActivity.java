@@ -12,20 +12,19 @@ import com.droidbrew.travelcheap.fragment.HistoryTabFragments;
 public class HistoryTripsActivity extends FragmentActivity {
 	public Long dateValue = null;
 	private static final int RESULT_SETTINGS = 2;
-	
-	
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        
-        setContentView(R.layout.history_two_activity);
-        
-        FragmentManager fm = getSupportFragmentManager();
-        HistoryTabFragments tabFragment = (HistoryTabFragments) fm.findFragmentById(R.id.fragment_tab1);
-        tabFragment.gotoHistoryView();
-    }
 
-    @Override
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.history_two_activity);
+
+		FragmentManager fm = getSupportFragmentManager();
+		HistoryTabFragments tabFragment = (HistoryTabFragments) fm
+				.findFragmentById(R.id.fragment_tab1);
+		tabFragment.gotoHistoryView();
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.settings, menu);
 		return true;
@@ -53,15 +52,14 @@ public class HistoryTripsActivity extends FragmentActivity {
 			i = new Intent(this, HomeActivity.class);
 			startActivityForResult(i, RESULT_SETTINGS);
 			break;
-
 		}
-
 		return true;
 	}
 
 	@Override
 	public void onBackPressed() {
-		Intent homeIntent = new Intent(HistoryTripsActivity.this, HomeActivity.class);
+		Intent homeIntent = new Intent(HistoryTripsActivity.this,
+				HomeActivity.class);
 		HistoryTripsActivity.this.startActivity(homeIntent);
 		finish();
 	}

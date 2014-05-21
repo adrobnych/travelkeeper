@@ -22,7 +22,7 @@ import com.droidbrew.travelcheap.valueobject.ExpenseRecord;
 
 public class HistoryFragment extends ListFragment {
 
-	private List<ExpenseRecord> expenses; 
+	private List<ExpenseRecord> expenses;
 	private Activity activity;
 
 	@Override
@@ -35,34 +35,36 @@ public class HistoryFragment extends ListFragment {
 	}
 
 	@Override
-	public void onResume(){
+	public void onResume() {
 		super.onResume();
 
 		refreshRecords();
 	}
 
-	private void refreshRecords(){
+	private void refreshRecords() {
 		if (activity != null) {
-			expenses = ((TravelApp)activity.getApplication()).getVoFactory().getExpenseRecordsByTrip();
+			expenses = ((TravelApp) activity.getApplication()).getVoFactory()
+					.getExpenseRecordsByTrip();
 			setListAdapter(new HistoryListAdapter(activity, expenses));
 		}
 	}
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        Activity activity = getActivity();
-        
-        if (activity != null) {   
-            ListAdapter listAdapter = getListAdapter();
-            final ExpenseRecord expense = (ExpenseRecord) listAdapter.getItem(position);
-            
-			Intent historyIntent = new Intent(this.getActivity(), HistoryActivity.class);
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		Activity activity = getActivity();
+
+		if (activity != null) {
+			ListAdapter listAdapter = getListAdapter();
+			final ExpenseRecord expense = (ExpenseRecord) listAdapter
+					.getItem(position);
+
+			Intent historyIntent = new Intent(this.getActivity(),
+					HistoryActivity.class);
 			historyIntent.putExtra("date", expense.getTimeMillis());
 			historyIntent.putExtra("tab", "totals");
 			HistoryFragment.this.startActivity(historyIntent);
 
-        }
-    }
-
+		}
+	}
 
 }
