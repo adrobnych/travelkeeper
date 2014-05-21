@@ -6,6 +6,7 @@ import java.util.List;
 import com.droidbrew.travelkeeper.model.entity.Expense;
 import com.droidbrew.travelkeeper.model.entity.TKCurrency;
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.QueryBuilder;
 
 public class CurrencyDBManager {
 	private Dao<TKCurrency, String> currencyDao = null;
@@ -59,9 +60,11 @@ public class CurrencyDBManager {
 		return result;
 	}
 
-	public List<TKCurrency> getWholeList() throws SQLException {
-		return getCurrencyDao().queryBuilder().orderBy("name", true).query();
-				//getCurrencyDao().queryForAll();
+	public List<TKCurrency> getWholeList(String search) throws SQLException {
+		QueryBuilder<TKCurrency, String> qb = getCurrencyDao().queryBuilder();
+		qb.where().like("name", "%" + search + "%").or()
+				.like("code", "%" + search + "%");
+		return qb.orderBy("name", true).query();
 	}
 
 	public String getReportCurrency() throws SQLException {
