@@ -18,8 +18,12 @@
         <Button
                 android:id="@+id/button_currency"
                 android:layout_width="wrap_content"
+<<<<<<< HEAD
                 android:layout_height="42dp"
                 android:layout_marginTop="3dp"
+=======
+                android:layout_height="44dp"
+>>>>>>> 12ed41f... lost commit - v1.5 uploaded to play market
              	android:layout_weight="0"
              	android:background="@drawable/my_button_selector"
                 android:text="EUR" 
@@ -31,7 +35,7 @@
             android:id="@+id/amount"
             android:layout_width="match_parent"
             android:layout_height="36dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="2dp"
             android:layout_marginRight="@dimen/amount_margin"
             android:layout_weight="4"
             android:background="#9919a9ea"

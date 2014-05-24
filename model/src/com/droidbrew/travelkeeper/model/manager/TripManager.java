@@ -8,8 +8,12 @@ import com.j256.ormlite.dao.Dao;
 
 public class TripManager {
 
-	private Dao<Trip, String> tripDao = null;
+	private Dao<Trip, Integer> tripDao = null;
 	
+	public Dao<Trip, Integer> getTripDao() {
+		return tripDao;
+	}
+
 	public TripManager() {}
 	
 	public String getNameById(int id) {
@@ -25,7 +29,7 @@ public class TripManager {
 		return "trip error";
 	}
 	
-	public void setTripDao(Dao<Trip, String> tripDao) {
+	public void setTripDao(Dao<Trip, Integer> tripDao) {
 		this.tripDao = tripDao;
 	}
 	

@@ -83,6 +83,7 @@ public class TravelApp extends Application {
 		if (null == currencyHTTPHelper) {
 			currencyHTTPHelper = new CurrencyHTTPHelper();
 		}
+<<<<<<< HEAD
 		return currencyHTTPHelper;
 	}
 
@@ -109,11 +110,30 @@ public class TravelApp extends Application {
 				tripManager.setTripDao(tripDao);
 			} catch (SQLException e) {
 				Log.e(TAG, "getExpenseManager", e);
+=======
+		
+		public TripManager getTripManager() {
+			if (null == tripManager) {
+		           
+                tripManager = new TripManager();
+                try {
+                Dao<Trip, Integer> tripDao =
+                        DaoManager.createDao(
+                      		  getDbHelper().getConnectionSource()
+                      		  , Trip.class);
+        		
+        			tripManager.setTripDao(tripDao);
+        		} catch (SQLException e) {
+        			Log.e(TAG, "getExpenseManager", e);
+        		}
+        	
+>>>>>>> 12ed41f... lost commit - v1.5 uploaded to play market
 			}
 		}
 		return tripManager;
 	}
 
+<<<<<<< HEAD
 	public ExpenseManager getExpenseManager() {
 		if (null == expenseManager) {
 			expenseManager = new ExpenseManager();
@@ -126,10 +146,45 @@ public class TravelApp extends Application {
 			} catch (SQLException e) {
 				Log.e(TAG, "getExpenseManager", e);
 			}
+=======
+		public ExpenseManager getExpenseManager(){
+			if (null == expenseManager) {
+	           
+	                expenseManager = new ExpenseManager();
+	                Dao<Expense, Integer> expenseDao;
+	        		try {
+	        			expenseDao = DaoManager.createDao(dbHelper.getConnectionSource(), Expense.class);
+	        			expenseManager.setExpenseDao(expenseDao);
+	        			expenseManager.setCurrencyManager(getCurrencyManager());
+	        			expenseManager.setTripManager(getTripManager());
+	        		} catch (SQLException e) {
+	        			Log.e(TAG, "getExpenseManager", e);
+	        		}
+	        	
+	        }
+	        return expenseManager;
+		}
+		
+		public CurrencyDBManager getCurrencyManager(){
+			if (null == currencyManager) {
+	           
+	                currencyManager = new CurrencyDBManager();
+	                Dao<TKCurrency, String> currencyDao;
+	        		try {
+	        			currencyDao = DaoManager.createDao(dbHelper.getConnectionSource(), TKCurrency.class);
+	        			currencyManager.setCurrencyDao(currencyDao);
+	        		} catch (SQLException e) {
+	        			Log.e(TAG, "getCurrencyManager", e);
+	        		}
+	        	
+	        }
+	        return currencyManager;
+>>>>>>> 12ed41f... lost commit - v1.5 uploaded to play market
 		}
 		return expenseManager;
 	}
 
+<<<<<<< HEAD
 	public CurrencyDBManager getCurrencyManager() {
 		if (null == currencyManager) {
 			currencyManager = new CurrencyDBManager();
@@ -143,5 +198,17 @@ public class TravelApp extends Application {
 			}
 		}
 		return currencyManager;
+=======
+		private int historical_trip_id;
+		
+		public int getHistoricalTripId() {
+			return historical_trip_id;
+		}
+		
+		public void setHistoricalTripId(int id) {
+			this.historical_trip_id = id;
+		}
+
+>>>>>>> 12ed41f... lost commit - v1.5 uploaded to play market
 	}
 }

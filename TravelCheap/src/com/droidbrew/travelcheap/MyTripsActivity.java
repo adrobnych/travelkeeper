@@ -30,6 +30,7 @@ public class MyTripsActivity extends Activity {
 	List<String> trips;
 	ArrayAdapter<String> adapter;
 	ListView lView;
+<<<<<<< HEAD
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,48 @@ public class MyTripsActivity extends Activity {
 			i = new Intent(this, HomeActivity.class);
 			startActivityForResult(i, RESULT_SETTINGS);
 			break;
+=======
+	
+	private Dao<Trip, Integer> tripDao = null;
+	
+	
+	  @Override
+	  protected void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    setContentView(R.layout.activity_mytrips);
+	    
+	    tripDao = ((TravelApp)getApplication()).getTripManager().getTripDao();
+	    
+	    
+		  lView = (ListView) findViewById(R.id.LView);
+		  lView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		  
+		  
+		  try {
+          trips = new ArrayList<String>();
+
+          
+          adapter = new ArrayAdapter<String>(this,
+				  android.R.layout.simple_list_item_single_choice, trips);
+		  lView.setAdapter(adapter);
+          setTripList();
+
+		  } catch(SQLException e) {
+			  e.printStackTrace();
+		  }
+		  		  
+		 // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+		//		  android.R.layout.simple_list_item_single_choice, names);
+		//  lView.setAdapter(adapter);
+		  
+		  
+	  }
+	  
+	  @Override
+		public boolean onCreateOptionsMenu(Menu menu) {
+			getMenuInflater().inflate(R.menu.settings, menu);
+			return true;
+>>>>>>> 12ed41f... lost commit - v1.5 uploaded to play market
 		}
 		return true;
 	}
@@ -96,6 +139,7 @@ public class MyTripsActivity extends Activity {
 			if (tr.isDefault())
 				def = trips.indexOf(tr.getName());
 		}
+<<<<<<< HEAD
 		adapter.notifyDataSetChanged();
 		lView.setItemChecked(def, true);
 
@@ -121,6 +165,100 @@ public class MyTripsActivity extends Activity {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
+=======
+	  
+	  private void setTripList() throws SQLException {
+		  trips.clear();
+
+          List<Trip> list = tripDao.queryForAll();
+          int def = 0;
+          for(Trip tr : list) {
+        	  trips.add(tr.getName());
+        	  if(tr.isDefault())
+        		  def = trips.indexOf(tr.getName());
+          }
+          adapter.notifyDataSetChanged();
+          lView.setItemChecked(def, true);
+		  
+	  }
+	  
+	  public void onNewTripsClick(View view) {
+		  AlertDialog.Builder alert = new AlertDialog.Builder(this);
+		  alert.setTitle(R.string.myTripDialogNewTitle);
+		  alert.setMessage(R.string.myTripDialogNewMassage);
+		  
+		
+		  final EditText input = new EditText(this);
+		  alert.setView(input);
+		  
+		  alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int whichButton) {
+				try {
+		            tripDao.create(new Trip(input.getText().toString(), false));
+		            setTripList();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			
+			}
+		});
+		  
+		  alert.setNegativeButton(R.string.AdminDialogNB, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int whichButton) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		  
+		  
+		  alert.show();
+	  }
+	  
+	  public void onDeleteClick(View view) {
+		 
+		
+		  Log.d(TAG,""+ lView.getCheckedItemPosition());
+		 
+		  //Log.d(TAG,lView.getSelectedItem().toString());
+		  if(lView.getCheckedItemPosition() == -1)
+			  return;
+		  AlertDialog.Builder alert = new AlertDialog.Builder(this);
+		  alert.setTitle(R.string.myTripDialodDelTitle);
+		  alert.setMessage(R.string.myTripDialodDelMassage);
+		  alert.setPositiveButton(R.string.dialogDelPB, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				 try {
+			            
+			            Trip trip = tripDao.queryBuilder()
+			            		.where().eq("name", trips.get(lView.getCheckedItemPosition())).query().get(0);
+			            tripDao.delete(trip);
+			            if(trip.isDefault()) {
+				            trip = tripDao.queryForAll().get(0);
+				            trip.setDefault(true);
+				            tripDao.update(trip);
+			            	
+			            }
+			            setTripList();
+				 } catch(SQLException e) {
+					 e.printStackTrace();
+				 }
+				
+			}
+		});
+		
+		alert.setNegativeButton(R.string.AdminDialogNB, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				
+>>>>>>> 12ed41f... lost commit - v1.5 uploaded to play market
 			}
 		});
 		alert.setNegativeButton(R.string.AdminDialogNB,
@@ -191,6 +329,7 @@ public class MyTripsActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				try {
+<<<<<<< HEAD
 					Dao<Trip, String> tripDao = DaoManager.createDao(
 							((TravelApp) getApplication()).getDbHelper()
 									.getConnectionSource(), Trip.class);
@@ -215,6 +354,54 @@ public class MyTripsActivity extends Activity {
 		});
 		alert.setNegativeButton(R.string.AdminDialogNB,
 				new DialogInterface.OnClickListener() {
+=======
+		            
+		            Trip trip = tripDao.queryBuilder()
+		            		.where().eq("is_default", true).query().get(0);
+		            trip.setDefault(false);
+		            tripDao.update(trip);
+		            
+		            trip = tripDao.queryBuilder()
+		            		.where().eq("name", trips.get(lView.getCheckedItemPosition())).query().get(0);
+		            trip.setDefault(true);
+		            tripDao.update(trip);
+		            setTripList();
+			  } catch(SQLException e) {
+				  e.printStackTrace();
+			  }
+				
+			}
+		});
+		  alert.setNegativeButton(R.string.AdminDialogNB, new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+			alert.show();
+	  }
+	  public void onHistoryClick(View view){
+		    try {
+				Trip h_trip = tripDao.queryBuilder()
+					.where().eq("name", trips.get(lView.getCheckedItemPosition())).query().get(0);
+				
+				((TravelApp)getApplication()).setHistoricalTripId(h_trip.getId());
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    
+			Intent intent = new Intent(this, HistoryTripsActivity.class);
+			startActivity(intent);
+		}
+	   
+}
+		  
+	 
+>>>>>>> 12ed41f... lost commit - v1.5 uploaded to play market
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {

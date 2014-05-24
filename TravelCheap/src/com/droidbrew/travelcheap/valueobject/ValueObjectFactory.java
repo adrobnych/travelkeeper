@@ -69,6 +69,32 @@ public class ValueObjectFactory {
 		
     	return totals;
 	}
+	
+public List<ExpenseTripTotal> getHistoricalExpenceTripTotals(){
+		
+		List<ExpenseTripTotal> totals = new ArrayList<ExpenseTripTotal>();
+		int tripId = ((TravelApp)app).getHistoricalTripId();
+		
+		for(String pictureKey : pictureMap.keySet()){
+			totals.add(new ExpenseTripTotal(0, pictureKey,
+					((TravelApp)app).getLanguageManager().getTypeFromDB(pictureKey), tripId,
+    			pictureMap.get(pictureKey), ((TravelApp)app).getExpenseManager()));
+		}
+		totals.add(new ExpenseTripTotal(1, "other things",
+				((TravelApp)app).getLanguageManager().getMsg1(), tripId,
+				pictureMap.get("other things"), ((TravelApp)app).getExpenseManager()));
+		totals.add(new ExpenseTripTotal(2, "other things",
+				((TravelApp)app).getLanguageManager().getMsg2(), tripId,
+				pictureMap.get("other things"), ((TravelApp)app).getExpenseManager()));
+		totals.add(new ExpenseTripTotal(3, "other things",
+				((TravelApp)app).getLanguageManager().getMsg3(), tripId,
+				pictureMap.get("other things"), ((TravelApp)app).getExpenseManager()));
+		totals.add(new ExpenseTripTotal(4, "other things",
+				((TravelApp)app).getLanguageManager().getMsg4(), tripId,
+				pictureMap.get("other things"), ((TravelApp)app).getExpenseManager()));
+		
+    	return totals;
+	}
 
 	public List<ExpenseRecord> getExpenseRecords(long date){
 		List<ExpenseRecord> expenseVOs = new ArrayList<ExpenseRecord>();
@@ -85,6 +111,28 @@ public class ValueObjectFactory {
 	public List<ExpenseRecord> getExpenseRecordsByTrip(){
 		List<ExpenseRecord> expenseVOs = new ArrayList<ExpenseRecord>();
 		int id = ((TripManager) ((TravelApp)app).getTripManager()).getDefaultTripId();
+		List<String> dates = ((TravelApp)app).getExpenseManager().datesByTrip(id);
+
+		try {
+		for(String date : dates) {
+			long d = Long.parseLong(date);
+			ExpenseRecord er = new ExpenseRecord(0, 
+					d, "other", pictureMap.get("other things"), 
+					((TravelApp)app).getCurrencyManager().getReportCurrency(), 
+					((TravelApp)app).getExpenseManager().sumAmountByDateAndTrip(d,id)/100.0, 
+					id);
+			expenseVOs.add(er);
+		}
+		}catch(SQLException e) {
+			Log.e("deb","getExpensesByTrip", e);
+		}
+
+		return expenseVOs;
+	}
+	
+	public List<ExpenseRecord> getHistoricalExpenseRecordsByTrip(){
+		List<ExpenseRecord> expenseVOs = new ArrayList<ExpenseRecord>();
+		int id = ((TravelApp)app).getHistoricalTripId();
 		List<String> dates = ((TravelApp)app).getExpenseManager().datesByTrip(id);
 
 		try {

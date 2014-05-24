@@ -12,11 +12,16 @@ import com.j256.ormlite.dao.Dao;
 public class ExpenseManager {
 	private Dao<Expense, Integer> expenseDao = null;
 	private CurrencyDBManager currencyManager = null;
+	private TripManager tripManager = null;
 	
 	
 
 	public void setCurrencyManager(CurrencyDBManager currencyManager) {
 		this.currencyManager = currencyManager;
+	}
+	
+	public void setTripManager(TripManager tripManager){
+		this.tripManager = tripManager;
 	}
 
 	public Dao<Expense, Integer> getExpenseDao() {
@@ -42,8 +47,14 @@ public class ExpenseManager {
 		
 		try {
 			Long usdSum =  getExpenseDao().queryRawValue(
+<<<<<<< HEAD
 					"select sum(usd_amount) from expenses where type = ? and trip_id = ? and date_and_time >= ? and date_and_time <= ?",
 					type, ""+trip_id, firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day)
+=======
+					"select sum(usd_amount) from expenses where type = ? and date_and_time >= ? and date_and_time <= ? and trip_id = ?",
+					type, firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day),
+					"" + tripManager.getDefaultTripId()
+>>>>>>> 12ed41f... lost commit - v1.5 uploaded to play market
 					);
 			String repCurrency = currencyManager.getReportCurrency();
 			
@@ -152,8 +163,9 @@ public class ExpenseManager {
 		Long result = null;
 		try {
 			long usdSum =  getExpenseDao().queryRawValue(
-					"select sum(usd_amount) from expenses where date_and_time >= ? and date_and_time <= ?",
-					firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day)
+					"select sum(usd_amount) from expenses where date_and_time >= ? and date_and_time <= ? and trip_id = ?",
+					firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day),
+					"" + tripManager.getDefaultTripId()
 					);
 
 			String repCurrency = currencyManager.getReportCurrency();
