@@ -30,14 +30,14 @@
     <string name="AdminDialogTitleUpd">Работает..</string>
     <string name="AdminDialogMassageUpd">Обновление валютных курсов</string>
     <string name="toastSuccessMessage">Курсы успешно загружены</string>
-    <string name="toastFailedMessage">Курсы загрузка не удалось</string>
+    <string name="toastFailedMessage">Курсы загрузить не удалось</string>
     <string name="currencyActivityTitle">Выберите валюту для отчетов</string>
     <string name="currencyActivityTitleElse">Выберите валюту для своих расходов</string>
     <string name="spentOn">потрачено на</string>
     <string name="GridViewSetText">Click to remove</string>
     <string name="addExpensTitle">Добавить расходы</string>
     <string name="addExpensPB">Добавить</string>
-    <string name="homeActivityDialogMessage">Сегодня вы провели</string>
+    <string name="homeActivityDialogMessage">Сегодня вы потратили</string>
     <string name="dialogFor">на</string>
     <string name="composeDialogTitleElse">Новый расход</string>
     <string name="myTripDialogNewTitle">Новая Поездка</string>

@@ -10,8 +10,10 @@ import org.junit.Test;
 
 import com.droidbrew.travelkeeper.model.entity.Expense;
 import com.droidbrew.travelkeeper.model.entity.TKCurrency;
+import com.droidbrew.travelkeeper.model.entity.Trip;
 import com.droidbrew.travelkeeper.model.manager.CurrencyDBManager;
 import com.droidbrew.travelkeeper.model.manager.ExpenseManager;
+import com.droidbrew.travelkeeper.model.manager.TripManager;
 import com.droidbrew.travelkeeper.spec.model.db.TestDbHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
@@ -50,6 +52,25 @@ public class ExpenceManagerSpec {
 		}
 		
 		em.setCurrencyManager(cm);
+		
+		TableUtils.dropTable(connectionSource, Trip.class, true);
+		TableUtils.createTableIfNotExists(connectionSource, Trip.class);
+		TripManager tm = new TripManager();
+		Dao<Trip, Integer> tripDao;
+		try {
+			tripDao = DaoManager.createDao(connectionSource, Trip.class);
+			tm.setTripDao(tripDao);
+			//TableUtils.clearTable(connectionSource, Trip.class);
+			Trip default_trip = new Trip();
+			default_trip.setId(1);
+			default_trip.setName("default trip");
+			default_trip.setDefault(true);
+			tripDao.create(default_trip);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		em.setTripManager(tm);
 		
 		
     }

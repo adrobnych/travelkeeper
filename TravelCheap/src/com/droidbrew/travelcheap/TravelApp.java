@@ -94,7 +94,7 @@ public class TravelApp extends Application {
 		           
                 tripManager = new TripManager();
                 try {
-                Dao<Trip, String> tripDao =
+                Dao<Trip, Integer> tripDao =
                         DaoManager.createDao(
                       		  getDbHelper().getConnectionSource()
                       		  , Trip.class);
@@ -117,6 +117,7 @@ public class TravelApp extends Application {
 	        			expenseDao = DaoManager.createDao(dbHelper.getConnectionSource(), Expense.class);
 	        			expenseManager.setExpenseDao(expenseDao);
 	        			expenseManager.setCurrencyManager(getCurrencyManager());
+	        			expenseManager.setTripManager(getTripManager());
 	        		} catch (SQLException e) {
 	        			Log.e(TAG, "getExpenseManager", e);
 	        		}
@@ -139,6 +140,16 @@ public class TravelApp extends Application {
 	        	
 	        }
 	        return currencyManager;
+		}
+
+		private int historical_trip_id;
+		
+		public int getHistoricalTripId() {
+			return historical_trip_id;
+		}
+		
+		public void setHistoricalTripId(int id) {
+			this.historical_trip_id = id;
 		}
 
 	}

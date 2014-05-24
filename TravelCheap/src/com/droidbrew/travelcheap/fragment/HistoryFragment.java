@@ -43,7 +43,7 @@ public class HistoryFragment extends ListFragment {
 
 	private void refreshRecords(){
 		if (activity != null) {
-			expenses = ((TravelApp)activity.getApplication()).getVoFactory().getExpenseRecordsByTrip();
+			expenses = ((TravelApp)activity.getApplication()).getVoFactory().getHistoricalExpenseRecordsByTrip();
 			setListAdapter(new HistoryListAdapter(activity, expenses));
 		}
 	}

@@ -31,10 +31,15 @@ public class MyTripsActivity extends Activity {
 	ArrayAdapter<String> adapter;
 	ListView lView;
 	
+	private Dao<Trip, Integer> tripDao = null;
+	
+	
 	  @Override
 	  protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_mytrips);
+	    
+	    tripDao = ((TravelApp)getApplication()).getTripManager().getTripDao();
 	    
 	    
 		  lView = (ListView) findViewById(R.id.LView);
@@ -57,6 +62,8 @@ public class MyTripsActivity extends Activity {
 		 // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 		//		  android.R.layout.simple_list_item_single_choice, names);
 		//  lView.setAdapter(adapter);
+		  
+		  
 	  }
 	  
 	  @Override
@@ -89,10 +96,7 @@ public class MyTripsActivity extends Activity {
 	  
 	  private void setTripList() throws SQLException {
 		  trips.clear();
-          Dao<Trip, String> tripDao =
-                  DaoManager.createDao(
-                		  ((TravelApp)getApplication()).getDbHelper().getConnectionSource()
-                		  , Trip.class);
+
           List<Trip> list = tripDao.queryForAll();
           int def = 0;
           for(Trip tr : list) {
@@ -119,10 +123,6 @@ public class MyTripsActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
 				try {
-		            Dao<Trip, String> tripDao =
-		                    DaoManager.createDao(
-		                    		((TravelApp)getApplication()).getDbHelper().getConnectionSource()
-		                    		, Trip.class);
 		            tripDao.create(new Trip(input.getText().toString(), false));
 		            setTripList();
 				}catch(SQLException e) {
@@ -161,10 +161,7 @@ public class MyTripsActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				 try {
-			            Dao<Trip, String> tripDao =
-			                    DaoManager.createDao(
-			                    		((TravelApp)getApplication()).getDbHelper().getConnectionSource()
-			                    		, Trip.class);
+			            
 			            Trip trip = tripDao.queryBuilder()
 			            		.where().eq("name", trips.get(lView.getCheckedItemPosition())).query().get(0);
 			            tripDao.delete(trip);
@@ -207,10 +204,7 @@ public class MyTripsActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				try {
-		            Dao<Trip, String> tripDao =
-		                    DaoManager.createDao(
-		                    		((TravelApp)getApplication()).getDbHelper().getConnectionSource()
-		                    		, Trip.class);
+		            
 		            Trip trip = tripDao.queryBuilder()
 		            		.where().eq("is_default", true).query().get(0);
 		            trip.setDefault(false);
@@ -238,6 +232,17 @@ public class MyTripsActivity extends Activity {
 			alert.show();
 	  }
 	  public void onHistoryClick(View view){
+		    try {
+				Trip h_trip = tripDao.queryBuilder()
+					.where().eq("name", trips.get(lView.getCheckedItemPosition())).query().get(0);
+				
+				((TravelApp)getApplication()).setHistoricalTripId(h_trip.getId());
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    
 			Intent intent = new Intent(this, HistoryTripsActivity.class);
 			startActivity(intent);
 		}

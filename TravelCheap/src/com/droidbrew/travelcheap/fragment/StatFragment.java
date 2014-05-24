@@ -45,7 +45,7 @@ public class StatFragment extends ListFragment {
     
     private void refreshTotals(){
     	if (activity != null) {
-        	totals = ((TravelApp)activity.getApplication()).getVoFactory().getExpenceTripTotals();
+        	totals = ((TravelApp)activity.getApplication()).getVoFactory().getHistoricalExpenceTripTotals();
             setListAdapter(new StatListAdapter(activity, totals));
         }
     }
