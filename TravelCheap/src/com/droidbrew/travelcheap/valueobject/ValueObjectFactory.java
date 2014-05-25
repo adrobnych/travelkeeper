@@ -43,6 +43,19 @@ public class ValueObjectFactory {
 		
     	return totals;
 	}
+	
+public List<ExpenseDayTotal> getHistoricalExpenceDayTotals(long date){
+		
+		List<ExpenseDayTotal> totals = new ArrayList<ExpenseDayTotal>();
+		
+		for(String pictureKey : pictureMap.keySet()){
+			totals.add(new ExpenseDayTotal(0,((TravelApp)app).getHistoricalTripId(), pictureKey,
+					((TravelApp)app).getLanguageManager().getTypeFromDB(pictureKey), date,
+    			pictureMap.get(pictureKey), ((TravelApp)app).getExpenseManager()));
+		}
+		
+    	return totals;
+	}
 
 	public List<ExpenseTripTotal> getExpenceTripTotals(){
 		

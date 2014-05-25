@@ -181,8 +181,7 @@ public class ChartsFragment extends Fragment {
 								.getExpenseManager().sumAmountByDateAndTrip(
 										date.getTime(), ((TravelApp) this.getActivity()
 												.getApplication())
-												.getTripManager()
-												.getDefaultTripId())
+												.getHistoricalTripId())
 						/ 100.0
 						+ " "
 						+ ((TravelApp) getActivity().getApplication())
@@ -198,8 +197,7 @@ public class ChartsFragment extends Fragment {
 								.getExpenseManager().getBeetwenDays(
 										((TravelApp) this.getActivity()
 												.getApplication())
-												.getTripManager()
-												.getDefaultTripId(), dates[0],
+												.getHistoricalTripId(), dates[0],
 										dates[6])
 						/ 100.0
 						+ " "
@@ -214,8 +212,7 @@ public class ChartsFragment extends Fragment {
 								.getExpenseManager().sumAmountByTrip(
 										((TravelApp) this.getActivity()
 												.getApplication())
-												.getTripManager()
-												.getDefaultTripId())
+												.getHistoricalTripId())
 						/ 100.0
 						+ " "
 						+ ((TravelApp) getActivity().getApplication())
@@ -237,7 +234,7 @@ public class ChartsFragment extends Fragment {
 		}
 			if (check == ChartsFragment.CH_DAY) {
 				List<ExpenseDayTotal> totals = ((TravelApp) activity
-						.getApplication()).getVoFactory().getExpenceDayTotals(
+						.getApplication()).getVoFactory().getHistoricalExpenceDayTotals(
 						new Date().getTime());
 				gView = ChartFactory.getPieChartView(view.getContext(),
 						getCategorySeries1(totals), getPieRenderer(totals.size()));
