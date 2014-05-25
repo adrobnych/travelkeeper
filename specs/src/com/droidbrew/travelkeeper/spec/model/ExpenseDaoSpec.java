@@ -31,9 +31,9 @@ public class ExpenseDaoSpec {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
     }
-	
+
 	@Before
 	public void clearExpenses(){
 		try {
@@ -42,26 +42,26 @@ public class ExpenseDaoSpec {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void ExpenseCanBeStoredInDB(){
-		
+
 		Expense expense = new Expense();
+		expense.setTripId(1);
 		expense.setType("food");
 		expense.setAmount(1200L);
 		expense.setDateAndTime(123445L);
 		expense.setCurrencyCode("EUR");
 		expense.setUsdAmount(Math.round(1200/(eurToUsd/1000000.0)));
-		
-		
+
 		try {
 			eDao.create(expense);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		assertTrue(expense.getId() != null);
-		
+
 		Expense new_e = null;
 		try {
 			new_e = eDao.queryForId((Integer)expense.getId());
@@ -69,26 +69,26 @@ public class ExpenseDaoSpec {
 			e.printStackTrace();
 		}
 		assertEquals(1200L, new_e.getAmount().longValue());
-		
+
 	}
-	
+
 	@Test
 	public void ItSavesDateAndTimeofExpense(){
 		Expense expense = new Expense();
+		expense.setTripId(1);
 		expense.setType("food");
 		expense.setAmount(1200L);
 		long now = System.currentTimeMillis();
 		expense.setDateAndTime(now);
 		expense.setCurrencyCode("EUR");
 		expense.setUsdAmount(Math.round(1200/(eurToUsd/1000000.0)));
-		
-		
+
 		try {
 			eDao.create(expense);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		Expense new_e = null;
 		try {
 			new_e = eDao.queryForId((Integer)expense.getId());
@@ -96,6 +96,6 @@ public class ExpenseDaoSpec {
 			e.printStackTrace();
 		}
 		assertEquals(now, new_e.getDateAndTime().longValue());
-		
+
 	}
 }

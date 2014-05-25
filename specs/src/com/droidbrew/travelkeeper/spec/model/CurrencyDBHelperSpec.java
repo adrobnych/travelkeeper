@@ -113,7 +113,7 @@ public class CurrencyDBHelperSpec {
 			cm.create(currency1);
 			cm.create(currency2);
 		
-			assertEquals(2, cm.getWholeList().size());
+			assertEquals(2, cm.getWholeList("").size());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -37,7 +37,7 @@ public class ExpenceManagerSpec {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		TableUtils.createTableIfNotExists(connectionSource, TKCurrency.class);
 		CurrencyDBManager cm = new CurrencyDBManager();
 		Dao<TKCurrency, String> currencyDao;
@@ -50,9 +50,9 @@ public class ExpenceManagerSpec {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		em.setCurrencyManager(cm);
-		
+
 		TableUtils.dropTable(connectionSource, Trip.class, true);
 		TableUtils.createTableIfNotExists(connectionSource, Trip.class);
 		TripManager tm = new TripManager();
@@ -69,14 +69,14 @@ public class ExpenceManagerSpec {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		em.setTripManager(tm);
-		
-		
+
+
     }
-	
+
 	private long time1;
-	
+
 	@Before
 	public void clearAndFeedExpenses(){
 		try {
@@ -84,85 +84,89 @@ public class ExpenceManagerSpec {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		Expense expense1 = new Expense();
+		expense1.setTripId(1);
 		expense1.setType("food");
 		expense1.setAmount(1200L);
 		time1 = 12000000000L;
 		expense1.setDateAndTime(time1);
 		expense1.setCurrencyCode("EUR");
-		
-		
-		
+
+
+
 		try {
 			em.create(expense1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		Expense expense2 = new Expense();
+		expense2.setTripId(1);
 		expense2.setType("food");
 		expense2.setAmount(1000L);
 		long time2 = 12000000100L;
 		expense2.setDateAndTime(time2);
 		expense2.setCurrencyCode("EUR");
-		
-		
+
+
 		try {
 			em.create(expense2);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		Expense expense3 = new Expense();
+		expense3.setTripId(1);
 		expense3.setType("food");
 		expense3.setAmount(1000L);
 		long time3 = 200000000000000100L;
 		expense3.setDateAndTime(time3);
 		expense3.setCurrencyCode("EUR");
-		
-		
+
+
 		try {
 			em.create(expense3);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		Expense expense4 = new Expense();
+		expense4.setTripId(1);
 		expense4.setType("transport");
 		expense4.setAmount(1000L);
 		expense4.setDateAndTime(time2);
 		expense4.setCurrencyCode("EUR");
 
-		
+
 		try {
 			em.create(expense4);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void itShouldFetchSumOfExpensesByTypeAndDay(){
-		
-		assertEquals(2200L, em.sumAmountByTypeAndDate("food", time1).longValue());
-		
+
+		assertEquals(2200L, em.sumAmountByTypeAndDate("food", 1, time1).longValue());
+
 	}
-	
+
 	@Test
 	public void itShouldFetchSumOfExpensesByDay(){
-		
+
 		assertEquals(3200L, em.sumAmountByDate(time1).longValue());
-		
+
 	}
-	
+
 	@Test
 	public void itShouldFetchListOfExpensesByDay(){
-		
+
 		assertEquals(1200L, em.expensesByDate(time1).get(0).getAmount().longValue());
-		
+
 	}
-	
+
 	@Test
 	public void itShouldDeleteExpenseById(){
 		int first_expense_id = -1;
@@ -171,21 +175,21 @@ public class ExpenceManagerSpec {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		em.deleteExpenseById(first_expense_id);
-		
+
 		Expense ex = null;
-		
+
 		try {
 			ex = em.getExpenseDao().queryForId(first_expense_id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		assertEquals(null, ex);
 	}
-	
+
 	@Test
 	public void itSouldKnowCodeOfCurrency(){
 		int first_expense_id = -1;
@@ -198,7 +202,7 @@ public class ExpenceManagerSpec {
 		}
 		assertEquals("EUR", ex.getCurrencyCode());
 	}
-	
+
 	@Test
 	public void itSouldKnowUSDEquivalent(){
 		int first_expense_id = -1;
@@ -211,7 +215,7 @@ public class ExpenceManagerSpec {
 		}
 		assertEquals(1200, ex.getAmount().longValue());
 		assertEquals(1629, ex.getUsdAmount().longValue());
-		
+
 	}
-	
+
 }

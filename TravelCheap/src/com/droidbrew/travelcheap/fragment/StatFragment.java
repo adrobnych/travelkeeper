@@ -24,9 +24,7 @@ public class StatFragment extends ListFragment {
 	private List<ExpenseTripTotal> totals;
 	private Activity activity;
 	private LangManager lm;
-<<<<<<< HEAD
-=======
-    
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -50,31 +48,9 @@ public class StatFragment extends ListFragment {
             setListAdapter(new StatListAdapter(activity, totals));
         }
     }
->>>>>>> 12ed41f... lost commit - v1.5 uploaded to play market
 
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
 
-		activity = getActivity();
-		lm = new LangManager(
-				getResources().getConfiguration().locale.getLanguage());
 
-		refreshTotals();
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-	}
-
-	private void refreshTotals() {
-		if (activity != null) {
-			totals = ((TravelApp) activity.getApplication()).getVoFactory()
-					.getExpenceTripTotals();
-			setListAdapter(new StatListAdapter(activity, totals));
-		}
-	}
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {

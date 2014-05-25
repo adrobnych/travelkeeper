@@ -16,6 +16,7 @@ import com.droidbrew.travelkeeper.model.manager.CurrencyHTTPHelper;
 public class CurrencyHTTPHelperSpec {
 	
 	private CurrencyHTTPHelper currencyHTTPHelper = new CurrencyHTTPHelper();
+	String fileDirBase = "/home/adrobnych/dev/TravelKeeper";
 
 	@Test
 	public void itCanGetRemoteListOfAllCurrenciesAndCourses() {
@@ -29,8 +30,8 @@ public class CurrencyHTTPHelperSpec {
 		String xmlString = null;
 		String cnamesString = null;
 		try {
-			xmlString = FileUtils.readFileToString(new File("D:/Android/workspace/travelkeeper/TravelCheap/assets/quote.xml"));
-			cnamesString = FileUtils.readFileToString(new File("D:/Android/workspace/travelkeeper/TravelCheap/assets/currency_names.yml"));
+			xmlString = FileUtils.readFileToString(new File(fileDirBase + "/TravelCheap/assets/quote.xml"));
+			cnamesString = FileUtils.readFileToString(new File(fileDirBase + "/TravelCheap/assets/currency_names.yml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -48,7 +49,7 @@ public class CurrencyHTTPHelperSpec {
 	public void itCanLoadCurrencyNames() {
 		String cnamesString = null;
 		try {
-			cnamesString = FileUtils.readFileToString(new File("D:/Android/workspace/travelkeeper/TravelCheap/assets/currency_names.yml"));
+			cnamesString = FileUtils.readFileToString(new File(fileDirBase + "/TravelCheap/assets/currency_names.yml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

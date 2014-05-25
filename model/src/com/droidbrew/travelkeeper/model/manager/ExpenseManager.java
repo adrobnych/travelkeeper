@@ -47,14 +47,11 @@ public class ExpenseManager {
 		
 		try {
 			Long usdSum =  getExpenseDao().queryRawValue(
-<<<<<<< HEAD
-					"select sum(usd_amount) from expenses where type = ? and trip_id = ? and date_and_time >= ? and date_and_time <= ?",
-					type, ""+trip_id, firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day)
-=======
+
 					"select sum(usd_amount) from expenses where type = ? and date_and_time >= ? and date_and_time <= ? and trip_id = ?",
 					type, firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day),
 					"" + tripManager.getDefaultTripId()
->>>>>>> 12ed41f... lost commit - v1.5 uploaded to play market
+
 					);
 			String repCurrency = currencyManager.getReportCurrency();
 			
