@@ -50,9 +50,9 @@ public class ExpenseManager {
 
 					"select sum(usd_amount) from expenses where type = ? and date_and_time >= ? and date_and_time <= ? and trip_id = ?",
 					type, firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day),
-					"" + tripManager.getDefaultTripId()
+					"" + trip_id
 
-					);
+					);//--
 			String repCurrency = currencyManager.getReportCurrency();
 			
 			long repCourse = currencyManager.find(repCurrency).getCourse();
@@ -122,19 +122,6 @@ public class ExpenseManager {
 		}
 		return result;
 	}
-	
-//	public Long sumAmountByTypeAndDate(String type, long time_of_day) {
-//		
-//		try {
-//			return getExpenseDao().queryRawValue(
-//					"select sum(amount) from expenses where type = ? and date_and_time >= ? and date_and_time <= ?",
-//					type, firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day)
-//					);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
 	
 	private String firstMSecondOfTheDay(long time_of_day_millis){
 		Calendar cal = Calendar.getInstance();
@@ -215,18 +202,6 @@ public class ExpenseManager {
 		}
 		return dates;
 	}
-	
-//	public Long sumAmountByDate(long time_of_day) {
-//		try {
-//			return getExpenseDao().queryRawValue(
-//					"select sum(amount) from expenses where date_and_time >= ? and date_and_time <= ?",
-//					firstMSecondOfTheDay(time_of_day), lastMSecondOfTheDay(time_of_day)
-//					);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
 
 	public List<Expense> expensesByDate(long time_of_day) {
 		try {
@@ -253,6 +228,5 @@ public class ExpenseManager {
 				e.printStackTrace();
 			}
 	}
-	
 
 }

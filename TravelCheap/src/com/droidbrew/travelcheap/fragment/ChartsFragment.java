@@ -241,7 +241,7 @@ public class ChartsFragment extends Fragment {
 			}
 			if (check == ChartsFragment.CH_TOTAL) {
 				List<ExpenseTripTotal> totals = ((TravelApp) activity
-						.getApplication()).getVoFactory().getExpenceTripTotals();
+						.getApplication()).getVoFactory().getHistoricalExpenceTripTotals();
 				gView = ChartFactory.getPieChartView(view.getContext(),
 						getCategorySeries2(totals), getPieRenderer(6));
 			}
@@ -311,7 +311,7 @@ public class ChartsFragment extends Fragment {
 
 		for (int i = 0; i < 7; i++) {
 			List<ExpenseDayTotal> list = ((TravelApp) activity.getApplication())
-					.getVoFactory().getExpenceDayTotals(dates[i]);
+					.getVoFactory().getHistoricalExpenceDayTotals(dates[i]);
 			double sum = 0;
 			for (int y = 0; y < 6; y++) {
 				sum += list.get(y).getAmount();

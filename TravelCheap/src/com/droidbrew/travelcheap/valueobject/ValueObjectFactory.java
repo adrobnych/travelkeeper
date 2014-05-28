@@ -31,30 +31,32 @@ public class ValueObjectFactory {
 		
 	}
 	
-	public List<ExpenseDayTotal> getExpenceDayTotals(long date){
-		
+	public List<ExpenseDayTotal> getExpenceDayTotals(long date) {
+
 		List<ExpenseDayTotal> totals = new ArrayList<ExpenseDayTotal>();
-		
-		for(String pictureKey : pictureMap.keySet()){
-			totals.add(new ExpenseDayTotal(0,((TravelApp)app).getTripManager().getDefaultTripId(), pictureKey,
-					((TravelApp)app).getLanguageManager().getTypeFromDB(pictureKey), date,
-    			pictureMap.get(pictureKey), ((TravelApp)app).getExpenseManager()));
+		for (String pictureKey : pictureMap.keySet()) {
+			totals.add(new ExpenseDayTotal(0, ((TravelApp) app)
+					.getTripManager().getDefaultTripId(), pictureKey,
+					((TravelApp) app).getLanguageManager().getTypeFromDB(
+							pictureKey), date, pictureMap.get(pictureKey),
+					((TravelApp) app).getExpenseManager()));
 		}
-		
-    	return totals;
+
+		return totals;
 	}
-	
-public List<ExpenseDayTotal> getHistoricalExpenceDayTotals(long date){
-		
+
+	public List<ExpenseDayTotal> getHistoricalExpenceDayTotals(long date) {
+
 		List<ExpenseDayTotal> totals = new ArrayList<ExpenseDayTotal>();
-		
-		for(String pictureKey : pictureMap.keySet()){
-			totals.add(new ExpenseDayTotal(0,((TravelApp)app).getHistoricalTripId(), pictureKey,
-					((TravelApp)app).getLanguageManager().getTypeFromDB(pictureKey), date,
-    			pictureMap.get(pictureKey), ((TravelApp)app).getExpenseManager()));
+		for (String pictureKey : pictureMap.keySet()) {
+			totals.add(new ExpenseDayTotal(0, ((TravelApp) app)
+					.getHistoricalTripId(), pictureKey, ((TravelApp) app)
+					.getLanguageManager().getTypeFromDB(pictureKey), date,
+					pictureMap.get(pictureKey), ((TravelApp) app)
+							.getExpenseManager()));
 		}
-		
-    	return totals;
+
+		return totals;
 	}
 
 	public List<ExpenseTripTotal> getExpenceTripTotals(){

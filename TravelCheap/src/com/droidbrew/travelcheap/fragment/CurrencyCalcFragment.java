@@ -82,14 +82,44 @@ public class CurrencyCalcFragment extends Fragment {
 
 		EditText eField = (EditText) view.findViewById(R.id.amount1);
 		eField.addTextChangedListener(new SomeWatcher(eField));
+		eField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				 if(hasFocus) ((EditText)v).setText("");
+			}
+		});
 		eField = (EditText) view.findViewById(R.id.amount2);
 		eField.addTextChangedListener(new SomeWatcher(eField));
+		eField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				 if(hasFocus) ((EditText)v).setText("");
+			}
+		});
 		eField = (EditText) view.findViewById(R.id.amount3);
 		eField.addTextChangedListener(new SomeWatcher(eField));
+		eField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				 if(hasFocus) ((EditText)v).setText("");
+			}
+		});
 		eField = (EditText) view.findViewById(R.id.amount4);
 		eField.addTextChangedListener(new SomeWatcher(eField));
+		eField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				 if(hasFocus) ((EditText)v).setText("");
+			}
+		});
 		eField = (EditText) view.findViewById(R.id.amount5);
 		eField.addTextChangedListener(new SomeWatcher(eField));
+		eField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				 if(hasFocus) ((EditText)v).setText("");
+			}
+		});
 		return view;
 	}
 

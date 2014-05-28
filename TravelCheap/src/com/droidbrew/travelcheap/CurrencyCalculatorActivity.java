@@ -29,23 +29,52 @@ public class CurrencyCalculatorActivity extends Activity {
 
 		EditText eField = (EditText) this.findViewById(R.id.amount1);
 		eField.addTextChangedListener(new SomeWatcher(eField));
+		eField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				 if(hasFocus) ((EditText)v).setText("");
+			}
+		});
 		eField = (EditText) this.findViewById(R.id.amount2);
 		eField.addTextChangedListener(new SomeWatcher(eField));
+		eField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				 if(hasFocus) ((EditText)v).setText("");
+			}
+		});
 		eField = (EditText) this.findViewById(R.id.amount3);
 		eField.addTextChangedListener(new SomeWatcher(eField));
+		eField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				 if(hasFocus) ((EditText)v).setText("");
+			}
+		});
 		eField = (EditText) this.findViewById(R.id.amount4);
 		eField.addTextChangedListener(new SomeWatcher(eField));
+		eField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				 if(hasFocus) ((EditText)v).setText("");
+			}
+		});
 		eField = (EditText) this.findViewById(R.id.amount5);
 		eField.addTextChangedListener(new SomeWatcher(eField));
-
+		eField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				 if(hasFocus) ((EditText)v).setText("");
+			}
+		});
 	}
 
 	public void refresh(View view) {
 		try {
 
 			if (view == null)
-				view = (TextView) findViewById(R.id.amount1);
-			String str = ((TextView) view).getText().toString();
+				view = (EditText) findViewById(R.id.amount1);
+			String str = ((EditText) view).getText().toString();
 			if (str.equals(""))
 				str = "0";
 			double amount = 100 * Double.parseDouble(str.toString());
@@ -73,19 +102,19 @@ public class CurrencyCalculatorActivity extends Activity {
 			long usdamount = Math.round(amount / (course / 1000000.0));
 
 			if (view.getId() != R.id.amount1)
-				((TextView) findViewById(R.id.amount1)).setText(getResult(
+				((EditText) findViewById(R.id.amount1)).setText(getResult(
 						usdamount, pref.getString("convert1", "USD")));
 			if (view.getId() != R.id.amount2)
-				((TextView) findViewById(R.id.amount2)).setText(getResult(
+				((EditText) findViewById(R.id.amount2)).setText(getResult(
 						usdamount, pref.getString("convert2", "EUR")));
 			if (view.getId() != R.id.amount3)
-				((TextView) findViewById(R.id.amount3)).setText(getResult(
+				((EditText) findViewById(R.id.amount3)).setText(getResult(
 						usdamount, pref.getString("convert3", "CNY")));
 			if (view.getId() != R.id.amount4)
-				((TextView) findViewById(R.id.amount4)).setText(getResult(
+				((EditText) findViewById(R.id.amount4)).setText(getResult(
 						usdamount, pref.getString("convert4", "JPY")));
 			if (view.getId() != R.id.amount5)
-				((TextView) findViewById(R.id.amount5)).setText(getResult(
+				((EditText) findViewById(R.id.amount5)).setText(getResult(
 						usdamount, pref.getString("convert5", "GBP")));
 
 		} catch (SQLException ex) {
@@ -184,6 +213,10 @@ public class CurrencyCalculatorActivity extends Activity {
 		finish();
 	}
 
+	public void onClickEditText(){
+		((EditText) findViewById(R.id.amount1)).setText("");
+	}
+	
 	private class SomeWatcher implements TextWatcher {
 
 		private View view;

@@ -10,14 +10,14 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/model"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="/home/adrobnych/dev/TravelKeeper/libs/commons-io-2.4.jar"/>
-	<classpathentry kind="lib" path="/home/adrobnych/dev/TravelKeeper/libs/commons-logging-1.1.jar"/>
-	<classpathentry kind="lib" path="/home/adrobnych/dev/TravelKeeper/libs/httpclient-4.2.3.jar"/>
-	<classpathentry kind="lib" path="/home/adrobnych/dev/TravelKeeper/libs/httpcore-4.2.2.jar"/>
-	<classpathentry kind="lib" path="/home/adrobnych/dev/TravelKeeper/libs/model.jar"/>
-	<classpathentry kind="lib" path="/home/adrobnych/dev/TravelKeeper/libs/ormlite-core-4.43.jar"/>
-	<classpathentry kind="lib" path="/home/adrobnych/dev/TravelKeeper/libs/ormlite-jdbc-4.43.jar"/>
-	<classpathentry kind="lib" path="/home/adrobnych/dev/TravelKeeper/libs/snakeyaml-android-1.8-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/home/adrobnych/dev/TravelKeeper/libs/sqlite-jdbc-3.7.2.jar"/>
+	<classpathentry kind="lib" path="D:/Android5/workspace/travelkeeper/libs/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="D:/Android5/workspace/travelkeeper/libs/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="D:/Android5/workspace/travelkeeper/libs/httpclient-4.2.3.jar"/>
+	<classpathentry kind="lib" path="D:/Android5/workspace/travelkeeper/libs/httpcore-4.2.2.jar"/>
+	<classpathentry kind="lib" path="D:/Android5/workspace/travelkeeper/libs/model.jar"/>
+	<classpathentry kind="lib" path="D:/Android5/workspace/travelkeeper/libs/ormlite-core-4.43.jar"/>
+	<classpathentry kind="lib" path="D:/Android5/workspace/travelkeeper/libs/ormlite-jdbc-4.43.jar"/>
+	<classpathentry kind="lib" path="D:/Android5/workspace/travelkeeper/libs/snakeyaml-android-1.8-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="D:/Android5/workspace/travelkeeper/libs/sqlite-jdbc-3.7.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

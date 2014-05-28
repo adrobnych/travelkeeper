@@ -153,7 +153,7 @@ public class TravelApp extends Application {
 
 
 
-		private int historical_trip_id;
+		private int historical_trip_id =1;
 		
 		public int getHistoricalTripId() {
 			return historical_trip_id;
