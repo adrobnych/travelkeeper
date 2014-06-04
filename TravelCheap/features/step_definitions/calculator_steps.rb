@@ -38,7 +38,7 @@ When(/^I touch today's date$/) do
   if(query("SquareTextView marked:'12'").size > 4)
     touch("SquareTextView marked:'12' index:1")
   else
-    touch("SquareTextView marked:'29'")
+    touch("SquareTextView marked:'12'")
   end
 end
 

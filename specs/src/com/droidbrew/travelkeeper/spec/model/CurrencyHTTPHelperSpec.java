@@ -16,7 +16,7 @@ import com.droidbrew.travelkeeper.model.manager.CurrencyHTTPHelper;
 public class CurrencyHTTPHelperSpec {
 	
 	private CurrencyHTTPHelper currencyHTTPHelper = new CurrencyHTTPHelper();
-	String fileDirBase = "D:/Android5/workspace/travelkeeper";
+	String fileDirBase = "/home/adrobnych/dev/TravelKeeper";
 
 	@Test
 	public void itCanGetRemoteListOfAllCurrenciesAndCourses() {
