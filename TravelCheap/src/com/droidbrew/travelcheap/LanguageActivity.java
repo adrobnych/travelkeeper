@@ -26,7 +26,7 @@ public class LanguageActivity extends PreferenceActivity {
 		Preference rurestart = (Preference) findPreference("rurestart");
 
 		intent = PendingIntent.getActivity(getApplicationContext(), 0,
-				new Intent(getIntent()), 0);
+				new Intent(LanguageActivity.this, HomeActivity.class), 0);
 
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		final SharedPreferences.Editor editor = preferences.edit();

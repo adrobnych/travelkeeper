@@ -1,486 +1,485 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_home_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_home_vertical_margin"
-    tools:context=".HomeActivity" 
-    android:background="@drawable/bg">
+    android:layout_height="match_parent" >
 
     <LinearLayout
+        android:id="@+id/LinearLayout1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-		
-        <Button
+        android:layout_height="match_parent"
+        android:background="@drawable/bg"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_home_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_home_vertical_margin"
+        tools:context=".HomeActivity" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
                 android:id="@+id/button_currency"
                 android:layout_width="wrap_content"
-
                 android:layout_height="44dp"
-
-             	android:layout_weight="0"
-             	android:background="@drawable/my_button_selector"
-                android:text="EUR" 
-                android:onClick="onCurrencyClick"
                 android:layout_marginRight="5dp"
-                />
-        
-        <TextView
-            android:id="@+id/amount"
+                android:layout_weight="0"
+                android:background="@drawable/my_button_selector"
+                android:onClick="onCurrencyClick"
+                android:text="EUR" />
+
+            <TextView
+                android:id="@+id/amount"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginRight="@dimen/amount_margin"
+                android:layout_marginTop="2dp"
+                android:layout_weight="4"
+                android:background="#9919a9ea"
+                android:gravity="center_vertical|right"
+                android:maxLength="@integer/length_of_amount"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="@dimen/amount_text" />
+        </LinearLayout>
+
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="@dimen/amount_margin"
-            android:layout_weight="4"
-            android:background="#9919a9ea"
-            android:gravity="center_vertical|right"
-            android:maxLength="@integer/length_of_amount"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:text="0"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="@dimen/amount_text" />
+            android:layout_height="wrap_content" >
 
-    </LinearLayout>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingTop="@dimen/expenses_home_margin" >
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+                <Button
+                    android:id="@+id/button_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_button_selector"
+                    android:onClick="onClick"
+                    android:text="1" />
 
-        <TableRow
+                <Button
+                    android:id="@+id/button_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_button_selector"
+                    android:onClick="onClick"
+                    android:text="2" />
+
+                <Button
+                    android:id="@+id/button_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_button_selector"
+                    android:onClick="onClick"
+                    android:text="3" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <Button
+                    android:id="@+id/button_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_button_selector"
+                    android:onClick="onClick"
+                    android:text="4" />
+
+                <Button
+                    android:id="@+id/button_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_button_selector"
+                    android:onClick="onClick"
+                    android:text="5" />
+
+                <Button
+                    android:id="@+id/button_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_button_selector"
+                    android:onClick="onClick"
+                    android:text="6" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <Button
+                    android:id="@+id/button_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_button_selector"
+                    android:onClick="onClick"
+                    android:text="7" />
+
+                <Button
+                    android:id="@+id/button_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_button_selector"
+                    android:onClick="onClick"
+                    android:text="8" />
+
+                <Button
+                    android:id="@+id/button_9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_button_selector"
+                    android:onClick="onClick"
+                    android:text="9" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <Button
+                    android:id="@+id/button_dot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_button_selector"
+                    android:onClick="onClick"
+                    android:text="." />
+
+                <Button
+                    android:id="@+id/button_0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_button_selector"
+                    android:onClick="onClick"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/button_C"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/my_button_selector"
+                    android:onClick="onClick"
+                    android:text="C" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="60dp" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <Button
+                            android:id="@+id/food"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/button_food_selector"
+                            android:onClick="onExpenseClick"
+                            android:tag="@string/foodButton"
+                            android:text="" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginBottom="2dp"
+                            android:text="@string/foodTextButtot"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <Button
+                            android:id="@+id/transport"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/button_transport_selector"
+                            android:onClick="onExpenseClick"
+                            android:tag="@string/transportButton"
+                            android:text="" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginBottom="2dp"
+                            android:text="@string/transportTextButtot"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <Button
+                            android:id="@+id/shopping"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/button_shopping_selector"
+                            android:onClick="onExpenseClick"
+                            android:tag="@string/shoppingButton"
+                            android:text="" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginBottom="2dp"
+                            android:text="@string/shoppingTextButtot"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="60dp" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <Button
+                            android:id="@+id/accommodation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/button_hotel_selector"
+                            android:onClick="onExpenseClick"
+                            android:tag="@string/hotelButton"
+                            android:text="" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginBottom="2dp"
+                            android:text="@string/hotelTextButtot"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <Button
+                            android:id="@+id/entertainment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/button_entertainment_selector"
+                            android:onClick="onExpenseClick"
+                            android:tag="@string/entertainmentButton"
+                            android:text="" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginBottom="2dp"
+                            android:text="@string/funTextButtot"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <Button
+                            android:id="@+id/other"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/button_other_selector"
+                            android:onClick="onExpenseClick"
+                            android:tag="@string/otherButton"
+                            android:text="" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginBottom="2dp"
+                            android:text="@string/otherTextButtot"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </TableRow>
+        </TableLayout>
+
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:paddingTop="@dimen/expenses_home_margin">
-
-            <Button
-                android:id="@+id/button_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_button_selector"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginBottom="3dp"
-                android:layout_weight="1"
-                android:text="1" 
-                android:onClick="onClick"
-                />
-            
-            <Button
-                android:id="@+id/button_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_button_selector"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginBottom="3dp"
-                android:text="2" 
-                android:layout_weight="1"
-                android:onClick="onClick"
-           	/>
-
-            <Button
-                android:id="@+id/button_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_button_selector"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginBottom="3dp"
-                android:text="3" 
-                android:layout_weight="1"
-                android:onClick="onClick"
-           	/>
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-            
-            <Button
-                android:id="@+id/button_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_button_selector"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginBottom="3dp"
-                android:text="4"
-                android:layout_weight="1"
-                android:onClick="onClick"	
-            />
-            
-            <Button
-                android:id="@+id/button_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_button_selector"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginBottom="3dp"
-                android:text="5" 
-                android:layout_weight="1"
-                android:onClick="onClick"
-           	/>
-
-            <Button
-                android:id="@+id/button_6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_button_selector"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginBottom="3dp"
-                android:text="6" 
-                android:layout_weight="1"
-                android:onClick="onClick"
-           	/>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-            
-            <Button
-                android:id="@+id/button_7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_button_selector"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginBottom="3dp"
-                android:text="7"
-                android:layout_weight="1"
-                android:onClick="onClick"
-            />
-            
-            <Button
-                android:id="@+id/button_8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_button_selector"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginBottom="3dp"
-                android:text="8" 
-                android:layout_weight="1"
-                android:onClick="onClick"
-           	/>
-
-            <Button
-                android:id="@+id/button_9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_button_selector"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginBottom="3dp"
-                android:text="9" 
-                android:layout_weight="1"
-                android:onClick="onClick"
-           	/>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-            <Button
-                android:id="@+id/button_dot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_button_selector"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginBottom="3dp"
-                android:text="."
-                android:layout_weight="1"
-                android:onClick="onClick"
-            />
-            
-            <Button
-                android:id="@+id/button_0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_button_selector"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginBottom="3dp"
-                android:text="0" 
-                android:layout_weight="1"
-                android:onClick="onClick"
-           	/>
-
-            <Button
-                android:id="@+id/button_C"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_button_selector"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginBottom="3dp"
-                android:text="C" 
-                android:layout_weight="1"
-                android:onClick="onClick"
-           	/>
-        </TableRow><TableRow
-            android:layout_width="match_parent"
-            android:layout_height="60dp" >
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center" >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical" >
-
-                    <Button
-                        android:id="@+id/food"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginTop="2dp"
-                        android:background="@drawable/button_food_selector"
-                        android:onClick="onExpenseClick"
-                        android:tag="@string/foodButton"
-                        android:text="" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginBottom="2dp"
-                        android:text="@string/foodTextButtot"
-                        android:textColor="#000000" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center" >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical" >
-
-                    <Button
-                        android:id="@+id/transport"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginTop="2dp"
-                        android:background="@drawable/button_transport_selector"
-                        android:onClick="onExpenseClick"
-                        android:tag="@string/transportButton"
-                        android:text="" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginBottom="2dp"
-                        android:text="@string/transportTextButtot"
-                        android:textColor="#000000" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center" >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical" >
-
-                    <Button
-                        android:id="@+id/shopping"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginTop="2dp"
-                        android:background="@drawable/button_shopping_selector"
-                        android:onClick="onExpenseClick"
-                        android:tag="@string/shoppingButton"
-                        android:text="" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginBottom="2dp"
-                        android:text="@string/shoppingTextButtot"
-                        android:textColor="#000000" />
-                </LinearLayout>
-            </RelativeLayout>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="60dp" >
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center" >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical" >
-
-                    <Button
-                        android:id="@+id/accommodation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginTop="2dp"
-                        android:background="@drawable/button_hotel_selector"
-                        android:onClick="onExpenseClick"
-                        android:tag="@string/hotelButton"
-                        android:text="" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginBottom="2dp"
-                        android:text="@string/hotelTextButtot"
-                        android:textColor="#000000" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center" >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical" >
-
-                    <Button
-                        android:id="@+id/entertainment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginTop="2dp"
-                        android:background="@drawable/button_entertainment_selector"
-                        android:onClick="onExpenseClick"
-                        android:tag="@string/entertainmentButton"
-                        android:text="" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginBottom="2dp"
-                        android:text="@string/funTextButtot"
-                        android:textColor="#000000" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center" >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical" >
-
-                    <Button
-                        android:id="@+id/other"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginTop="2dp"
-                        android:background="@drawable/button_other_selector"
-                        android:onClick="onExpenseClick"
-                        android:tag="@string/otherButton"
-                        android:text="" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginBottom="2dp"
-                        android:text="@string/otherTextButtot"
-                        android:textColor="#000000" />
-                </LinearLayout>
-            </RelativeLayout>
-        </TableRow>
-   
-    </TableLayout>
-    <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content" >
 
             <Button
                 android:id="@+id/history"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/my_button_selector"
+                android:layout_marginBottom="1dp"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:layout_marginBottom="1dp"
                 android:layout_weight="1"
+                android:background="@drawable/my_button_selector"
                 android:onClick="onHistoryClick"
                 android:text="@string/calendarTextButtot" />
-            
+
             <Button
                 android:id="@+id/MyTrips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/my_button_selector"
+                android:layout_marginBottom="1dp"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:layout_marginBottom="1dp"
                 android:layout_weight="1"
+                android:background="@drawable/my_button_selector"
                 android:onClick="onMyTripsClick"
-                android:text="@string/myTripTextButtot"/>
-            
+                android:text="@string/myTripTextButtot" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content" >
 
             <Button
                 android:id="@+id/CurrencyCalculator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/my_button_selector"
-				android:layout_margin="1dp"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
+                android:background="@drawable/my_button_selector"
                 android:onClick="onCurrencyCalculatorClick"
-                android:text="@string/CurrencyCalculator"/>
+                android:text="@string/CurrencyCalculator" />
 
+            <Button
+                android:id="@+id/btn_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/my_button_selector"
+                android:onClick="onMapClick"
+                android:text="@string/maps" />
         </LinearLayout>
-        
-    
-</LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

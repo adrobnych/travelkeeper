@@ -10,25 +10,31 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +48,6 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
-
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 
@@ -55,6 +60,7 @@ public class HomeActivity extends FragmentActivity {
 	private TextView amount;
 	private ProgressDialog pd = null;
 	private PendingIntent intent;
+	View dlg = null;
 
 	private static final int RESULT_SETTINGS = 1;
 
@@ -71,6 +77,24 @@ public class HomeActivity extends FragmentActivity {
 		setTitle(((TravelApp) getApplication()).getTripManager().getNameById(
 				((TravelApp) getApplication()).getTripManager()
 						.getDefaultTripId()));
+	}
+
+	public boolean hasConnection(final Context context) {
+		ConnectivityManager cm = (ConnectivityManager) context
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		if (wifiInfo != null && wifiInfo.isConnected()) {
+			return true;
+		}
+		wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+		if (wifiInfo != null && wifiInfo.isConnected()) {
+			return true;
+		}
+		wifiInfo = cm.getActiveNetworkInfo();
+		if (wifiInfo != null && wifiInfo.isConnected()) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -178,33 +202,102 @@ public class HomeActivity extends FragmentActivity {
 						expense);
 			}
 
-			new AlertDialog.Builder(this)
-					.setTitle(composeDialogTitle(amountLine))
-					.setMessage(
-							getString(R.string.homeActivityDialogMessage)
-									+ " "
-									+ (((TravelApp) getApplication())
-											.getExpenseManager()
-											.sumAmountByTypeAndDate(
-													type,
-													((TravelApp) getApplication())
-															.getTripManager()
-															.getDefaultTripId(),
-													time) / 100.0)
-									+ " "
-									+ ((TravelApp) getApplication())
-											.getCurrencyManager()
-											.getReportCurrency() + " "
-									+ getString(R.string.dialogFor) + " "
-									+ (String) view.getTag())
+			LayoutInflater inflater = this.getLayoutInflater();
+			dlg = inflater.inflate(R.layout.on_expense_click_dialog, null);
+			final Dialog dialog = new Dialog(HomeActivity.this);
+			dialog.setContentView(dlg);
+			dialog.setTitle(composeDialogTitle(amountLine));
 
-					.setPositiveButton("Ok",
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-									amount.setText("0");
-								}
-							}).show();
+			TextView tv = (TextView) dialog.findViewById(R.id.textmassage);
+			Button btnRecommend = (Button) dialog
+					.findViewById(R.id.btn_recommend);
+			Button btnDontRecommend = (Button) dialog
+					.findViewById(R.id.btn_dont_recommend);
+			Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+			final Double dspent = (((TravelApp) getApplication())
+					.getExpenseManager().sumAmountByTypeAndDate(
+							type,
+							((TravelApp) getApplication()).getTripManager()
+									.getDefaultTripId(), time) / 100.0);
+			final String curs = ((TravelApp) getApplication())
+					.getCurrencyManager().getReportCurrency();
+			final String tag = (String) view.getTag();
+			tv.setText(getString(R.string.homeActivityDialogMessage) + " "
+					+ dspent + " " + curs + " " + getString(R.string.dialogFor)
+					+ " " + tag);
+			btnRecommend.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(HomeActivity.this,
+							RecommendActivity.class);
+					if (hasConnection(HomeActivity.this) == false) {
+						new AlertDialog.Builder(HomeActivity.this)
+								.setTitle(getString(R.string.dialog_connect_title))
+								.setMessage(getString(R.string.dialog_connect_massage))
+								.setPositiveButton("Ok",
+										new DialogInterface.OnClickListener() {
+											@Override
+											public void onClick(
+													DialogInterface dialog,
+													int which) {
+
+											}
+										}).show();
+
+					} else {
+						String title = getString(R.string.recommend);
+						intent.putExtra("key", dspent);
+						intent.putExtra("curs", curs);
+						intent.putExtra("tag", tag);
+						intent.putExtra("title", title);
+						dialog.dismiss();
+						startActivity(intent);
+					}
+				}
+			});
+
+			btnDontRecommend.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(HomeActivity.this,
+							RecommendActivity.class);
+					if (hasConnection(HomeActivity.this) == false) {
+						new AlertDialog.Builder(HomeActivity.this)
+								.setTitle(getString(R.string.dialog_connect_title))
+								.setMessage(getString(R.string.dialog_connect_massage))
+								.setPositiveButton("Ok",
+										new DialogInterface.OnClickListener() {
+											@Override
+											public void onClick(
+													DialogInterface dialog,
+													int which) {
+
+											}
+										}).show();
+
+					} else {
+						String title = getString(R.string.dont_recommend);
+						intent.putExtra("key", dspent);
+						intent.putExtra("curs", curs);
+						intent.putExtra("tag", tag);
+						intent.putExtra("title", title);
+						dialog.dismiss();
+						startActivity(intent);
+					}
+				}
+			});
+
+			btnOk.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					amount.setText("0");
+					dialog.dismiss();
+				}
+			});
+			dialog.show();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -284,6 +377,11 @@ public class HomeActivity extends FragmentActivity {
 
 	public void onCurrencyCalculatorClick(View view) {
 		Intent intent = new Intent(this, CurrencyCalculatorActivity.class);
+		startActivity(intent);
+	}
+
+	public void onMapClick(View view) {
+		Intent intent = new Intent(this, MapActivity.class);
 		startActivity(intent);
 	}
 

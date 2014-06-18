@@ -73,7 +73,8 @@
     <string name="menu_home">Главная</string>
     <string name="enrestart">Английский</string>
     <string name="rurestart">Русский</string>
-    <string name="CurrencyCalculator">Валютный Калькулятор</string>
+    <string name="CurrencyCalculator">Калькулятор</string>
+    <string name="maps">Карта</string>
 	<string name="LangTitle">Язык</string>
 	<string name="LangDialogTitle">Выберите язык:</string>
 	<string name="LangSummary">Язык приложения.\nНеобходимо перезапустить приложение для принятия изменений.</string> 
@@ -90,6 +91,25 @@
 	<string name="search_hint">Введите валюту для поиска</string>
 	<string name="calendar_massage">Сегодняшние расходы</string>
 	<string name="select_a_date">Выберите дату</string>
+	<string name="recommend">Я рекомендую это место</string>
+	<string name="dont_recommend">Я не рекомендую это место</string>
+	<string name="dialog_connect_title">Нету подключения к интернету</string>
+	<string name="dialog_connect_massage">Проверьте соединение</string>
+	<string name="dialog_gps_title">GPS Mенеджер</string>
+	<string name="dialog_gps_massage">Хотите, включить GPS?</string>
+	<string name="dialog_gps_yes">Да</string>
+	<string name="dialog_gps_no">Нет</string>
+	<string name="recommend_category">Kатегория</string>
+	<string name="recommend_spent">Потрачено</string>
+	<string name="recommend_name">Название этого места</string>
+	<string name="recommend_comment">Комментарии (по желанию)</string>
+	<string name="recommend_btn_gps">Получить координаты GPS</string>
+	<string name="recommend_btn_map">Место на карте вручную</string>
+	<string name="recommend_share">Поделиться</string>
+	<string name="recommend_save">Сохранить</string>
+	<string name="recommend_btn_gps_search">Поиск координат</string>
+	
+	
     
     
     <string-array name="mChoose">

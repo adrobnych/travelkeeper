@@ -15,6 +15,7 @@
     <string name="entertainmentButton">entertainment</string>
     <string name="otherButton">other things</string>
     <string name="title_activity_history">HistoryActivity</string>
+    <string name="title_activity_recommend">RecommendActivity</string>
     <string name="selectDate">Please select date for the report</string>
     <string name="clearData">Dangerous Area</string>
     <string name="title_activity_main">MainActivity</string>
@@ -75,52 +76,73 @@
     <string name="enrestart">English</string>
     <string name="rurestart">Russian</string>
     <string name="LangTitle">Language</string>
-	<string name="LangDialogTitle">Choose language:</string>
-	<string name="LangSummary">Application language.\nNeed restart application to apply changes.</string>
-	<string name="labelSum">Sum</string>
-	<string name="labelGroup">Group</string>
-	<string name="CurrencyCalculator">Currency Calculator</string>
-	<string name="Radio_day">Day</string>
-	<string name="Radio_week">Week</string>
-	<string name="Radio_total">Total</string>
-	<string name="Button_prev">Previous</string>
-	<string name="Button_next">Next</string>
-	<string name="Total_spent">Total spent</string>
-	<string name="Total_trips">Total expenses for trip</string>
-	<string name="Nothing">Nothing</string>
-	<string name="search_hint">Enter the currency to search</string>
-	<string name="calendar_massage">Today\'s expenses</string>
-	<string name="select_a_date">Select a date</string>
-    
-    
-    
-<string-array name="mChoose">
-      <item>Food</item>
-      <item>Transport</item>
-      <item>Shopping</item>
-      <item>Accommodation</item>
-      <item>Entertainment</item>
-      <item>Other things</item>
-</string-array>
+    <string name="LangDialogTitle">Choose language:</string>
+    <string name="LangSummary">Application language.\nNeed restart application to apply changes.</string>
+    <string name="labelSum">Sum</string>
+    <string name="labelGroup">Group</string>
+    <string name="CurrencyCalculator">Calculator</string>
+    <string name="maps">Map</string>
+    <string name="Radio_day">Day</string>
+    <string name="Radio_week">Week</string>
+    <string name="Radio_total">Total</string>
+    <string name="Button_prev">Previous</string>
+    <string name="Button_next">Next</string>
+    <string name="Total_spent">Total spent</string>
+    <string name="Total_trips">Total expenses for trip</string>
+    <string name="Nothing">Nothing</string>
+    <string name="search_hint">Enter the currency to search</string>
+    <string name="calendar_massage">Today\'s expenses</string>
+    <string name="select_a_date">Select a date</string>
+    <string name="recommend">I recommend this place</string>
+    <string name="dont_recommend">I don\'t recommend this place</string>
+    <string name="dialog_connect_title">Nope internet connection</string>
+    <string name="dialog_connect_massage">Check the connection</string>
+    <string name="dialog_gps_title">GPS Manager</string>
+    <string name="dialog_gps_massage">Would you like to enable GPS?</string>
+    <string name="dialog_gps_yes">Yes</string>
+    <string name="dialog_gps_no">No</string>
+    <string name="recommend_category">Category</string>
+    <string name="recommend_spent">Spent</string>
+    <string name="recommend_name">Name of this place</string>
+    <string name="recommend_comment">Comments (optional)</string>
+    <string name="recommend_btn_gps">Get GPS coordinates</string>
+    <string name="recommend_btn_map">Place on Map manually</string>
+    <string name="recommend_share">Share</string>
+    <string name="recommend_save">Save</string>
+    <string name="recommend_btn_gps_search">Searching for coordinates</string>
 
-<string-array name="mChoose1">
-    <item>Other things</item>
-    <item>Shopping</item>
-    <item>Accommodation</item>
-    <item>Transport</item>
-    <item>Entertainment</item>
-      <item>Food</item>
-</string-array>
+    <string name="plus_example_deep_link_id">/+/mobile/android/</string>
+    <string name="plus_example_deep_link_url">
+        http://cs608825.vk.me/v608825968/cc12/Ha54xubXAfY.jpg
+    </string>
+    
 
-<string-array name="dayss">
-      <item>Mon</item>
-      <item>Tue</item>
-      <item>Wen</item>
-      <item>Thu</item>
-      <item>Fri</item>
-      <item>Sat</item>
-      <item>Sun</item>
-</string-array>
+    <string-array name="mChoose">
+        <item>Food</item>
+        <item>Transport</item>
+        <item>Shopping</item>
+        <item>Accommodation</item>
+        <item>Entertainment</item>
+        <item>Other things</item>
+    </string-array>
+    <string-array name="mChoose1">
+        <item>Other things</item>
+        <item>Shopping</item>
+        <item>Accommodation</item>
+        <item>Transport</item>
+        <item>Entertainment</item>
+        <item>Food</item>
+    </string-array>
+    <string-array name="dayss">
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wen</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+        <item>Sun</item>
+    </string-array>
 
+    <string name="title_activity_recommend">RecommendActivity</string>
 
 </resources>
