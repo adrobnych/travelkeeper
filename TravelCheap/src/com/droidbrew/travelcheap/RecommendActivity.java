@@ -1,6 +1,5 @@
 package com.droidbrew.travelcheap;
 
-import com.google.android.gms.internal.bt;
 import com.google.android.gms.plus.PlusShare;
 
 import android.app.Activity;
@@ -9,7 +8,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationListener;
@@ -40,78 +38,60 @@ public class RecommendActivity extends Activity {
 
 	private boolean hasCoordinates = false;
 
-	 private EditText name, comment;
+	private EditText name, comment;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_recommend);
 		Intent intent = getIntent();
-		
+
 		pd = new ProgressDialog(this);
-		name = (EditText)findViewById(R.id.name_recommend);
+
+		name = (EditText) findViewById(R.id.name_recommend);
 		name.setText(intent.getStringExtra("name"));
-		comment = (EditText)findViewById(R.id.comments);
+
+		comment = (EditText) findViewById(R.id.comments);
 		comment.setText(intent.getStringExtra("comment"));
-		this.imageBtn = (ImageButton) this.findViewById(R.id.image);
-		
+
+		imageBtn = (ImageButton) this.findViewById(R.id.image);
+
 		cat = (TextView) findViewById(R.id.cat_recommend);
+
 		Bundle b = getIntent().getExtras();
 		final Double dspent = b.getDouble("key");
-		
+
 		Double lat = b.getDouble("lat");
 		latg = lat;
 		Double lot = b.getDouble("lot");
 		lotg = lot;
-		
+
 		String title = intent.getStringExtra("title");
 		titlee = title;
 		setTitle(titlee.toString());
+
 		final String curs = intent.getStringExtra("curs");
 		final String tag = intent.getStringExtra("tag");
 		cat.setText(" " + tag);
+
 		spent = (TextView) findViewById(R.id.spent_recommend);
 		spent.setText(" " + dspent + " " + curs);
+
 		locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-		
-		Button btnShare = (Button)findViewById(R.id.btn_share);
+
+		Button btnShare = (Button) findViewById(R.id.btn_share);
 		btnShare.setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
-				
-				if (loc != null){
-					Intent shareIntent = new PlusShare.Builder(RecommendActivity.this)
-			          .setType("text/plain")
-			          .setText(getString(R.string.recommend).toString() + "\n" + name.getText().toString() + "\n" + comment.getText().toString()
-			        		  +"\n"+ Uri.parse("https://www.google.com.ua/maps/@"+loc.getLatitude()+","+ loc.getLongitude() + 
-			        				  ",16z?hl=ru")) 
-			          .setContentUrl(Uri.parse("https://play.google.com/store/apps/details?id=com.droidbrew.travelcheap"))
-			          .getIntent();
-					Log.d("LOC", "!= null");
-			      startActivityForResult(shareIntent, 0);
-				}else{
-					Intent shareIntent = new PlusShare.Builder(RecommendActivity.this)
-			          .setType("text/plain")
-			          .setText(getString(R.string.recommend).toString() + "\n" + name.getText().toString() + "\n" + comment.getText().toString()
-			        		  +"\n"+ Uri.parse("https://www.google.com.ua/maps/@"+ latg +","+ lotg + 
-			        				  ",16z?hl=ru"))
-			          .setContentUrl(Uri.parse("https://play.google.com/store/apps/details?id=com.droidbrew.travelcheap"))
-			          .getIntent();
-					Log.d("LOC", "== null");
-			      startActivityForResult(shareIntent, 0);
-				}
-				
-				
+				shareButtonClick();
 			}
 		});
-		
+
 		imageBtn.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				Intent cameraIntent = new Intent(
-						android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-				startActivityForResult(cameraIntent, CAMERA_REQUEST);
+				imageButtonClick();
 			}
 		});
 
@@ -119,20 +99,20 @@ public class RecommendActivity extends Activity {
 		btnGPS.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(hasGPS()) 
+				if (hasGPS())
 					searchCoordinates();
 			}
 		});
 
 		Button btnMaps = (Button) findViewById(R.id.btn_maps);
-
 		btnMaps.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent placeMapIntent = new Intent(RecommendActivity.this,
 						PlaceOnMapActivity.class);
 				placeMapIntent.putExtra("iname", name.getText().toString());
-				placeMapIntent.putExtra("icomment", comment.getText().toString());
+				placeMapIntent.putExtra("icomment", comment.getText()
+						.toString());
 				placeMapIntent.putExtra("title_map", titlee);
 				placeMapIntent.putExtra("dspent_map", dspent);
 				placeMapIntent.putExtra("curs_map", curs);
@@ -181,7 +161,6 @@ public class RecommendActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		if (hasGPS() && loc == null) {
-		//	searchCoordinates();
 		}
 	}
 
@@ -202,12 +181,10 @@ public class RecommendActivity extends Activity {
 
 		@Override
 		public void onProviderDisabled(String provider) {
-			checkEnabled();
 		}
 
 		@Override
 		public void onProviderEnabled(String provider) {
-			checkEnabled();
 			showLocation(locationManager.getLastKnownLocation(provider));
 		}
 
@@ -227,8 +204,50 @@ public class RecommendActivity extends Activity {
 		}
 	}
 
-	private void checkEnabled() {
+	private void imageButtonClick() {
+		Intent cameraIntent = new Intent(
+				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+		startActivityForResult(cameraIntent, CAMERA_REQUEST);
+	}
 
+	private void shareButtonClick() {
+		if (loc != null) {
+			Intent shareIntent = new PlusShare.Builder(RecommendActivity.this)
+					.setType("text/plain")
+					.setText(
+							getString(R.string.recommend).toString()
+									+ "\n"
+									+ name.getText().toString()
+									+ "\n"
+									+ comment.getText().toString()
+									+ "\n"
+									+ Uri.parse("https://www.google.com.ua/maps/@"
+											+ loc.getLatitude()
+											+ ","
+											+ loc.getLongitude() + ",16z?hl=ru"))
+					.setContentUrl(
+							Uri.parse("https://play.google.com/store/apps/details?id=com.droidbrew.travelcheap"))
+					.getIntent();
+			Log.d("LOC", "!= null");
+			startActivityForResult(shareIntent, 0);
+		} else {
+			Intent shareIntent = new PlusShare.Builder(RecommendActivity.this)
+					.setType("text/plain")
+					.setText(
+							getString(R.string.recommend).toString()
+									+ "\n"
+									+ name.getText().toString()
+									+ "\n"
+									+ comment.getText().toString()
+									+ "\n"
+									+ Uri.parse("https://www.google.com.ua/maps/@"
+											+ latg + "," + lotg + ",16z?hl=ru"))
+					.setContentUrl(
+							Uri.parse("https://play.google.com/store/apps/details?id=com.droidbrew.travelcheap"))
+					.getIntent();
+			Log.d("LOC", "== null");
+			startActivityForResult(shareIntent, 0);
+		}
 	}
 
 	class SearchC extends AsyncTask<Void, Void, Void> {

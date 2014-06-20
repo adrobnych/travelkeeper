@@ -109,8 +109,10 @@
     <string name="recommend_btn_map">Place on Map manually</string>
     <string name="recommend_share">Share</string>
     <string name="recommend_save">Save</string>
+    <string name="popup_tv">To choose the place on the map, click and hold the point on the map</string>
     <string name="recommend_btn_gps_search">Searching for coordinates</string>
-
+	<string name="map_hint">Hint</string>
+    
     <string name="plus_example_deep_link_id">/+/mobile/android/</string>
     <string name="plus_example_deep_link_url">
         http://cs608825.vk.me/v608825968/cc12/Ha54xubXAfY.jpg
@@ -143,6 +145,6 @@
         <item>Sun</item>
     </string-array>
 
-    <string name="title_activity_recommend">RecommendActivity</string>
+    
 
 </resources>

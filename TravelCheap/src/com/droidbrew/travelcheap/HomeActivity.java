@@ -382,7 +382,21 @@ public class HomeActivity extends FragmentActivity {
 
 	public void onMapClick(View view) {
 		Intent intent = new Intent(this, MapActivity.class);
-		startActivity(intent);
+		
+		if (hasConnection(HomeActivity.this) == false) {
+			new AlertDialog.Builder(HomeActivity.this)
+					.setTitle(getString(R.string.dialog_connect_title))
+					.setMessage(getString(R.string.dialog_connect_massage))
+					.setPositiveButton("Ok",
+							new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(
+										DialogInterface dialog,
+										int which) {
+								}
+							}).show();
+
+		}else{startActivity(intent);}
 	}
 
 	@Override

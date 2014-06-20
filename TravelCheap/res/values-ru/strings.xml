@@ -108,6 +108,8 @@
 	<string name="recommend_share">Поделиться</string>
 	<string name="recommend_save">Сохранить</string>
 	<string name="recommend_btn_gps_search">Поиск координат</string>
+	<string name="popup_tv">Чтобы выбрать место на карте, нажмите и удерживайте точку на карте</string>
+	<string name="map_hint">Подсказка</string>
 	
 	
     
