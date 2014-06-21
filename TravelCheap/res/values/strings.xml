@@ -112,11 +112,11 @@
     <string name="popup_tv">To choose the place on the map, click and hold the point on the map</string>
     <string name="recommend_btn_gps_search">Searching for coordinates</string>
 	<string name="map_hint">Hint</string>
-    
-    <string name="plus_example_deep_link_id">/+/mobile/android/</string>
-    <string name="plus_example_deep_link_url">
-        http://cs608825.vk.me/v608825968/cc12/Ha54xubXAfY.jpg
-    </string>
+	<string name="notif_title">New post in google+</string>
+	<string name="dialog_info_label_name">Name</string>
+	<string name="dialog_info_label_comment">Comments</string>
+	<string name="btn_info_detal">Detailed</string>
+
     
 
     <string-array name="mChoose">

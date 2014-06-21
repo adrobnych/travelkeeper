@@ -110,6 +110,10 @@
 	<string name="recommend_btn_gps_search">Поиск координат</string>
 	<string name="popup_tv">Чтобы выбрать место на карте, нажмите и удерживайте точку на карте</string>
 	<string name="map_hint">Подсказка</string>
+	<string name="notif_title">Новое сообщение в Google+</string>
+	<string name="dialog_info_label_name">Название</string>
+	<string name="dialog_info_label_comment">Комментарии</string>
+	<string name="btn_info_detal">Подробный</string>
 	
 	
     

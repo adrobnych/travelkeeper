@@ -25,9 +25,11 @@ import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings.System;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,10 +52,11 @@ import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.stmt.query.Exists;
 
 public class HomeActivity extends FragmentActivity {
 
-	private static final String LOG = "com.droidbrew.dfa.HomeActivity";
+	private static final String LOG = "com.droidbrew.travelcheap.HomeActivity";
 	private CaldroidFragment dialogCaldroidFragment;
 	private CaldroidFragment caldroidFragment;
 	private Bundle savedInstanceState;
@@ -77,6 +80,13 @@ public class HomeActivity extends FragmentActivity {
 		setTitle(((TravelApp) getApplication()).getTripManager().getNameById(
 				((TravelApp) getApplication()).getTripManager()
 						.getDefaultTripId()));
+		
+		Intent intentt = getIntent();
+		String notiff = intentt.getStringExtra("notif");
+		if (notiff != null){
+			Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.apps.plus");
+			startActivity(LaunchIntent);
+		}else{Log.d("Notification", "no");}
 	}
 
 	public boolean hasConnection(final Context context) {

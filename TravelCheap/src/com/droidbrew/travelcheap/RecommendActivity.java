@@ -1,9 +1,14 @@
 package com.droidbrew.travelcheap;
 
+import java.net.URL;
+
 import com.google.android.gms.plus.PlusShare;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -29,7 +34,7 @@ public class RecommendActivity extends Activity {
 	private LocationManager locationManager;
 	public Location loc = null;
 	StringBuilder sbGPS = new StringBuilder();
-
+	NotificationManager nm;
 	private static final int CAMERA_REQUEST = 1888;
 	private ImageButton imageBtn;
 	private ProgressDialog pd;
@@ -44,6 +49,7 @@ public class RecommendActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_recommend);
+		nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		Intent intent = getIntent();
 
 		pd = new ProgressDialog(this);
@@ -84,6 +90,14 @@ public class RecommendActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				shareButtonClick();
+			}
+		});
+
+		Button btnSave = (Button) findViewById(R.id.btn_save_recommend);
+		btnSave.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				sendNotif();
 			}
 		});
 
@@ -248,6 +262,19 @@ public class RecommendActivity extends Activity {
 			Log.d("LOC", "== null");
 			startActivityForResult(shareIntent, 0);
 		}
+	}
+
+	void sendNotif() {
+		Notification notif = new Notification(R.drawable.buck_transp,
+				getString(R.string.notif_title), System.currentTimeMillis());
+		Intent intent = new Intent(this, HomeActivity.class);
+		intent.putExtra("notif", "notif");
+		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+		notif.setLatestEventInfo(this, titlee,
+				name.getText().toString(), pIntent);
+		notif.flags |= Notification.FLAG_AUTO_CANCEL;
+		nm.notify(1, notif);
+		
 	}
 
 	class SearchC extends AsyncTask<Void, Void, Void> {
