@@ -3,7 +3,6 @@ package com.droidbrew.travelkeeper.model.manager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import com.droidbrew.travelkeeper.model.entity.Expense;

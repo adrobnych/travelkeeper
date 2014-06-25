@@ -4,12 +4,8 @@ package com.droidbrew.travelkeeper.model.manager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
-import java.util.Comparator;
-import java.util.Currency;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
-import java.util.TreeMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -27,8 +23,6 @@ import org.xml.sax.SAXException;
 import org.yaml.snakeyaml.Yaml;
 
 import com.droidbrew.travelkeeper.model.entity.TKCurrency;
-
-
 
 public class CurrencyHTTPHelper {
 

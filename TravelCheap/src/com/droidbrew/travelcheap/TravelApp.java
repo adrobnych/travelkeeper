@@ -32,6 +32,7 @@ public class TravelApp extends Application {
 	private Locale locale;
 	private String lang;
 	private SharedPreferences preferences;
+	private AppPlaceManager placeManager = null;
 
 	@Override
 	public void onCreate() {
@@ -116,53 +117,57 @@ public class TravelApp extends Application {
 		return tripManager;
 	}
 
+	public ExpenseManager getExpenseManager() {
+		if (null == expenseManager) {
 
-		public ExpenseManager getExpenseManager(){
-			if (null == expenseManager) {
-	           
-	                expenseManager = new ExpenseManager();
-	                Dao<Expense, Integer> expenseDao;
-	        		try {
-	        			expenseDao = DaoManager.createDao(dbHelper.getConnectionSource(), Expense.class);
-	        			expenseManager.setExpenseDao(expenseDao);
-	        			expenseManager.setCurrencyManager(getCurrencyManager());
-	        			expenseManager.setTripManager(getTripManager());
-	        		} catch (SQLException e) {
-	        			Log.e(TAG, "getExpenseManager", e);
-	        		}
-	        	
-	        }
-	        return expenseManager;
+			expenseManager = new ExpenseManager();
+			Dao<Expense, Integer> expenseDao;
+			try {
+				expenseDao = DaoManager.createDao(
+						dbHelper.getConnectionSource(), Expense.class);
+				expenseManager.setExpenseDao(expenseDao);
+				expenseManager.setCurrencyManager(getCurrencyManager());
+				expenseManager.setTripManager(getTripManager());
+			} catch (SQLException e) {
+				Log.e(TAG, "getExpenseManager", e);
+			}
+
 		}
-		
-		public CurrencyDBManager getCurrencyManager(){
-			if (null == currencyManager) {
-	           
-	                currencyManager = new CurrencyDBManager();
-	                Dao<TKCurrency, String> currencyDao;
-	        		try {
-	        			currencyDao = DaoManager.createDao(dbHelper.getConnectionSource(), TKCurrency.class);
-	        			currencyManager.setCurrencyDao(currencyDao);
-	        		} catch (SQLException e) {
-	        			Log.e(TAG, "getCurrencyManager", e);
-	        		}
-	        	
-	        }
-	        return currencyManager;
+		return expenseManager;
+	}
+
+	public CurrencyDBManager getCurrencyManager() {
+		if (null == currencyManager) {
+
+			currencyManager = new CurrencyDBManager();
+			Dao<TKCurrency, String> currencyDao;
+			try {
+				currencyDao = DaoManager.createDao(
+						dbHelper.getConnectionSource(), TKCurrency.class);
+				currencyManager.setCurrencyDao(currencyDao);
+			} catch (SQLException e) {
+				Log.e(TAG, "getCurrencyManager", e);
+			}
+
 		}
+		return currencyManager;
+	}
 
-
-
-		private int historical_trip_id =1;
-		
-		public int getHistoricalTripId() {
-			return historical_trip_id;
+	public AppPlaceManager getPlaceManager() {
+		if (null == placeManager) {
+			placeManager = new AppPlaceManager();
 		}
-		
-		public void setHistoricalTripId(int id) {
-			this.historical_trip_id = id;
-		}
+		return placeManager;
+	}
 
+	private int historical_trip_id = 1;
 
+	public int getHistoricalTripId() {
+		return historical_trip_id;
+	}
+
+	public void setHistoricalTripId(int id) {
+		this.historical_trip_id = id;
+	}
 
 }

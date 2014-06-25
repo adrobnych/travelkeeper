@@ -3,7 +3,6 @@ package com.droidbrew.travelkeeper.model.manager;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.droidbrew.travelkeeper.model.entity.Expense;
 import com.droidbrew.travelkeeper.model.entity.TKCurrency;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.QueryBuilder;

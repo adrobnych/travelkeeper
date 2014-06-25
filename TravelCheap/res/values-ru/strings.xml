@@ -112,10 +112,13 @@
 	<string name="map_hint">Подсказка</string>
 	<string name="notif_title">Новое сообщение в Google+</string>
 	<string name="dialog_info_label_name">Название</string>
-	<string name="dialog_info_label_comment">Комментарии</string>
+	<string name="dialog_info_label_comment">Комментарии: </string>
 	<string name="btn_info_detal">Подробный</string>
-	
-	
+	<string name="dialog_sending_massage">Отправка данных</string>
+	<string name="dialog_new_comment">Новый комментарий</string>
+	<string name="dialog_add_comm_like">Нравиться</string>
+	<string name="dialog_add_comm_dislike">Не нравиться</string>
+	<string name="recommend_dialog_maps">Поиск мест</string>
     
     
     <string-array name="mChoose">

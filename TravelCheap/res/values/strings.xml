@@ -114,9 +114,13 @@
 	<string name="map_hint">Hint</string>
 	<string name="notif_title">New post in google+</string>
 	<string name="dialog_info_label_name">Name</string>
-	<string name="dialog_info_label_comment">Comments</string>
+	<string name="dialog_info_label_comment">Comments: </string>
 	<string name="btn_info_detal">Detailed</string>
-
+	<string name="dialog_sending_massage">Sending Data</string>
+	<string name="dialog_new_comment">New Comment</string>
+	<string name="dialog_add_comm_like">Like</string>
+	<string name="dialog_add_comm_dislike">DisLike</string>
+	<string name="recommend_dialog_maps">Searching for places</string>
     
 
     <string-array name="mChoose">

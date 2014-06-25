@@ -10,27 +10,20 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.provider.Settings.System;
 import android.support.v4.app.FragmentActivity;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -44,15 +37,9 @@ import android.widget.Toast;
 import com.droidbrew.travelcheap.fragment.CurrencyCalcFragment;
 import com.droidbrew.travelkeeper.model.entity.Expense;
 import com.droidbrew.travelkeeper.model.entity.TKCurrency;
-import com.droidbrew.travelkeeper.model.entity.Trip;
 import com.droidbrew.travelkeeper.model.manager.CurrencyHTTPHelper;
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.DaoManager;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.DaoManager;
-import com.j256.ormlite.stmt.query.Exists;
 
 public class HomeActivity extends FragmentActivity {
 
@@ -80,13 +67,23 @@ public class HomeActivity extends FragmentActivity {
 		setTitle(((TravelApp) getApplication()).getTripManager().getNameById(
 				((TravelApp) getApplication()).getTripManager()
 						.getDefaultTripId()));
-		
+
 		Intent intentt = getIntent();
 		String notiff = intentt.getStringExtra("notif");
-		if (notiff != null){
-			Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.apps.plus");
+		if (notiff != null) {
+			Intent LaunchIntent = getPackageManager()
+					.getLaunchIntentForPackage("com.google.android.apps.plus");
 			startActivity(LaunchIntent);
-		}else{Log.d("Notification", "no");}
+		}
+		getIMEI(this);
+	}
+
+	public String getIMEI(Context context) {
+		TelephonyManager tm = (TelephonyManager) context
+				.getSystemService(Context.TELEPHONY_SERVICE);
+		if (tm == null)
+			return null;
+		return tm.getDeviceId();
 	}
 
 	public boolean hasConnection(final Context context) {
@@ -243,8 +240,10 @@ public class HomeActivity extends FragmentActivity {
 							RecommendActivity.class);
 					if (hasConnection(HomeActivity.this) == false) {
 						new AlertDialog.Builder(HomeActivity.this)
-								.setTitle(getString(R.string.dialog_connect_title))
-								.setMessage(getString(R.string.dialog_connect_massage))
+								.setTitle(
+										getString(R.string.dialog_connect_title))
+								.setMessage(
+										getString(R.string.dialog_connect_massage))
 								.setPositiveButton("Ok",
 										new DialogInterface.OnClickListener() {
 											@Override
@@ -275,8 +274,10 @@ public class HomeActivity extends FragmentActivity {
 							RecommendActivity.class);
 					if (hasConnection(HomeActivity.this) == false) {
 						new AlertDialog.Builder(HomeActivity.this)
-								.setTitle(getString(R.string.dialog_connect_title))
-								.setMessage(getString(R.string.dialog_connect_massage))
+								.setTitle(
+										getString(R.string.dialog_connect_title))
+								.setMessage(
+										getString(R.string.dialog_connect_massage))
 								.setPositiveButton("Ok",
 										new DialogInterface.OnClickListener() {
 											@Override
@@ -342,7 +343,6 @@ public class HomeActivity extends FragmentActivity {
 	};
 
 	public void onHistoryClick(View view) {
-
 		final Bundle state = savedInstanceState;
 		caldroidFragment = new CaldroidFragment();
 
@@ -392,7 +392,7 @@ public class HomeActivity extends FragmentActivity {
 
 	public void onMapClick(View view) {
 		Intent intent = new Intent(this, MapActivity.class);
-		
+
 		if (hasConnection(HomeActivity.this) == false) {
 			new AlertDialog.Builder(HomeActivity.this)
 					.setTitle(getString(R.string.dialog_connect_title))
@@ -400,13 +400,14 @@ public class HomeActivity extends FragmentActivity {
 					.setPositiveButton("Ok",
 							new DialogInterface.OnClickListener() {
 								@Override
-								public void onClick(
-										DialogInterface dialog,
+								public void onClick(DialogInterface dialog,
 										int which) {
 								}
 							}).show();
 
-		}else{startActivity(intent);}
+		} else {
+			startActivity(intent);
+		}
 	}
 
 	@Override
