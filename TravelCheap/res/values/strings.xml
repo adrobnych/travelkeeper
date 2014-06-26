@@ -101,10 +101,10 @@
     <string name="dialog_gps_massage">Would you like to enable GPS?</string>
     <string name="dialog_gps_yes">Yes</string>
     <string name="dialog_gps_no">No</string>
-    <string name="recommend_category">Category</string>
-    <string name="recommend_spent">Spent</string>
+    <string name="recommend_category">Category: </string>
+    <string name="recommend_spent">Spent: </string>
     <string name="recommend_name">Name of this place</string>
-    <string name="recommend_comment">Comments (optional)</string>
+    <string name="recommend_comment">Comments: (optional)</string>
     <string name="recommend_btn_gps">Get GPS coordinates</string>
     <string name="recommend_btn_map">Place on Map manually</string>
     <string name="recommend_share">Share</string>
@@ -121,6 +121,7 @@
 	<string name="dialog_add_comm_like">Like</string>
 	<string name="dialog_add_comm_dislike">DisLike</string>
 	<string name="recommend_dialog_maps">Searching for places</string>
+	<string name="btn_add_comments">Add Comment</string>
     
 
     <string-array name="mChoose">

@@ -1,15 +1,21 @@
 package com.droidbrew.travelcheap;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.droidbrew.travelcheap.adapter.CommentAdapter;
 import com.droidbrew.travelkeeper.model.entity.Place;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +23,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,6 +37,7 @@ public class DetailedInfoActivity extends Activity {
 	Double lat;
 	Double lon;
 	CommentAdapter adapter;
+	ImageView imageView;
 
 	private String title = "";
 	private int like = 0;
@@ -56,6 +64,7 @@ public class DetailedInfoActivity extends Activity {
 		tvDisLike = (TextView) findViewById(R.id.tvDisLike);
 		tvName = (TextView) findViewById(R.id.tvName);
 		lvComment = (ListView) findViewById(R.id.lvComment);
+		imageView = (ImageView) findViewById(R.id.imageInfo);
 
 		xmlElement();
 	}
@@ -139,6 +148,7 @@ public class DetailedInfoActivity extends Activity {
 	class GetComments extends AsyncTask<Double, Void, Void> {
 
 		boolean hasComment = false;
+		Bitmap bMap = null;
 
 		@Override
 		protected void onPreExecute() {
@@ -164,6 +174,9 @@ public class DetailedInfoActivity extends Activity {
 						.getLikes(list);
 				dislike = ((TravelApp) getApplication()).getPlaceManager()
 						.getDislikes(list);
+
+				GetPicture gp = new GetPicture();
+				gp.execute(list.get(0).getPicture());
 			} catch (Exception e) {
 				Log.e(MapActivity.class.getName(), e.getMessage(), e);
 			}
@@ -180,6 +193,55 @@ public class DetailedInfoActivity extends Activity {
 			tvDisLike.setText("" + dislike);
 			if (hasComment)
 				btnAddComment.setEnabled(false);
+		}
+	}
+
+	class GetPicture extends AsyncTask<String, Void, Void> {
+
+		Bitmap bMap = null;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+
+		}
+
+		@Override
+		protected Void doInBackground(String... params) {
+			try {
+				Boolean isSDPresent = android.os.Environment
+						.getExternalStorageState().equals(
+								android.os.Environment.MEDIA_MOUNTED);
+				if (!"".equals(params[0]) && isSDPresent) {
+					Log.e("AT", "WILL BE WORKING");
+					String name = params[0];
+					String path = Environment.getExternalStorageDirectory()
+							+ "/TravelKeeper/";
+					File file = new File(path + name);
+					if (!file.exists()) {
+						Log.e("AT", "WILL BE UPLOADED");
+						File mydir = new File(Environment.getExternalStorageDirectory()
+								+ "/TravelKeeper/");
+						mydir.mkdirs();
+						((TravelApp) getApplication()).getPlaceManager()
+								.downloadImage(name, path);
+					}
+					bMap = BitmapFactory
+							.decodeFile(file.getAbsolutePath());
+					Log.e("FILE PATH", file.getAbsolutePath());
+					
+				}
+			} catch (Exception e) {
+				Log.e(MapActivity.class.getName(), e.getMessage(), e);
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			if(bMap != null)
+				imageView.setImageBitmap(bMap);
 		}
 	}
 
@@ -200,7 +262,7 @@ public class DetailedInfoActivity extends Activity {
 				sendPlace.setTitle(title);
 				sendPlace.setComment(params[0]);
 				sendPlace.setLike(Boolean.parseBoolean(params[1]));
-				sendPlace.setPicture(getIMEI());
+				sendPlace.setPicture("");
 				sendPlace.setIMEI(getIMEI());
 
 				((TravelApp) getApplication()).getPlaceManager().createPlace(

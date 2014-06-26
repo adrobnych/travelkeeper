@@ -99,10 +99,10 @@
 	<string name="dialog_gps_massage">Хотите, включить GPS?</string>
 	<string name="dialog_gps_yes">Да</string>
 	<string name="dialog_gps_no">Нет</string>
-	<string name="recommend_category">Kатегория</string>
-	<string name="recommend_spent">Потрачено</string>
+	<string name="recommend_category">Kатегория: </string>
+	<string name="recommend_spent">Потрачено: </string>
 	<string name="recommend_name">Название этого места</string>
-	<string name="recommend_comment">Комментарии (по желанию)</string>
+	<string name="recommend_comment">Комментарии: (по желанию)</string>
 	<string name="recommend_btn_gps">Получить координаты GPS</string>
 	<string name="recommend_btn_map">Место на карте вручную</string>
 	<string name="recommend_share">Поделиться</string>
@@ -119,6 +119,7 @@
 	<string name="dialog_add_comm_like">Нравиться</string>
 	<string name="dialog_add_comm_dislike">Не нравиться</string>
 	<string name="recommend_dialog_maps">Поиск мест</string>
+	<string name="btn_add_comments">Добавить комментарий</string>
     
     
     <string-array name="mChoose">

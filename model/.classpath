@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="D:/Android/workspace/travelkeeper/libs/sqlite-jdbc-3.7.2.jar"/>
 	<classpathentry kind="lib" path="D:/Android/workspace/travelkeeper/libs/commons-io-2.4.jar"/>
 	<classpathentry kind="lib" path="D:/Android/workspace/travelkeeper/libs/gson-2.2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Android/workspace/travelkeeper/libs/httpmime-4.3.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

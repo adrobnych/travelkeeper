@@ -1,20 +1,29 @@
 package com.droidbrew.travelkeeper.model.manager;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 
 import com.droidbrew.travelkeeper.model.entity.Place;
 import com.google.gson.Gson;
@@ -22,7 +31,7 @@ import com.google.gson.reflect.TypeToken;
 
 public class AppPlaceManager {
 
-	private final String URL = "http://192.168.0.14:8080/backend/rest/place";
+	private final String URL = "http://146.185.168.46:8089/backend/rest/place";
 	private HttpClient httpClient = null;
 	private final Gson gson = new Gson();
 
@@ -41,14 +50,16 @@ public class AppPlaceManager {
 
 	public boolean hasComment(String imei, String id)
 			throws ClientProtocolException, IOException {
+		id = URLEncoder.encode(id, "UTF-8");
 		httpClient = new DefaultHttpClient();
 		HttpGet get = new HttpGet(URL + "/has_place/" + imei + "/" + id);
 		HttpResponse response = httpClient.execute(get);
 		return Boolean.parseBoolean(readHTMLResponse(response));
 	}
 
-	public List<Place> getPlace(String id)
-			throws ClientProtocolException, IOException {
+	public List<Place> getPlace(String id) throws ClientProtocolException,
+			IOException {
+		id = URLEncoder.encode(id, "UTF-8");
 		httpClient = new DefaultHttpClient();
 		HttpGet get = new HttpGet(URL + "/places/" + id);
 		HttpResponse response = httpClient.execute(get);
@@ -59,17 +70,18 @@ public class AppPlaceManager {
 		return list;
 	}
 
-	public Map<String, List<Place>> getPlaces()
-			throws ClientProtocolException, IOException {
+	public Map<String, List<Place>> getPlaces() throws ClientProtocolException,
+			IOException {
 		httpClient = new DefaultHttpClient();
 		HttpGet get = new HttpGet(URL + "/places/all");
 		HttpResponse response = httpClient.execute(get);
-		List<Place> list = gson.fromJson(new InputStreamReader(response.getEntity()
-				.getContent(), "UTF-8"), new TypeToken<List<Place>>() {
-		}.getType());
+		List<Place> list = gson.fromJson(new InputStreamReader(response
+				.getEntity().getContent(), "UTF-8"),
+				new TypeToken<List<Place>>() {
+				}.getType());
 		Map<String, List<Place>> places = new HashMap<String, List<Place>>();
-		for(Place place : list) {
-			if(places.containsKey(place.getPlaceId()))
+		for (Place place : list) {
+			if (places.containsKey(place.getPlaceId()))
 				places.get(place.getPlaceId()).add(place);
 			else {
 				List<Place> l = new ArrayList<Place>();
@@ -111,6 +123,31 @@ public class AppPlaceManager {
 			if (place.getLike())
 				rating++;
 		return rating;
+	}
+
+	public void uploadImage(String name) throws ClientProtocolException,
+			IOException {
+		if (name.equals(""))
+			return;
+		HttpClient client = new DefaultHttpClient();
+		HttpPost post = new HttpPost(URL + "/image");
+		FileBody body = new FileBody(new File(name));
+		MultipartEntity entity = new MultipartEntity();
+		entity.addPart("file", body);
+		post.setEntity(entity);
+		client.execute(post);
+	}
+
+	public void downloadImage(String name, String path)
+			throws ClientProtocolException, IOException {
+		if (name.equals(""))
+			return;
+		httpClient = new DefaultHttpClient();
+		HttpGet get = new HttpGet(URL + "/image/" + name);
+		HttpResponse response = httpClient.execute(get);
+
+		FileOutputStream out = new FileOutputStream(new File(path + name));
+		response.getEntity().writeTo(out);
 	}
 
 }

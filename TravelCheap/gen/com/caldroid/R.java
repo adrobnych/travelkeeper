@@ -23,11 +23,11 @@ public final class R {
 		public static final int calendar_prev_arrow = 0x7f02000b;
 		public static final int cell_bg = 0x7f02000c;
 		public static final int disable_cell = 0x7f020025;
-		public static final int ic_launcher = 0x7f02002a;
-		public static final int left_arrow = 0x7f020040;
-		public static final int red_border = 0x7f020047;
-		public static final int red_border_gray_bg = 0x7f020048;
-		public static final int right_arrow = 0x7f020049;
+		public static final int ic_launcher = 0x7f02002b;
+		public static final int left_arrow = 0x7f020041;
+		public static final int red_border = 0x7f020049;
+		public static final int red_border_gray_bg = 0x7f02004a;
+		public static final int right_arrow = 0x7f02004b;
 	}
 	public static final class id {
 		public static final int calendar_gridview = 0x7f070063;

@@ -15,7 +15,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -55,6 +54,7 @@ public class RecommendActivity extends Activity {
 	private EditText name, comment;
 	private CheckBox checkShare;
 	private boolean hasCoordinates = false;
+	private String imageName = "";
 
 	DecimalFormat df = new DecimalFormat("##.00");
 
@@ -177,24 +177,31 @@ public class RecommendActivity extends Activity {
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
-			
-			/*Bitmap bMap = BitmapFactory.decodeFile("/storage/emmc/20140625_160123.png");
-		imageBtn.setImageBitmap(bMap);*/
-			
-			Boolean isSDPresent = android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
 
-			if(isSDPresent)
-			{
-				File mydir = new File(Environment.getExternalStorageDirectory() + "/TravelKeeper/");
+			/*
+			 * Bitmap bMap =
+			 * BitmapFactory.decodeFile("/storage/emmc/20140625_160123.png");
+			 * imageBtn.setImageBitmap(bMap);
+			 */
+
+			Boolean isSDPresent = android.os.Environment
+					.getExternalStorageState().equals(
+							android.os.Environment.MEDIA_MOUNTED);
+
+			if (isSDPresent) {
+				File mydir = new File(Environment.getExternalStorageDirectory()
+						+ "/TravelKeeper/");
 				mydir.mkdirs();
 				Bitmap photo = (Bitmap) data.getExtras().get("data");
 				imageBtn.setImageBitmap(photo);
 				String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
 						.format(new Date());
+				imageName = getIMEI(this) + timeStamp + ".png";
 				FileOutputStream out = null;
 				try {
-					out = new FileOutputStream(Environment.getExternalStorageDirectory() + "/TravelKeeper/" + timeStamp
-							+ ".png");
+					out = new FileOutputStream(
+							Environment.getExternalStorageDirectory()
+									+ "/TravelKeeper/" + imageName);
 					photo.compress(Bitmap.CompressFormat.PNG, 90, out);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -206,7 +213,8 @@ public class RecommendActivity extends Activity {
 				}
 			}
 		} else if (requestCode == 0 && resultCode == RESULT_OK) {
-			Intent intent = new Intent(RecommendActivity.this, HomeActivity.class);
+			Intent intent = new Intent(RecommendActivity.this,
+					HomeActivity.class);
 			startActivity(intent);
 			sendNotif();
 		}
@@ -299,10 +307,10 @@ public class RecommendActivity extends Activity {
 					.setContentUrl(
 							Uri.parse("https://play.google.com/store/apps/details?id=com.droidbrew.travelcheap"))
 					.getIntent();
-		startActivityForResult(shareIntent, 0);
+			startActivityForResult(shareIntent, 0);
 		}
 	}
-	
+
 	void sendNotif() {
 		Uri notifSound = RingtoneManager
 				.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -346,6 +354,8 @@ public class RecommendActivity extends Activity {
 		}
 		SendPlace sp = new SendPlace();
 		sp.execute();
+		SendPicture spic = new SendPicture();
+		spic.execute();
 
 	}
 
@@ -374,7 +384,7 @@ public class RecommendActivity extends Activity {
 				sendPlace
 						.setLike((titlee.equals(getString(R.string.recommend))) ? true
 								: false);
-				sendPlace.setPicture(getIMEI(RecommendActivity.this));
+				sendPlace.setPicture(imageName);
 				sendPlace.setIMEI(getIMEI(RecommendActivity.this));
 
 				((TravelApp) getApplication()).getPlaceManager().createPlace(
@@ -394,6 +404,36 @@ public class RecommendActivity extends Activity {
 		}
 	}
 
+	class SendPicture extends AsyncTask<Void, Void, Void> {
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			try {
+				Log.e("FILE NAME", imageName);
+				if (!"".equals(imageName)) {
+					String path = Environment.getExternalStorageDirectory()
+							+ "/TravelKeeper/";
+					Log.e("FILE PATH + NAME", (path + imageName));
+					((TravelApp) getApplication()).getPlaceManager()
+							.uploadImage(path + imageName);
+				}
+			} catch (Exception e) {
+				Log.e(RecommendActivity.class.getName(), e.getMessage(), e);
+			}
+
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+		}
+	}
+
 	class SearchC extends AsyncTask<Void, Void, Void> {
 		@Override
 		protected void onPreExecute() {
@@ -402,6 +442,14 @@ public class RecommendActivity extends Activity {
 			pd.setTitle("GPS");
 			pd.setMessage(getString(R.string.recommend_btn_gps_search));
 			pd.setCancelable(false);
+			pd.setButton(DialogInterface.BUTTON_NEGATIVE,
+					getString(R.string.AdminDialogNB),
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+						}
+					});
 			pd.dismiss();
 			pd.show();
 		}

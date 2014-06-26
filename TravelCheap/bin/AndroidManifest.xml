@@ -55,6 +55,7 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -90,19 +91,24 @@
             android:name="com.droidbrew.travelcheap.CurrencyCalculatorActivity"
             android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="org.achartengine.GraphicalActivity" >
+        <activity
+            android:name="org.achartengine.GraphicalActivity"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.droidbrew.travelcheap.RecommendActivity"
             android:label="@string/recommend"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <action android:name="android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS" />
         </activity>
         <activity android:name="MapActivity" >
         </activity>
         <activity android:name="PlaceOnMapActivity" >
         </activity>
-        <activity android:name="DetailedInfoActivity"></activity>
+        <activity
+            android:name="DetailedInfoActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
