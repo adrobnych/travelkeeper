@@ -48,6 +48,15 @@ public class AppPlaceManager {
 		return response.getStatusLine().getStatusCode();
 	}
 
+	public int deletePlace(Place place) throws ClientProtocolException,
+			IOException {
+		httpClient = new DefaultHttpClient();
+		HttpGet get = new HttpGet(URL + "/delete/" + place.getId());
+
+		HttpResponse response = httpClient.execute(get);
+		return response.getStatusLine().getStatusCode();
+	}
+
 	public boolean hasComment(String imei, String id)
 			throws ClientProtocolException, IOException {
 		id = URLEncoder.encode(id, "UTF-8");
@@ -90,6 +99,18 @@ public class AppPlaceManager {
 			}
 		}
 		return places;
+	}
+
+	public List<Place> getPlaces(Long time)
+			throws ClientProtocolException, IOException {
+		httpClient = new DefaultHttpClient();
+		HttpGet get = new HttpGet(URL + "/moderator/" + time);
+		HttpResponse response = httpClient.execute(get);
+		List<Place> list = gson.fromJson(new InputStreamReader(response
+				.getEntity().getContent(), "UTF-8"),
+				new TypeToken<List<Place>>() {
+				}.getType());
+		return list;
 	}
 
 	public String readHTMLResponse(HttpResponse response)

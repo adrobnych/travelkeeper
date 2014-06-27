@@ -3,6 +3,7 @@ package com.droidbrew.travelcheap;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.droidbrew.travelcheap.adapter.CommentAdapter;
@@ -263,6 +264,7 @@ public class DetailedInfoActivity extends Activity {
 				sendPlace.setComment(params[0]);
 				sendPlace.setLike(Boolean.parseBoolean(params[1]));
 				sendPlace.setPicture("");
+				sendPlace.setCreatedOn(new Date().getTime());
 				sendPlace.setIMEI(getIMEI());
 
 				((TravelApp) getApplication()).getPlaceManager().createPlace(

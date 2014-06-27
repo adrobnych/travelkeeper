@@ -385,6 +385,7 @@ public class RecommendActivity extends Activity {
 						.setLike((titlee.equals(getString(R.string.recommend))) ? true
 								: false);
 				sendPlace.setPicture(imageName);
+				sendPlace.setCreatedOn(new Date().getTime());
 				sendPlace.setIMEI(getIMEI(RecommendActivity.this));
 
 				((TravelApp) getApplication()).getPlaceManager().createPlace(

@@ -24,6 +24,8 @@ public class Place {
 	private String imei;
 	@DatabaseField(columnName = "place_id", canBeNull = false, index = true, indexName = "placeid_index")
 	private String placeId;
+	@DatabaseField(columnName = "created_on", canBeNull = false)
+	private Long createdOn;
 
 	public Place() {
 
@@ -99,6 +101,14 @@ public class Place {
 
 	public String getPlaceId() {
 		return placeId;
+	}
+	
+	public void setCreatedOn(long date) {
+		this.createdOn = date;
+	}
+	
+	public Long getCreatedOn() {
+		return createdOn;
 	}
 
 }
