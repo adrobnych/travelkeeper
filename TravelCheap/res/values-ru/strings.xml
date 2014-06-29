@@ -120,6 +120,8 @@
 	<string name="dialog_add_comm_dislike">Не нравиться</string>
 	<string name="recommend_dialog_maps">Поиск мест</string>
 	<string name="btn_add_comments">Добавить комментарий</string>
+	<string name="enter_name">Bведите имя</string>
+	<string name="enter_coordinat">Введите координаты</string>
     
     
     <string-array name="mChoose">

@@ -5,12 +5,13 @@ import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,6 +22,7 @@ import android.location.LocationManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
@@ -30,12 +32,14 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import com.droidbrew.travelkeeper.model.entity.Place;
 import com.google.android.gms.plus.PlusShare;
 
@@ -51,10 +55,11 @@ public class RecommendActivity extends Activity {
 	public Double latg, lotg;
 	public String titlee;
 	private Place sendPlace;
-	private EditText name, comment;
+	private EditText name, comment = null;
 	private CheckBox checkShare;
 	private boolean hasCoordinates = false;
 	private String imageName = "";
+	private ImageView ivName = null, ivGps, ivMap;
 
 	DecimalFormat df = new DecimalFormat("##.00");
 
@@ -70,8 +75,10 @@ public class RecommendActivity extends Activity {
 		Intent intent = getIntent();
 		pd = new ProgressDialog(this);
 		checkShare = (CheckBox) findViewById(R.id.check_share);
+		ivName = (ImageView) findViewById(R.id.img_name);
 		name = (EditText) findViewById(R.id.name_recommend);
 		name.setText(intent.getStringExtra("name"));
+		hasName();
 		comment = (EditText) findViewById(R.id.comments);
 		comment.setText(intent.getStringExtra("comment"));
 		imageBtn = (ImageButton) this.findViewById(R.id.image);
@@ -82,6 +89,12 @@ public class RecommendActivity extends Activity {
 		latg = lat;
 		Double lot = b.getDouble("lot");
 		lotg = lot;
+		ivMap = (ImageView) findViewById(R.id.img_map);
+		if (b.getDouble("lat") != 0.0 || b.getDouble("lot") != 0.0){
+			ivMap.setVisibility(ImageView.VISIBLE);
+			ivMap.setImageResource(R.drawable.okk);
+		}else{}
+		
 		String title = intent.getStringExtra("title");
 		titlee = title;
 		setTitle(titlee.toString());
@@ -91,23 +104,84 @@ public class RecommendActivity extends Activity {
 		spent = (TextView) findViewById(R.id.spent_recommend);
 		spent.setText(" " + dspent + " " + curs);
 		locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+		ivGps = (ImageView) findViewById(R.id.img_gps);
 		Button btnSave = (Button) findViewById(R.id.btn_save_recommend);
 		btnSave.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if (checkShare.isChecked()) {
+					if ((name).getText().toString().equals("")) {
+						AlertDialog.Builder build = new AlertDialog.Builder(
+								RecommendActivity.this);
+						build.setTitle(getString(R.string.enter_name));
+						build.setNegativeButton("Ok",
+								new DialogInterface.OnClickListener() {
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+									}
+								});
+						build.show();
+						return;
+					}
+					if (loc == null) {
+						if (latg == 0.0 && lotg == 0.0){
+						AlertDialog.Builder build = new AlertDialog.Builder(
+								RecommendActivity.this);
+						build.setTitle(getString(R.string.enter_coordinat));
+						build.setNegativeButton("Ok",
+								new DialogInterface.OnClickListener() {
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+									}
+								});
+						build.show();
+						return;}
+					}
+					hasName();
 					shareCheck();
 					postHTTP();
 
 				} else {
-					postHTTP();
-					GoHome();
+					if ((name).getText().toString().equals("")) {
+						AlertDialog.Builder build = new AlertDialog.Builder(
+								RecommendActivity.this);
+						build.setTitle(getString(R.string.enter_name));
+						build.setNegativeButton("Ok",
+								new DialogInterface.OnClickListener() {
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+									}
+								});
+						build.show();
+						return;
+					}
+					if (loc == null) {
+						if (latg == 0.0 && lotg == 0.0){
+						AlertDialog.Builder build = new AlertDialog.Builder(
+								RecommendActivity.this);
+						build.setTitle(getString(R.string.enter_coordinat));
+						build.setNegativeButton("Ok",
+								new DialogInterface.OnClickListener() {
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+									}
+								});
+						build.show();
+						return;}
+					}
+						ivName.setVisibility(ImageView.VISIBLE);
+						ivName.setImageResource(R.drawable.okk);
+						postHTTP();
+						GoHome();
 				}
 			}
 		});
 
 		imageBtn.setOnClickListener(new View.OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				imageButtonClick();
@@ -120,6 +194,7 @@ public class RecommendActivity extends Activity {
 			public void onClick(View v) {
 				if (hasGPS())
 					searchCoordinates();
+
 			}
 		});
 
@@ -137,10 +212,39 @@ public class RecommendActivity extends Activity {
 				placeMapIntent.putExtra("curs_map", curs);
 				placeMapIntent.putExtra("tag_map", tag);
 				startActivity(placeMapIntent);
+				
 			}
 		});
 	}
 
+	public void hasName() {
+		name.setOnFocusChangeListener(new OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (!hasFocus) {
+					if ((name).getText().toString().equals("")) {
+						ivName.setVisibility(ImageView.VISIBLE);
+						ivName.setImageResource(R.drawable.not);
+						AlertDialog.Builder build = new AlertDialog.Builder(
+								RecommendActivity.this);
+						build.setTitle(getString(R.string.enter_name));
+						build.setNegativeButton("Ok",
+								new DialogInterface.OnClickListener() {
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+									}
+								});
+						build.show();
+					} else {
+						ivName.setVisibility(ImageView.VISIBLE);
+						ivName.setImageResource(R.drawable.okk);
+					}
+				}
+			}
+		});
+	}
+	
 	private boolean hasGPS() {
 		LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -177,13 +281,6 @@ public class RecommendActivity extends Activity {
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
-
-			/*
-			 * Bitmap bMap =
-			 * BitmapFactory.decodeFile("/storage/emmc/20140625_160123.png");
-			 * imageBtn.setImageBitmap(bMap);
-			 */
-
 			Boolean isSDPresent = android.os.Environment
 					.getExternalStorageState().equals(
 							android.os.Environment.MEDIA_MOUNTED);
@@ -230,9 +327,11 @@ public class RecommendActivity extends Activity {
 	private void searchCoordinates() {
 		hasCoordinates = false;
 		SearchC sc = new SearchC();
+		
 		sc.execute();
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				1000 * 1, 10, locationListener);
+
 	}
 
 	private LocationListener locationListener = new LocationListener() {
@@ -448,6 +547,9 @@ public class RecommendActivity extends Activity {
 					new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
+							locationManager.removeUpdates(locationListener);
+							ivGps.setVisibility(ImageView.VISIBLE);
+							ivGps.setImageResource(R.drawable.not);
 							dialog.dismiss();
 						}
 					});
@@ -470,9 +572,15 @@ public class RecommendActivity extends Activity {
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
+			
+			if (loc != null) {
+				ivGps.setVisibility(ImageView.VISIBLE);
+				ivGps.setImageResource(R.drawable.okk);
+				ivMap.setVisibility(ImageView.INVISIBLE);
+			}
 			pd.dismiss();
-
 		}
+
 	}
 
 }

@@ -25,19 +25,19 @@ public final class R {
 		public static final int disable_cell = 0x7f020025;
 		public static final int ic_launcher = 0x7f02002b;
 		public static final int left_arrow = 0x7f020041;
-		public static final int red_border = 0x7f020049;
-		public static final int red_border_gray_bg = 0x7f02004a;
-		public static final int right_arrow = 0x7f02004b;
+		public static final int red_border = 0x7f02004b;
+		public static final int red_border_gray_bg = 0x7f02004c;
+		public static final int right_arrow = 0x7f02004d;
 	}
 	public static final class id {
-		public static final int calendar_gridview = 0x7f070063;
-		public static final int calendar_left_arrow = 0x7f070051;
-		public static final int calendar_month_year_textview = 0x7f070052;
-		public static final int calendar_right_arrow = 0x7f070053;
-		public static final int calendar_title_view = 0x7f070050;
-		public static final int calendar_tv = 0x7f070062;
-		public static final int months_infinite_pager = 0x7f070055;
-		public static final int weekday_gridview = 0x7f070054;
+		public static final int calendar_gridview = 0x7f070066;
+		public static final int calendar_left_arrow = 0x7f070054;
+		public static final int calendar_month_year_textview = 0x7f070055;
+		public static final int calendar_right_arrow = 0x7f070056;
+		public static final int calendar_title_view = 0x7f070053;
+		public static final int calendar_tv = 0x7f070065;
+		public static final int months_infinite_pager = 0x7f070058;
+		public static final int weekday_gridview = 0x7f070057;
 	}
 	public static final class layout {
 		public static final int calendar_view = 0x7f030008;

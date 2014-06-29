@@ -122,6 +122,8 @@
 	<string name="dialog_add_comm_dislike">DisLike</string>
 	<string name="recommend_dialog_maps">Searching for places</string>
 	<string name="btn_add_comments">Add Comment</string>
+	<string name="enter_name">Enter the name</string>
+	<string name="enter_coordinat">Enter coordinate</string>
     
 
     <string-array name="mChoose">
