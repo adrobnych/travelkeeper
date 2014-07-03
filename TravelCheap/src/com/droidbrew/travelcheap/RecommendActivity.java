@@ -2,9 +2,16 @@ package com.droidbrew.travelcheap;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
+
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -40,6 +47,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.droidbrew.travelkeeper.model.entity.Place;
 import com.google.android.gms.plus.PlusShare;
 
@@ -71,9 +79,12 @@ public class RecommendActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_recommend);
+		pd = new ProgressDialog(this);
+		CheckConnection check = new CheckConnection();
+		check.execute();
 		nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		Intent intent = getIntent();
-		pd = new ProgressDialog(this);
+
 		checkShare = (CheckBox) findViewById(R.id.check_share);
 		ivName = (ImageView) findViewById(R.id.img_name);
 		name = (EditText) findViewById(R.id.name_recommend);
@@ -90,11 +101,12 @@ public class RecommendActivity extends Activity {
 		Double lot = b.getDouble("lot");
 		lotg = lot;
 		ivMap = (ImageView) findViewById(R.id.img_map);
-		if (b.getDouble("lat") != 0.0 || b.getDouble("lot") != 0.0){
+		if (b.getDouble("lat") != 0.0 || b.getDouble("lot") != 0.0) {
 			ivMap.setVisibility(ImageView.VISIBLE);
 			ivMap.setImageResource(R.drawable.okk);
-		}else{}
-		
+		} else {
+		}
+
 		String title = intent.getStringExtra("title");
 		titlee = title;
 		setTitle(titlee.toString());
@@ -125,24 +137,26 @@ public class RecommendActivity extends Activity {
 						return;
 					}
 					if (loc == null) {
-						if (latg == 0.0 && lotg == 0.0){
-						AlertDialog.Builder build = new AlertDialog.Builder(
-								RecommendActivity.this);
-						build.setTitle(getString(R.string.enter_coordinat));
-						build.setNegativeButton("Ok",
-								new DialogInterface.OnClickListener() {
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-									}
-								});
-						build.show();
-						return;}
+						if (latg == 0.0 && lotg == 0.0) {
+							AlertDialog.Builder build = new AlertDialog.Builder(
+									RecommendActivity.this);
+							build.setTitle(getString(R.string.enter_coordinat));
+							build.setNegativeButton("Ok",
+									new DialogInterface.OnClickListener() {
+										@Override
+										public void onClick(
+												DialogInterface dialog,
+												int which) {
+										}
+									});
+							build.show();
+							return;
+						}
 					}
 					hasName();
-					shareCheck();
+					
 					postHTTP();
-
+					shareCheck();
 				} else {
 					if ((name).getText().toString().equals("")) {
 						AlertDialog.Builder build = new AlertDialog.Builder(
@@ -159,24 +173,26 @@ public class RecommendActivity extends Activity {
 						return;
 					}
 					if (loc == null) {
-						if (latg == 0.0 && lotg == 0.0){
-						AlertDialog.Builder build = new AlertDialog.Builder(
-								RecommendActivity.this);
-						build.setTitle(getString(R.string.enter_coordinat));
-						build.setNegativeButton("Ok",
-								new DialogInterface.OnClickListener() {
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-									}
-								});
-						build.show();
-						return;}
+						if (latg == 0.0 && lotg == 0.0) {
+							AlertDialog.Builder build = new AlertDialog.Builder(
+									RecommendActivity.this);
+							build.setTitle(getString(R.string.enter_coordinat));
+							build.setNegativeButton("Ok",
+									new DialogInterface.OnClickListener() {
+										@Override
+										public void onClick(
+												DialogInterface dialog,
+												int which) {
+										}
+									});
+							build.show();
+							return;
+						}
 					}
-						ivName.setVisibility(ImageView.VISIBLE);
-						ivName.setImageResource(R.drawable.okk);
-						postHTTP();
-						GoHome();
+					ivName.setVisibility(ImageView.VISIBLE);
+					ivName.setImageResource(R.drawable.okk);
+					postHTTP();
+					// GoHome();
 				}
 			}
 		});
@@ -212,7 +228,7 @@ public class RecommendActivity extends Activity {
 				placeMapIntent.putExtra("curs_map", curs);
 				placeMapIntent.putExtra("tag_map", tag);
 				startActivity(placeMapIntent);
-				
+				finish();
 			}
 		});
 	}
@@ -244,7 +260,7 @@ public class RecommendActivity extends Activity {
 			}
 		});
 	}
-	
+
 	private boolean hasGPS() {
 		LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -314,6 +330,7 @@ public class RecommendActivity extends Activity {
 					HomeActivity.class);
 			startActivity(intent);
 			sendNotif();
+			finish();
 		}
 	}
 
@@ -327,7 +344,7 @@ public class RecommendActivity extends Activity {
 	private void searchCoordinates() {
 		hasCoordinates = false;
 		SearchC sc = new SearchC();
-		
+
 		sc.execute();
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				1000 * 1, 10, locationListener);
@@ -443,6 +460,7 @@ public class RecommendActivity extends Activity {
 	public void GoHome() {
 		Intent intent = new Intent(RecommendActivity.this, HomeActivity.class);
 		startActivity(intent);
+		finish();
 	}
 
 	public void postHTTP() {
@@ -459,6 +477,9 @@ public class RecommendActivity extends Activity {
 	}
 
 	class SendPlace extends AsyncTask<Void, Void, Void> {
+
+		int code = 0;
+
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
@@ -487,10 +508,11 @@ public class RecommendActivity extends Activity {
 				sendPlace.setCreatedOn(new Date().getTime());
 				sendPlace.setIMEI(getIMEI(RecommendActivity.this));
 
-				((TravelApp) getApplication()).getPlaceManager().createPlace(
-						sendPlace);
+				code = ((TravelApp) getApplication()).getPlaceManager()
+						.createPlace(sendPlace);
 			} catch (Exception e) {
 				Log.e(RecommendActivity.class.getName(), e.getMessage(), e);
+				code = 0;
 			}
 
 			return null;
@@ -500,7 +522,28 @@ public class RecommendActivity extends Activity {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			pd.dismiss();
+			if(checkShare.isChecked())
+				return;
+			AlertDialog.Builder dial = new AlertDialog.Builder(
+					RecommendActivity.this);
+			dial.setNegativeButton("ok", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Intent ontent = new Intent(RecommendActivity.this,
+							HomeActivity.class);
+					startActivity(ontent);
+					finish();
+				}
+			});
 
+			if (code == 200) {
+				dial.setTitle("Ok");
+				dial.setMessage("Place was created successfully");
+			} else {
+				dial.setTitle("Error");
+				dial.setMessage("Problem saving data");
+			}
+			dial.create().show();
 		}
 	}
 
@@ -572,13 +615,68 @@ public class RecommendActivity extends Activity {
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-			
+
 			if (loc != null) {
 				ivGps.setVisibility(ImageView.VISIBLE);
 				ivGps.setImageResource(R.drawable.okk);
 				ivMap.setVisibility(ImageView.INVISIBLE);
 			}
 			pd.dismiss();
+		}
+
+	}
+
+	class CheckConnection extends AsyncTask<Void, Void, Boolean> {
+
+		private boolean check = false;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pd.setTitle("Connection");
+			pd.setMessage("Please wait");
+			pd.setCancelable(false);
+			pd.dismiss();
+			pd.show();
+		}
+
+		@Override
+		protected Boolean doInBackground(Void... params) {
+
+			try {
+				check = ((TravelApp) getApplication()).getPlaceManager()
+						.checkConnection();
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				Log.e(RecommendActivity.class.getName(), e.getMessage(), e);
+				check = false;
+			}
+			return check;
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			super.onPostExecute(result);
+			pd.dismiss();
+			if (!check) {
+				AlertDialog.Builder dial = new AlertDialog.Builder(
+						RecommendActivity.this);
+				dial.setTitle("Error");
+				dial.setMessage("Server unavailable");
+				dial.setNegativeButton("ok",
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								Intent ontent = new Intent(
+										RecommendActivity.this,
+										HomeActivity.class);
+								startActivity(ontent);
+								finish();
+							}
+						});
+				dial.create().show();
+			}
 		}
 
 	}

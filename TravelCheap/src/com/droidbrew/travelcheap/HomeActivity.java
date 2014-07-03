@@ -51,6 +51,7 @@ public class HomeActivity extends FragmentActivity {
 	private ProgressDialog pd = null;
 	private PendingIntent intent;
 	View dlg = null;
+	private static long back_pressed;
 
 	private static final int RESULT_SETTINGS = 1;
 
@@ -59,6 +60,9 @@ public class HomeActivity extends FragmentActivity {
 		super.onCreate(_savedInstanceState);
 		savedInstanceState = _savedInstanceState;
 		setContentView(R.layout.activity_home);
+		if (getIntent().getBooleanExtra("EXIT", false)) {
+            finish();
+        }
 		amount = (TextView) findViewById(R.id.amount);
 		loadCurrencies();
 
@@ -84,6 +88,19 @@ public class HomeActivity extends FragmentActivity {
 		if (tm == null)
 			return null;
 		return tm.getDeviceId();
+	}
+	
+	@Override
+	public void onBackPressed() {
+		/*Log.e("BACKPREESSED", "WAS PRESSED");
+		Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);*/
+		
+		 if (back_pressed + 2000 > System.currentTimeMillis()) super.onBackPressed();
+	        else Toast.makeText(getBaseContext(), "Press once again to exit!", Toast.LENGTH_SHORT).show();
+	        back_pressed = System.currentTimeMillis();
 	}
 
 	public boolean hasConnection(final Context context) {
