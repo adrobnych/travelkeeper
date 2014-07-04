@@ -101,8 +101,8 @@ public class AppPlaceManager {
 		return places;
 	}
 
-	public List<Place> getPlaces(Long time)
-			throws ClientProtocolException, IOException {
+	public List<Place> getPlaces(Long time) throws ClientProtocolException,
+			IOException {
 		httpClient = new DefaultHttpClient();
 		HttpGet get = new HttpGet(URL + "/moderator/" + time);
 		HttpResponse response = httpClient.execute(get);
@@ -111,6 +111,20 @@ public class AppPlaceManager {
 				new TypeToken<List<Place>>() {
 				}.getType());
 		return list;
+	}
+
+	public boolean checkConnection() {
+		boolean check = false;
+		httpClient = new DefaultHttpClient();
+		HttpGet get = new HttpGet(URL);
+		try {
+			HttpResponse response = httpClient.execute(get);
+			String answer = readHTMLResponse(response);
+			check = answer.equals("hi");
+		} catch (Exception e) {
+			check = false;
+		}
+		return check;
 	}
 
 	public String readHTMLResponse(HttpResponse response)
